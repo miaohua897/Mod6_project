@@ -30,6 +30,24 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
+
+        songIds = []
+        for song in user.songs:
+            songIds.append(song.id)
+        
+        playlistIds = []
+        for playlist in user.playlists:
+            playlistIds.append(playlist.id)
+        
+        albumIds = []
+        for album in user.albums:
+            albumIds.append(album.id)
+        
+        response = user.to_dict()
+        response['songIds'] = songIds
+        response['playlistIds'] = playlistIds
+        response['albumIds'] = albumIds
+
         return user.to_dict()
     return form.errors, 401
 
