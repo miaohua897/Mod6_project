@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA,add_prefix_for_prod
 from datetime import datetime
+from .playlist_songs import playlist_songs
 # from flask_sqlalchemy import SQLAlchemy
 # db = SQLAlchemy()
 class Song(db.Model):
@@ -18,4 +19,6 @@ class Song(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.today)
     updated_at = db.Column(db.DateTime, default=datetime.today, onupdate=datetime.today)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+
     artist = db.relationship("User", back_populates="songs")
+    playlists = db.relationship("Playlist", secondary=playlist_songs, back_populates="songs")
