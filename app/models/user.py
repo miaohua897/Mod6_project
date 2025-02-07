@@ -17,7 +17,9 @@ class User(db.Model, UserMixin):
     
     songs = db.relationship("Song", back_populates="artist", order_by="desc(Song.created_at)", lazy="joined", cascade="all, delete-orphan")
     playlists = db.relationship("Playlist", back_populates="user", order_by="desc(Playlist.created_at)", lazy="joined", cascade="all, delete-orphan")
-    
+    albums = db.relationship("Album", back_populates="artist", lazy="joined", order_by="desc(Album.created_at)", cascade="all, delete-orphan")
+    likes = db.relationship("Like", back_populates="user", lazy="joined", order_by="desc(Like.created_at)", cascade="all, delete-orphan")
+
     @property
     def password(self):
         return self.hashed_password

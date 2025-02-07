@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA,add_prefix_for_prod
 from datetime import datetime
 from .playlist_songs import playlist_songs
-# from flask_sqlalchemy import SQLAlchemy
-# db = SQLAlchemy()
+from .album_songs import album_songs
+
 class Song(db.Model):
     __tablename__ = "songs"
     if environment == "production":
@@ -22,3 +22,4 @@ class Song(db.Model):
 
     artist = db.relationship("User", back_populates="songs")
     playlists = db.relationship("Playlist", secondary=playlist_songs, back_populates="songs")
+    albums = db.relationship("Album", secondary=album_songs, back_populates="songs")
