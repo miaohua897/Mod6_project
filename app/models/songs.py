@@ -29,18 +29,17 @@ class Song(db.Model):
         "Playlist", secondary=playlist_songs, back_populates="songs"
     )
 
-    # def to_dict(self):
-    #     return {
-    #         "id": self.id,
-    #         "title": self.title,
-    #         "audio_url": self.audio_url,
-    #         "duration": self.duration,
-    #         "lyrics": self.lyrics,
-    #         "genre": self.genre,
-    #         "release_year": self.release_year,
-    #         "image_url": self.image_url,
-    #         "user_id": self.user_id,
-    #         "albums": self.albums,
-    #         "user_likes": self.user_likes,
-    #         "playlists": self.playlists,
-    #     }
+    def to_dict(self):
+        return {
+            "id":self.id,
+            "title":self.title,
+            "audio_url":self.audio_url,
+            "duration":self.duration,
+            "lyrics":self.lyrics,
+            "genre":self.genre,
+            "release_year":self.release_year,
+            "image_url":self.image_url,
+            "user_id":self.user_id,
+            "albums":self.albums,
+            "likes":self.likes
+        }
