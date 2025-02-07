@@ -1,19 +1,16 @@
-"""create tables
+"""create-tables
 
-Revision ID: acc1c153fdb3
+Revision ID: e2c05429716f
 Revises: 
-Create Date: 2025-02-06 17:35:45.118796
+Create Date: 2025-02-07 10:24:09.515742
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = 'acc1c153fdb3'
+revision = 'e2c05429716f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,7 +23,9 @@ def upgrade():
     sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('artist_name', sa.String(length=100), nullable=False),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('artist_name'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
@@ -56,7 +55,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=200), nullable=False),
     sa.Column('audio_url', sa.String(length=2083), nullable=False),
-    sa.Column('duration', sa.Integer(), nullable=False),
+    sa.Column('duration', sa.String(length=10), nullable=False),
     sa.Column('lyrics', sa.Text(), nullable=False),
     sa.Column('genre', sa.String(length=100), nullable=False),
     sa.Column('release_year', sa.Integer(), nullable=False),
@@ -98,15 +97,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['song_id'], ['songs.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE songs SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE playlists SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE playlist_songs SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE albums SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE album_songs SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
