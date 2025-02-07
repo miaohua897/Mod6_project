@@ -18,4 +18,14 @@ class Album(db.Model):
 
     artist = db.relationship("User", back_populates="albums")
     songs = db.relationship("Song", secondary=album_songs, back_populates="albums")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "image_url": self.image_url,
+            "release_year": self.release_year,
+            "artist": self.artist,
+            "songs": self.songs
+        }
   
