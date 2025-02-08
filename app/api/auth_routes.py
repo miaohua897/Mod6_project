@@ -51,6 +51,7 @@ def login():
         response['songIds'] = songIds
         response['playlistIds'] = playlistIds
         response['likedSongIds'] = likedSongIds
+        response['albumIds'] = albumIds
         
         return response
     return form.errors, 401
