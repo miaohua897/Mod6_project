@@ -43,12 +43,16 @@ def login():
         for album in user.albums:
             albumIds.append(album.id)
         
+        likedSongIds = []
+        for liked_song in user.liked_songs:
+            likedSongIds.append(liked_song.id)
+        
         response = user.to_dict()
         response['songIds'] = songIds
         response['playlistIds'] = playlistIds
-        response['albumIds'] = albumIds
-
-        return user.to_dict()
+        response['likedSongIds'] = likedSongIds
+        
+        return response
     return form.errors, 401
 
 
