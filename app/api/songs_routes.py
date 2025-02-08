@@ -81,60 +81,76 @@ def get_songs_lazeloading_curr():
 @song_routes.route('/',methods=['POST'])
 @login_required
 def post_songs():
-    print(current_user.id)
-    songA =request.get_json()
-    print("post", songA )
-    new_song= Song ( title=songA["title"],
-            audio_url=songA["audio_url"],
-            duration=songA["duration"],
-            lyrics=songA["lyrics"],
-            genre=songA["genre"],
-            release_year=songA["release_year"],
-            image_url=songA[ "image_url"],
-            user_id =current_user.id
-            )
-    db.session.add(new_song)
-    db.session.commit()
- 
-    return new_song.to_dict()
+    try:
+        print(current_user.id)
+        songA =request.get_json()
+        # print("post", songA["title"] )
+        new_song= Song ( title=songA["title"],
+                audio_url=songA["audio_url"],
+                duration=songA["duration"],
+                lyrics=songA["lyrics"],
+                genre=songA["genre"],
+                release_year=songA["release_year"],
+                image_url=songA[ "image_url"],
+                user_id =current_user.id
+                )
+        db.session.add(new_song)
+        db.session.commit()
+
+        return new_song.to_dict()
+    except KeyError as e:
+        return jsonify({"keyerror": str(e)})
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 @song_routes.route('/<int:song_id>',methods=['DELETE'])
 @login_required
 def delete_song(song_id):
     song = Song.query.get(song_id)
     print(song)
+    if song is None :
+        return jsonify({
+        'message':'the song is not in database'
+    })
     db.session.delete(song)
     db.session.commit()
-    return song.title
+    return jsonify({
+        'delete song':song.title
+    })
 
 @song_routes.route('/<int:song_id>',methods=['PUT'])
 @login_required
 def update_song(song_id):
-    song = Song.query.get(song_id)
-    print(song)
-    new_song=request.get_json()  
-    if new_song['title'] is not None:
+    try:
+        song = Song.query.get(song_id)
+        print(song)
+        new_song=request.get_json()  
+        
         song.title = new_song['title']
-    if new_song['audio_url'] is not None:
+
         song.audio_url = new_song['audio_url']
-    if new_song['duration'] is not None:
+
         song.duration = new_song['duration'] 
-    if new_song['lyrics'] is not None:
+
         song.lyrics = new_song['lyrics'] 
-    if new_song['genre'] is not None:
+
         song.genre = new_song['genre'] 
-    if new_song['release_year'] is not None:
+
         song.release_year = new_song['release_year']
-    if new_song['image_url'] is not None:
+
         song.image_url = new_song['image_url'] 
 
-    db.session.commit()
-    return {
-        'song_name':song.title,
-        'audio_url':song.audio_url,
-        'duration':song.duration,
-        'lyrics':song.lyrics,
-        'genre':song.genre,
-        'release_year':song.release_year,
-         'image_url':song.image_url
-        }
+        db.session.commit()
+        return {
+            'song_name':song.title,
+            'audio_url':song.audio_url,
+            'duration':song.duration,
+            'lyrics':song.lyrics,
+            'genre':song.genre,
+            'release_year':song.release_year,
+            'image_url':song.image_url
+            }
+    except KeyError as e:
+        return jsonify({"keyerror": str(e)})
+    except Exception as e:
+        return jsonify({"error": str(e)})
