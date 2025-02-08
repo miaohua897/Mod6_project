@@ -52,11 +52,12 @@ def update_an_album(album_id):
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("FORM DATA", form.data)
-
     edited_album = Album.query.get_or_404(album_id)
 
-    if edited_album.user_id == current_user.id and form.validate_on_submit():
+    if edited_album.user_id != current_user.id:
+        return { "message": "Album must belong to the current user" }
+    
+    elif edited_album.user_id == current_user.id and form.validate_on_submit():
         form.populate_obj(edited_album)
 
         db.session.commit()
@@ -65,3 +66,16 @@ def update_an_album(album_id):
 
     return form.errors, 400
 
+
+@album_routes.route('/<int:album_id>', methods=["DELETE"])
+@login_required
+def delete_an_album(album_id):
+    album_to_delete = Album.query.get_or_404(album_id)
+
+    if album_to_delete.user_id != current_user.id:
+        return { "message": "Album must belong to the current user" }
+    
+    db.session.delete(album_to_delete)
+    db.session.commit()
+
+    return { "message": "Successfully deleted" }
