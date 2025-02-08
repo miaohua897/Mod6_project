@@ -30,7 +30,7 @@ class Album(db.Model):
                  "artist_name": self.artist.to_dict()["artist_name"],
                  "artist_id": self.artist.to_dict()["id"]
             },
-            "song_ids": [song.id for song in self.songs]
+            "song_ids": [song.id for song in self.songs] if self.songs else []
         }
 
     

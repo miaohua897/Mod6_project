@@ -38,11 +38,12 @@ def create_an_album():
         db.session.add(new_album)
         db.session.commit()
 
-        return new_album.to_dict()
+        return { new_album.id: new_album.to_dict() }
     
-    return form.errors, 401
+    return form.errors, 400
 
-# if the user is logged in and owns the album, they can update
+# if the user is logged in and owns the album, they can update it
+# we need to take whatever form data is in the form for the three allowable fields
 
 @album_routes.route('/<int:album_id>', methods=["PUT"])
 @login_required
@@ -50,4 +51,17 @@ def update_an_album(album_id):
     form = AlbumForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    print("FORM DATA", form.data)
+
+    edited_album = Album.query.get_or_404(album_id)
+
+    if edited_album.user_id == current_user.id and form.validate_on_submit():
+        form.populate_obj(edited_album)
+
+        db.session.commit()
+
+        return { edited_album.id: edited_album.to_dict() }
+
+    return form.errors, 400
 
