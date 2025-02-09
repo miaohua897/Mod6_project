@@ -20,7 +20,7 @@ def add_liked_song():
     return jsonify({"message": "Song added to user's likes'"}), 201
 
 
-@likes_routes.route("/:song_id", methods=["DELETE"])
+@likes_routes.route("/<int:song_id>", methods=["DELETE"])
 @login_required
 def delete_liked_song(song_id):
     """
@@ -33,5 +33,4 @@ def delete_liked_song(song_id):
         )
     )
     db.session.commit()
-
     return jsonify({"message": "Song removed from user's likes"}), 200
