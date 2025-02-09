@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, redirect, request, url_for
 from flask_login import login_required, current_user
-from app.api.auth_routes import authenticate
 from app.forms.playlist_form import PlaylistForm
 from app.models import db, Playlist, playlist_songs
 
