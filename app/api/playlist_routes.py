@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, redirect, request, url_for
 from flask_login import login_required, current_user
 from app.forms.playlist_form import PlaylistForm
-from app.models import db, Playlist, playlist_songs
+from app.models import db, Playlist, playlist_songs, Song
 
 playlist_routes = Blueprint("playlists", __name__)
 
@@ -67,6 +67,12 @@ def add_playlist_songs(playlist_id, song_id):
     """
     Add a song to a playlist
     """
+    playlist = Playlist.query.get_or_404(playlist_id)
+    Song.query.get_or_404(song_id)
+
+    if current_user.id != playlist.user_id:
+        return redirect(url_for("authenticate"))
+
     new_playlist_song = playlist_songs.insert().values(
         playlist_id=playlist_id, song_id=song_id
     )
@@ -81,6 +87,12 @@ def delete_playlist_songs(playlist_id, song_id):
     """
     Delete a song from a playlist
     """
+    playlist = Playlist.query.get_or_404(playlist_id)
+    Song.query.get_or_404(song_id)
+
+    if current_user.id != playlist.user_id:
+        return redirect(url_for("authenticate"))
+
     db.session.execute(
         playlist_songs.delete().where(
             (playlist_songs.c.playlist_id == playlist_id)
