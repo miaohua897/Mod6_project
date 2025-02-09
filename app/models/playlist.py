@@ -32,5 +32,6 @@ class Playlist(db.Model):
             "user_id": self.user_id,
             "image_url": self.image_url,
             "name": self.name,
-            "description": self.description
+            "description": self.description,
+            "song_ids": [song.id for song in self.songs] if self.songs else [],
         }
