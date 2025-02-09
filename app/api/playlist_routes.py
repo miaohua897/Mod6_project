@@ -27,12 +27,11 @@ def add_playlist():
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        data = request.get_json()
         playlist = Playlist(
-            user_id=current_user["id"],
-            image_url=data["image_url"],
-            name=data["name"],
-            description=data["description"],
+            user_id=current_user.id,
+            name=form.name.data,
+            description=form.description.data,
+            image_url=form.image_url.data,
         )
         db.session.add(playlist)
         db.session.commit()
