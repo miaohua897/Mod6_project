@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask import Blueprint, jsonify, redirect, request, url_for
+from flask_login import login_required, current_user
 from app.api.auth_routes import authenticate
-from app.forms.playlist_form import PlaylistForm 
+from app.forms.playlist_form import PlaylistForm
 from app.models import db, Playlist, playlist_songs
 
 playlist_routes = Blueprint("playlists", __name__)
@@ -13,9 +13,7 @@ def playlists():
     """
     Query for all playlists and returns them in a list of playlist dictionaries
     """
-    user = authenticate()
-    playlists = Playlist.query.filter(Playlist.user_id==user['id'] )
-
+    playlists = Playlist.query.filter(Playlist.user_id == current_user.id)
     return {"playlists": [playlist.to_dict() for playlist in playlists]}
 
 
@@ -23,54 +21,73 @@ def playlists():
 @login_required
 def add_playlist():
     """
-    Creates a playlist for the loggied in user and returns it as a dict
+    Creates a playlist for the logged in user and returns it as a dict
     """
-    user = authenticate()
+    form = PlaylistForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    # form = PlaylistForm()
-    # form["csrf_token"].data = request.cookies["csrf_token"]
-    # if form.validate_on_submit():
-        
-    data = request.get_json()
-    playlist = Playlist(
-        user_id=user['id'],
-        image_url=data["image_url"],
-        name=data["name"],
-        description=data["description"],
-    )
-    db.session.add(playlist)
-    db.session.commit()
-    return playlist.to_dict()
-    # return form.errors, 401
+    if form.validate_on_submit():
+        data = request.get_json()
+        playlist = Playlist(
+            user_id=current_user["id"],
+            image_url=data["image_url"],
+            name=data["name"],
+            description=data["description"],
+        )
+        db.session.add(playlist)
+        db.session.commit()
+        return playlist.to_dict()
 
-  
+    return form.errors, 401
 
-@playlist_routes.route("/<int:id>/songs/<int:song_id>", methods=["POST"])
+
+@playlist_routes.route("/<int:playlist_id>", methods=["PUT"])
 @login_required
-def add_playlist_songs(id, song_id):
+def update_playlist(playlist_id):
+    """
+    Updates a playlist for the logged in user and returns it as a dict
+    """
+    edited_playlist = Playlist.query.get_or_404(playlist_id)
+
+    if current_user.id != edited_playlist.user_id:
+        return redirect(url_for("authenticate"))
+
+    form = PlaylistForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        form.populate_obj(edited_playlist)
+        db.session.commit()
+        return edited_playlist.to_dict()
+
+    return form.errors, 401
+
+
+@playlist_routes.route("/<int:playlist_id>/songs/<int:song_id>", methods=["POST"])
+@login_required
+def add_playlist_songs(playlist_id, song_id):
     """
     Add a song to a playlist
     """
-    
     new_playlist_song = playlist_songs.insert().values(
-        playlist_id=id, song_id=song_id
+        playlist_id=playlist_id, song_id=song_id
     )
     db.session.execute(new_playlist_song)
     db.session.commit()
-    return jsonify({"message": f"Song {song_id} added to playlist {id}"}), 201
+    return jsonify({"message": "Song added to playlist"}), 201
 
 
-@playlist_routes.route("/<int:id>/songs/<int:song_id>", methods=["DELETE"])
+@playlist_routes.route("/<int:playlist_id>/songs/<int:song_id>", methods=["DELETE"])
 @login_required
-def delete_playlist_songs(id, song_id):
+def delete_playlist_songs(playlist_id, song_id):
     """
     Delete a song from a playlist
     """
     db.session.execute(
         playlist_songs.delete().where(
-            (playlist_songs.c.playlist_id == id) & (playlist_songs.c.song_id == song_id)
+            (playlist_songs.c.playlist_id == playlist_id)
+            & (playlist_songs.c.song_id == song_id)
         )
     )
     db.session.commit()
-
-    return jsonify({"message": f"Song {song_id} removed from playlist {id}"}), 200
+    return jsonify({"message": "Song removed from playlist"}), 200
