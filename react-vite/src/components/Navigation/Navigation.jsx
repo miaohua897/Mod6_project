@@ -14,7 +14,7 @@ import {
 } from 'react-icons/io5';
 import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import LoginFormModal from '../LoginFormModal';
 import OpenModalButton from '../OpenModalButton';
 import ProfileButton from './ProfileButton';
@@ -24,7 +24,7 @@ import './Navigation.css';
 
 import * as sessionActions from '../../redux/session';
 
-export default function Navigation({ isLoaded }) {
+export default function Navigation({ isLoaded, outlet }) {
   const sessionUser = useSelector(state => state.session.user);
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
@@ -177,10 +177,16 @@ export default function Navigation({ isLoaded }) {
         </div>
         <div className="nav-container-right">
           <div className="sign-up-button">
-            <NavLink to="/signup">Sign up</NavLink>
+            <OpenModalButton
+              modalComponent={SignupFormModal}
+              buttonText="Sign up"
+            />
           </div>
           <div className="log-in-button">
-            <NavLink to="/login">Log in</NavLink>
+            <OpenModalButton
+              modalComponent={LoginFormModal}
+              buttonText="Log in"
+            />
           </div>
           {isLoaded && sessionUser && (
             <div className="profile-button-div">
@@ -198,6 +204,7 @@ export default function Navigation({ isLoaded }) {
           {/* INSERT MAIN COMPONENTS HERE */}
           <button onClick={logInDemoUser}>Log In Demo User</button>
           <button onClick={logOutDemoUser}>Log Out Demo User</button>
+          <Outlet />
         </div>
       </main>
 
