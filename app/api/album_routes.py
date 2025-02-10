@@ -1,7 +1,6 @@
 from flask import Blueprint, request
-from sqlalchemy.orm import joinedload, load_only
 from flask_login import login_required, current_user
-from app.models import db, Album, Song, album_songs
+from app.models import db, Album, Song
 from app.forms.album_form import AlbumForm
 
 album_routes = Blueprint("albums", __name__)
@@ -98,7 +97,7 @@ def delete_album(album_id):
 def get_all_albums():
     albums = Album.query.all()
 
-    return {"albums": {album.id: album.to_dict() for album in albums}}
+    return {album.id: album.to_dict() for album in albums}
 
 
 @album_routes.route("/", methods=["POST"])
