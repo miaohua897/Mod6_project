@@ -15,10 +15,10 @@ import {
 import ReactPlayer from 'react-player';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LoginFormModal from '../LoginFormModal';
-import OpenModalButton from '../OpenModalButton';
+// import LoginFormModal from '../LoginFormModal';
+// import OpenModalButton from '../OpenModalButton';
 import ProfileButton from './ProfileButton';
-import SignupFormModal from '../SignupFormModal';
+// import SignupFormModal from '../SignupFormModal';
 import museicLogoIcon from './museic-logo-icon.png';
 import './Navigation.css';
 
