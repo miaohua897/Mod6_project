@@ -61,12 +61,15 @@ def update_playlist(playlist_id):
     return form.errors, 401
 
 
-@playlist_routes.route("/<int:playlist_id>/songs/<int:song_id>", methods=["POST"])
+@playlist_routes.route("/<int:playlist_id>/songs", methods=["POST"])
 @login_required
-def add_playlist_songs(playlist_id, song_id):
+def add_playlist_songs(playlist_id):
     """
     Add a song to a playlist
     """
+    data = request.get_json()
+    song_id = data["song_id"]
+    
     playlist = Playlist.query.get_or_404(playlist_id)
     Song.query.get_or_404(song_id)
 
