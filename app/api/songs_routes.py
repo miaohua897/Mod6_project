@@ -40,7 +40,7 @@ def get_songs_lazeloading():
 
             result_arr.append(result_dic)
         result['albums']=result_arr
-        
+        result["artist"]=result["artist"].artist_name
         for like in result['likes']:
             like_dic={**like.to_dict()}
             like_arr.append(like_dic)
@@ -85,7 +85,9 @@ def get_songs_lazeloading_curr():
 
             result_arr.append(result_dic)
         result['albums']=result_arr
-        
+
+        # print('artist',result["artist"].artist_name)
+        result["artist"]=result["artist"].artist_name
         for like in result['likes']:
             like_dic={**like.to_dict()}
             like_arr.append(like_dic)
