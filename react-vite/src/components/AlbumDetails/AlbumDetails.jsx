@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { GoDotFill } from "react-icons/go";
+import './AlbumDetails.css'
 
 // const user = useSelector((store) => store.session.user);
 //     console.log(user)
@@ -74,7 +75,7 @@ const AlbumDetails = () => {
   return (
     <div>
       <div>
-        <img src={album.image_url} />
+        <img className="album-image" src={album.image_url} />
       </div>
       <div>
         <p>Album</p>
