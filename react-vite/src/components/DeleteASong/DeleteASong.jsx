@@ -1,14 +1,16 @@
 import { useDispatch } from "react-redux"
-// import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import {deleteASong} from "../../redux/songs"
 
-function DeleteASong({song_id} ){
+function DeleteASong({song_id,closeModal} ){
 
-  
+   const navigate = useNavigate()
   
     const dispatch=useDispatch()
     const handleDelete=()=>{
          dispatch(deleteASong(song_id))
+         navigate('/')
+
        
     }
     return (
@@ -17,7 +19,7 @@ function DeleteASong({song_id} ){
             <button onClick={handleDelete}>
                 delete
             </button>
-            <button>
+            <button onClick={closeModal}>
                 cancel
             </button>
         </div>

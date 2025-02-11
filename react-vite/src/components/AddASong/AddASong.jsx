@@ -56,6 +56,7 @@ function AddASong(){
                 type='text'
                 value={title}
                 onChange={(e)=>setTitle(e.target.value)}
+                required
                 >
                 </input>
                 <p>song duration</p>
@@ -63,6 +64,7 @@ function AddASong(){
                 type='text'
                 value={duration}
                 onChange={(e)=>setDuration(e.target.value)}
+                required
                 >
                 </input>
                 <p>release year</p>
@@ -70,6 +72,7 @@ function AddASong(){
                 type='number'
                 value={release_year===0?'':release_year}
                 onChange={(e)=>setRelease_year(e.target.value)}
+                required
                 >
                 </input>
                 <p>song lyrics</p>
@@ -77,6 +80,7 @@ function AddASong(){
                 type='text'
                 value ={lyrics}
                 onChange={(e)=>setLyrics(e.target.value)}
+                required
                 >
                 </input>
                 <p>song genre</p>
@@ -84,6 +88,7 @@ function AddASong(){
                 type='text'
                 value={genre}
                 onChange={(e)=>setGenre(e.target.value)}
+                required
                 >
                 </input>
                 <p>upload a image for the song</p>
@@ -91,6 +96,7 @@ function AddASong(){
                 type='file'
                 accept="image/*"
                 onChange={(e)=>setImage(e.target.files[0])}
+                required
 
                 >
                  
@@ -100,6 +106,7 @@ function AddASong(){
                 type='file'
                 accept="mp3/*"
                 onChange={(e)=>setAudio(e.target.files[0])}
+                required
                 >   
                 </input>
                 <button type="submit">Submit</button>

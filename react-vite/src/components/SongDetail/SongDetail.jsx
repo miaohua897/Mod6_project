@@ -5,17 +5,19 @@ import { useNavigate, useParams } from "react-router-dom"
 import './SongDetail.css'
 import { FaPlay } from 'react-icons/fa';
 import DeleteASong from '../DeleteASong'
-import UpdateASong from '../UpdateASong'
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 function SongDetail(){
+
+  const [isModalOpen,setIsModalOpen] = useState(false)
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   const {song_id} = useParams()
   const navigate = useNavigate()
   const [visible_lyrics,setVisible_lyrics] = useState(6)
-  const [isPopOut,setIsPopOut]=useState(false)
-  const handleTogglePopOut=()=>{
-    setIsPopOut(!isPopOut)
-  }
-
   
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -24,8 +26,6 @@ function SongDetail(){
 
   const songs = useSelector(state=>state.song.currentUserAllSongs)
   const song= songs.filter(el=>el.id===Number(song_id))[0]
-//   const album_song=song.albums[0].songs
-//   console.log('the song ', songs,song,song_id,album_song )
 
     return (
         <div >
@@ -85,24 +85,28 @@ function SongDetail(){
                                 <td>
                                     <button style={{backgroundColor:"transparent"}} ><FaPlay size={15} color="darkgreen"  /></button>
                                 </td>
-                                <td>{el.title}</td>
-                                <td>{song.albums[0].artist.artist_name}</td>
-                                <td>{el.duration}</td>
+                                <td
+                                onClick={()=>navigate(`/song/${el.id}`)}
+                                >{el.title}</td>
+                                <td
+                                onClick={()=>navigate(`/song/${el.id}`)}
+                                >{song.albums[0].artist.artist_name}</td>
+                                <td
+                                onClick={()=>navigate(`/song/${el.id}`)}
+                                >{el.duration}</td>
                                 <td>
-                                    {/* <DeleteASong />
-                                    <UpdateASong /> */}
+                                  
                                     <button onClick={()=>navigate(`/songs/${el.id}/update`)}>update a song</button>
-                                    <div className={`overlay ${isPopOut ? 'active' : ''}`}
-                                    
-                                    >
-                                    <div className={`popout-frame ${isPopOut?'popout':''}`}
-                                   onClick={handleTogglePopOut}
-                                    >
-                                      
-                                        <DeleteASong song_id={el.id} />
-                                        </div>
-                                   
+                                  
+                                    <div>
+                                    <button onClick={openModal}>delete a song</button>
+
+                                    <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="delete a song">
+                                    <button onClick={closeModal}> ✖️ </button>
+                                     <DeleteASong song_id={el.id} closeModal={closeModal}/>  
+                                    </Modal>
                                     </div>
+                                 
                                 </td>
 
                             </tr>
