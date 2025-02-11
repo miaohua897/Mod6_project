@@ -141,11 +141,14 @@ export const thunkDeleteAlbumSong = (albumId, songId) => async (dispatch) => {
 
 const getSongsState = (state) => state.songs;
 
-const getAlbumSongIds = (state, albumId) => state.albums[albumId].song_ids;
+const getAlbumSongIds = (state, albumId) => {
+  const album = state.albums[albumId];
+  return album ? album.song_ids : [];
+}
 
-const selectAlbumSongs = createSelector(
+export const selectAlbumSongs = createSelector(
   [getSongsState, getAlbumSongIds],
-  (songsState, songIds) => songIds.map((id) => songsState[id])
+  (songsState, songIds) => songIds.map((id) => songsState[Number(id)])
 );
 
 // reducer

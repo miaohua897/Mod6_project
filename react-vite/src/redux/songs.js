@@ -59,6 +59,21 @@ export const getCurrentAllSongs=()=>async(dispatch)=>{
         return data
     }
 }
+
+export const getAllSongs = () => async dispatch => {
+    const res = await fetch('/api/songs/')
+    if(res.ok){
+        const data = await res.json()
+        dispatch(load_all_songs(data.songs))
+        return data
+    }
+}
+
+const load_all_songs = (data) => ({
+    type:'LOAD_ALL_SONGS',
+    payload:data
+})
+
 const load_songs=(data)=>({
     type:'LOAD_SONGS',
     payload:data
@@ -72,9 +87,11 @@ const delete_song=(data)=>({
     type:'DELETE_SONG',
     payload:data
 })
-const initialState={currentUserAllSongs:[]}
+const initialState={songs: [], currentUserAllSongs:[]}
 function songReducer(state=initialState,action){
     switch(action.type){
+        case 'LOAD_ALL_SONGS':
+            return { ...state, songs: action.payload }
         case 'LOAD_SONGS':
             return {...state,currentUserAllSongs:action.payload}
         case 'ADD_SONG':

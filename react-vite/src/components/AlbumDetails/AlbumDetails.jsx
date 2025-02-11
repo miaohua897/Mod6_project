@@ -1,4 +1,5 @@
 import * as albumActions from "../../redux/albums";
+import * as songActions from "../../redux/songs"
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -41,35 +42,52 @@ I have an array of song Ids, and I need that generate me an array of songs
 
 */
 
-const testAlbum = {
-  title: "TEST Title",
-  image_url:
-    "https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/3b41e0933d2b41d8b313bf92d0917c4c.jpg",
-  release_year: 1989,
-};
+// const testAlbum = {
+//   title: "TEST Title",
+//   image_url:
+//     "https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/3b41e0933d2b41d8b313bf92d0917c4c.jpg",
+//   release_year: 1989,
+// };
 
-const album = {
-  artist: {
-    artist_id: 1,
-    artist_name: "DemoLition",
-  },
-  id: 1,
-  image_url:
-    "https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/3b41e0933d2b41d8b313bf92d0917c4c.jpg",
-  release_year: 1982,
-  song_ids: [1],
-  title: "Eye Of The Tiger",
-};
+// const album = {
+//   artist: {
+//     artist_id: 1,
+//     artist_name: "DemoLition",
+//   },
+//   id: 1,
+//   image_url:
+//     "https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/3b41e0933d2b41d8b313bf92d0917c4c.jpg",
+//   release_year: 1982,
+//   song_ids: [1],
+//   title: "Eye Of The Tiger",
+// };
 
 const AlbumDetails = () => {
   const { albumId } = useParams();
   const dispatch = useDispatch();
-  // const album = useSelector((state) => state.albums[albumId]);
-  // const user = useSelector((state) => state.session.user);
+  const album = useSelector((state) => state.albums[albumId]);
+  const user = useSelector((state) => state.session.user);
+  const songs = useSelector((state) => state.songs)
   // const albumSongs = useSelector((state) => albumActions.selectAlbumSongs(state, albumId));
-  // let userOwnsAlbum = false;
+  let userOwnsAlbum = false;
 
-  // if (user) userOwnsAlbum = user.id === album.artist.artist_id;
+  useEffect(() => {
+    dispatch(albumActions.thunkLoadAlbums())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(songActions.getAllSongs())
+  }, [dispatch])
+
+  if (!album) return <h2>Loading...</h2>
+
+
+
+
+  if (user) userOwnsAlbum = user.id === album.artist.artist_id;
+
+  
+  
 
     
   return (
