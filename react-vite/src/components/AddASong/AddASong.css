@@ -1,0 +1,18 @@
+
+.addSongContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap:10px;
+    font-weight: bold;
+    font-size: 17px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(77, 77, 77);
+    border-radius: 10px;
+    padding-left: 60px;
+}
+.addSonginput{
+    width: 90%;
+    border-radius: 5px;
+}

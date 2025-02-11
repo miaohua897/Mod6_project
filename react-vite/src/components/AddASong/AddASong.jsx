@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import {createASong} from '../../redux/songs';
 import { useSelector} from "react-redux";
 import { useNavigate } from 'react-router-dom'
+import './AddASong.css'
 
 function AddASong(){
     const [title,setTitle] = useState('');
@@ -45,26 +46,31 @@ function AddASong(){
     }
 
     return (
-        <div>
+        <div >
             <form
             onSubmit={handleSubmit}
               encType="multipart/form-data"
+              className="addSongContainer"
             >
-               
-                <p>song title</p>
+       
+               <p>song title</p>
                 <input
                 type='text'
                 value={title}
                 onChange={(e)=>setTitle(e.target.value)}
                 required
+                className="addSonginput"
                 >
                 </input>
+        
+               
                 <p>song duration</p>
                 <input
                 type='text'
                 value={duration}
                 onChange={(e)=>setDuration(e.target.value)}
                 required
+                className="addSonginput"
                 >
                 </input>
                 <p>release year</p>
@@ -73,6 +79,7 @@ function AddASong(){
                 value={release_year===0?'':release_year}
                 onChange={(e)=>setRelease_year(e.target.value)}
                 required
+                className="addSonginput"
                 >
                 </input>
                 <p>song lyrics</p>
@@ -81,6 +88,7 @@ function AddASong(){
                 value ={lyrics}
                 onChange={(e)=>setLyrics(e.target.value)}
                 required
+                className="addSonginput"
                 >
                 </input>
                 <p>song genre</p>
@@ -89,6 +97,7 @@ function AddASong(){
                 value={genre}
                 onChange={(e)=>setGenre(e.target.value)}
                 required
+                className="addSonginput"
                 >
                 </input>
                 <p>upload a image for the song</p>
@@ -97,6 +106,7 @@ function AddASong(){
                 accept="image/*"
                 onChange={(e)=>setImage(e.target.files[0])}
                 required
+                className="addSonginput"
 
                 >
                  
@@ -107,6 +117,7 @@ function AddASong(){
                 accept="mp3/*"
                 onChange={(e)=>setAudio(e.target.files[0])}
                 required
+                className="addSonginput"
                 >   
                 </input>
                 <button type="submit">Submit</button>
