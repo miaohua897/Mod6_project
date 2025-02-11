@@ -262,6 +262,7 @@ main {
   padding: 28px;
   border-radius: 8px;
   box-sizing: border-box;
+  overflow: auto;
 }
 
 .sign-up-button > button {
