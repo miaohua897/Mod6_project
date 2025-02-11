@@ -5,19 +5,17 @@ from app.models import db, likes
 likes_routes = Blueprint("likes", __name__)
 
 
-@likes_routes.route("/", methods=["POST"])
+@likes_routes.route("/<int:song_id>", methods=["POST"])
 @login_required
-def add_liked_song():
+def add_liked_song(song_id):
     """
     Add a song to the logged in user's liked songs list
     """
     user_id = current_user.id
-    data = request.get_json()
-    song_id = data["song_id"]
     new_liked_song = likes.insert().values(user_id=user_id, song_id=song_id)
     db.session.execute(new_liked_song)
     db.session.commit()
-    return jsonify({"message": "Song added to user's likes'"}), 201
+    return jsonify({"song_id": song_id}), 201
 
 
 @likes_routes.route("/<int:song_id>", methods=["DELETE"])
@@ -33,4 +31,4 @@ def delete_liked_song(song_id):
         )
     )
     db.session.commit()
-    return jsonify({"message": "Song removed from user's likes"}), 200
+    return jsonify({"song_id": song_id}), 200

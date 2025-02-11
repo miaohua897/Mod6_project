@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 // action constants
 
 const LOAD_ALBUMS = "albums/loadAlbums";
@@ -42,7 +44,7 @@ export const thunkLoadAlbums = () => async (dispatch) => {
 
   if (response.ok) {
     const albums = await response.json();
-    dispatch(loadAlbums(data));
+    dispatch(loadAlbums(albums));
   } else if (response.status < 500) {
     const errorMessages = await response.json();
     return errorMessages;
@@ -135,6 +137,17 @@ export const thunkDeleteAlbumSong = (albumId, songId) => async (dispatch) => {
   }
 };
 
+// selectors 
+
+const getSongsState = state => state.songs
+
+const getAlbumSongIds = (state, albumId) => state.albums[albumId].song_ids
+
+const selectAlbumSongs = createSelector(
+  [getSongsState, getAlbumSongIds],
+  (songsState, songIds) => songIds.map(id => songsState[id])
+)
+
 // reducer
 
 const albumsReducer = (state = {}, action) => {
@@ -149,5 +162,9 @@ const albumsReducer = (state = {}, action) => {
       const { [action.albumId]: _, ...newState } = state;
       return newState;
     }
+    default:
+      return state;
   }
 };
+
+export default albumsReducer
