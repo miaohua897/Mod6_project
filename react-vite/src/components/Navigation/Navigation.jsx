@@ -14,9 +14,15 @@ import {
 } from 'react-icons/io5';
 import ReactPlayer from 'react-player';
 import { useSelector } from 'react-redux';
+<<<<<<< HEAD
 import { NavLink } from 'react-router-dom';
 // import LoginFormModal from '../LoginFormModal';
 // import OpenModalButton from '../OpenModalButton';
+=======
+import { NavLink, Outlet } from 'react-router-dom';
+import LoginFormModal from '../LoginFormModal';
+import OpenModalButton from '../OpenModalButton';
+>>>>>>> dev
 import ProfileButton from './ProfileButton';
 // import SignupFormModal from '../SignupFormModal';
 import museicLogoIcon from './museic-logo-icon.png';
@@ -159,15 +165,25 @@ export default function Navigation({ isLoaded }) {
           </NavLink>
         </div>
         <div className="nav-container-right">
-          <div className="sign-up-button">
-            <NavLink to="/signup">Sign up</NavLink>
-          </div>
-          <div className="log-in-button">
-            <NavLink to="/login">Log in</NavLink>
-          </div>
+          {isLoaded && !sessionUser && (
+            <>
+              <div className="sign-up-button">
+                <OpenModalButton
+                  modalComponent={<SignupFormModal />}
+                  buttonText="Sign up"
+                />
+              </div>
+              <div className="log-in-button">
+                <OpenModalButton
+                  modalComponent={<LoginFormModal />}
+                  buttonText="Log in"
+                />
+              </div>
+            </>
+          )}
           {isLoaded && sessionUser && (
-            <div className="profile-button-div">
-              <ProfileButton user={sessionUser} />
+            <div className="profile-button">
+              <ProfileButton />
             </div>
           )}
         </div>
@@ -179,6 +195,7 @@ export default function Navigation({ isLoaded }) {
         </div>
         <div className="right-main-div">
           {/* INSERT MAIN COMPONENTS HERE */}
+          <Outlet />
         </div>
       </main>
 

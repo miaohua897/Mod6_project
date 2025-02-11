@@ -61,38 +61,42 @@ body {
   box-sizing: border-box;
 }
 
-.log-in-button {
+.log-in-button > button {
+  color: black;
   background-color: white;
   font-size: 16px;
   font-weight: bold;
   height: 48px;
   box-sizing: border-box;
-  padding: 0 32px 4px;
+  padding: 0 32px;
+  border: none;
   border-radius: 24px;
   display: flex;
   align-items: center;
 }
 
-.log-in-button > a {
-  color: black;
+.log-in-button > button:hover {
+  background-color: #f0f0f0;
 }
 
-.log-in-button > a,
-.sign-up-button > a {
-  text-decoration: none;
-}
-
-.log-in-button:hover,
+.log-in-button > button:hover,
 .pause-play-button.button-container:hover,
-.sign-up-button:hover {
+.profile-button > button:hover,
+.sign-up-button > button:hover {
   scale: 1.04;
 }
 
-.log-in-button:hover,
+.log-in-button > button:hover,
 .museic-logo:hover,
 .music-player-button:hover,
-.sign-up-button:hover {
+.profile-button > button:hover,
+.profile-dropdown li:hover,
+.sign-up-button > button:hover {
   cursor: pointer;
+}
+
+.log-out-button {
+  border-top: 1px #3e3e3e solid;
 }
 
 main {
@@ -184,20 +188,40 @@ main {
   margin: 0 16px;
 }
 
-.profile-button-div {
-  background-color: white;
+.profile-button > button {
+  color: #5c3be8;
+  background-color: #1f1f1f;
   box-sizing: border-box;
-  width: 32px;
-  height: 32px;
-  padding: 7px;
+  width: 48px;
+  height: 48px;
+  padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
+  border: none;
+  border-radius: 50%;
 }
 
 .profile-dropdown {
+  color: #ffffffe6;
+  background-color: #282828;
+  width: 188px;
+  margin: 8px;
+  padding: 4px;
+  border-radius: 4px;
   position: absolute;
+  right: 0;
+  font-weight: bold;
+}
+
+.profile-dropdown li {
+  padding: 12px;
+  border-radius: 2px;
+  list-style-type: none;
+}
+
+.profile-dropdown li:hover {
+  background-color: #3e3e3e;
 }
 
 .progress-bar {
@@ -240,22 +264,21 @@ main {
   box-sizing: border-box;
 }
 
-.sign-up-button {
+.sign-up-button > button {
+  color: #b3b3b3;
+  background-color: transparent;
   font-size: 14px;
   font-weight: bold;
   height: 32px;
   box-sizing: border-box;
-  padding: 0 16px 4px;
+  padding: 0 16px;
+  border: none;
   border-radius: 16px;
   display: flex;
   align-items: center;
 }
 
-.sign-up-button > a {
-  color: #b3b3b3;
-}
-
-.sign-up-button:hover {
+.sign-up-button > button:hover {
   color: white;
 }
 
