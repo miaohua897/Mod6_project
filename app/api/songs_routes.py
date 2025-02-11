@@ -77,7 +77,8 @@ def get_songs_lazeloading_curr():
             for song in result_dic['songs']:
                 result_dic_songs.append({
                     'title':song.title,
-                    'duration':song.duration
+                    'duration':song.duration,
+                    'id':song.id
                     } )
             result_dic['songs']=result_dic_songs
             
@@ -174,12 +175,15 @@ def delete_song(song_id):
     # return jsonify({
     #     'delete song':song.title
     # })
-    return song_dict
+    return jsonify({
+        'message':'delete it'
+    })
 
 @song_routes.route('/<int:song_id>',methods=['PUT'])
 @login_required
 def update_song(song_id):
     try:
+        print('============>=>',song_id)
         song = Song.query.get(song_id)
         print(song)
         title=request.form['title']

@@ -76,3 +76,18 @@ body{
     justify-content: space-evenly;
     
 }
+
+.popout-frame{
+    z-index: 10;
+  
+}
+  .popout-frame.popout {
+    position: fixed; 
+    z-index: 10;
+    right: 50%; 
+    bottom: 50%;
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+  } 
+

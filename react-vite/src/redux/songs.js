@@ -33,7 +33,7 @@ export const updateASong=(data,song_id)=>async(dispatch)=>{
     })
     if(res.ok){
         const data= await res.json()
- 
+        console.log('update a song', data)
         return data
     }
 }
@@ -45,7 +45,7 @@ export const deleteASong=(song_id)=> async(dispatch)=>{
     if(res.ok){
         const data = await res.json()
         console.log('delete song',data)
-        dispatch(delete_song(data))
+        dispatch(delete_song(song_id))
         return data
     }
 }
@@ -86,7 +86,7 @@ function songReducer(state=initialState,action){
             {
                 let arr =[]
                 state.currentUserAllSongs.map(el=>{
-                    if(el.id !== action.payload.id){
+                    if(el.id !== action.payload){
                         arr.push(el)
                     }
                 })

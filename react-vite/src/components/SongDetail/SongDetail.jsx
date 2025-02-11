@@ -4,11 +4,18 @@ import {getCurrentAllSongs} from '../../redux/songs'
 import { useNavigate, useParams } from "react-router-dom"
 import './SongDetail.css'
 import { FaPlay } from 'react-icons/fa';
+import DeleteASong from '../DeleteASong'
+import UpdateASong from '../UpdateASong'
 
 function SongDetail(){
   const {song_id} = useParams()
   const navigate = useNavigate()
   const [visible_lyrics,setVisible_lyrics] = useState(6)
+  const [isPopOut,setIsPopOut]=useState(false)
+  const handleTogglePopOut=()=>{
+    setIsPopOut(!isPopOut)
+  }
+
   
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -21,7 +28,7 @@ function SongDetail(){
 //   console.log('the song ', songs,song,song_id,album_song )
 
     return (
-        <div>
+        <div >
             <div>
                 <button onClick={()=> navigate('/songs/new')}>add a song</button>
             </div>
@@ -66,6 +73,7 @@ function SongDetail(){
                             <th>Title</th>
                             <th>Artist</th>
                             <th>🕘</th>
+                            <th></th>
                         </tr>
 
                     </thead>
@@ -80,6 +88,22 @@ function SongDetail(){
                                 <td>{el.title}</td>
                                 <td>{song.albums[0].artist.artist_name}</td>
                                 <td>{el.duration}</td>
+                                <td>
+                                    {/* <DeleteASong />
+                                    <UpdateASong /> */}
+                                    <button onClick={()=>navigate(`/songs/${el.id}/update`)}>update a song</button>
+                                    <div className={`overlay ${isPopOut ? 'active' : ''}`}
+                                    
+                                    >
+                                    <div className={`popout-frame ${isPopOut?'popout':''}`}
+                                   onClick={handleTogglePopOut}
+                                    >
+                                      
+                                        <DeleteASong song_id={el.id} />
+                                        </div>
+                                   
+                                    </div>
+                                </td>
 
                             </tr>
                            )) 

@@ -36,10 +36,10 @@ function UpdateASong(){
                 formData.append('genre',genre)
                 formData.append('audio',audio)
                 formData.append('release_year',release_year)
-                // formData.append('user_id',song.user_id)
+                formData.append('user_id',song.user_id)
         
-                const res = await dispatch(updateASong(formData,song_id))
-                console.log('update new song',title,duration,lyrics,genre,res)
+                await dispatch(updateASong(formData,song_id))
+                // console.log('update new song',title,duration,lyrics,genre,res)
                 setImage(null)
                 setAudio(null)
                 setTitle('')
@@ -47,7 +47,8 @@ function UpdateASong(){
                 setLyrics('')
                 setGenre('')
                 setRelease_year(0)
-                navigate('/songs')
+                console.log(song_id)
+                navigate(`/song/${song_id}`)
             }
          
     return (

@@ -4,6 +4,7 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import SongDetail from '../components/SongDetail'
 import AddASong from '../components/AddASong'
+import UpdateASong from '../components/UpdateASong';
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "songs/new",
         element: <AddASong />,
+      },
+      {
+        path: "songs/:song_id/update",
+        element: <UpdateASong />,
       }
     ],
   },
