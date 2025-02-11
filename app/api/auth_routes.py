@@ -31,29 +31,7 @@ def login():
         user = User.query.filter(User.email == form.data["email"]).first()
         login_user(user)
 
-        songIds = []
-        for song in user.songs:
-            songIds.append(song.id)
-
-        playlistIds = []
-        for playlist in user.playlists:
-            playlistIds.append(playlist.id)
-
-        albumIds = []
-        for album in user.albums:
-            albumIds.append(album.id)
-
-        likedSongIds = []
-        for liked_song in user.liked_songs:
-            likedSongIds.append(liked_song.id)
-
-        response = user.to_dict()
-        response["songIds"] = songIds
-        response["playlistIds"] = playlistIds
-        response["likedSongIds"] = likedSongIds
-        response["albumIds"] = albumIds
-
-        return response
+        return user.to_dict()
     return form.errors, 401
 
 

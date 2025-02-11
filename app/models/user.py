@@ -55,5 +55,9 @@ class User(db.Model, UserMixin):
             "id": self.id, 
             "username": self.username, 
             "email": self.email,
-            "artist_name": self.artist_name
+            "artist_name": self.artist_name,
+            "songIds":  [song.id for song in self.songs],
+            "playlistIds": [playlist.id for playlist in self.playlists],
+            "albumIds":[album.id for album in self.albums] ,
+            "likedSongIds": [liked_song.id for liked_song in self.liked_songs]
         }
