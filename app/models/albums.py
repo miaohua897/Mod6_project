@@ -20,6 +20,16 @@ class Album(db.Model):
     artist = db.relationship("User", lazy="joined", back_populates="albums")
     songs = db.relationship("Song", lazy="joined", secondary=album_songs, back_populates="albums")
 
+    def to_dict_song(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "image_url": self.image_url,
+            "release_year": self.release_year,
+            "artist": self.artist,
+            "songs": self.songs
+        }
+
     def to_dict(self):
         return {
             "id": self.id,

@@ -1,0 +1,93 @@
+body{
+    background-color: black;
+    color: aliceblue;
+}
+.songdetailcontainer{
+    display: grid;
+    grid-template-columns: 0.2fr 0.8fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "sidebar content"
+}
+.sidebar{
+    grid-area: sidebar;
+}
+.songdetail{
+    grid-area:content
+}
+.img_sidebar{
+    width: 20px;
+    height: 20px;
+    
+}
+.songs_sidebar{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    gap:5px;
+}
+.song_details{
+    display: grid;
+    grid-template-rows: 0.25fr 0.65fr 0.1fr;
+    grid-template-areas: 'head' 'body' 'foot';
+    height: 92vh; 
+}
+.song_head{
+    grid-area: head;
+    background-image: linear-gradient(to bottom, rgb(3, 49, 89), black);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    gap:10px
+}
+.song_body{
+    grid-area: body;
+    background-image: linear-gradient(to bottom, rgb(5, 61, 110), black);
+}
+.song_foot{
+    grid-area: foot;
+}
+.img_song_detail{
+    width:150px;
+    height:150px;
+}
+.visible_lyrics{
+    background-color: transparent;
+    border: None;
+    color:white
+}
+.tableSongList{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+
+}
+.tableHead{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 1px solid white;
+}
+.tableBody{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
+.popout-frame{
+    z-index: 10;
+  
+}
+  .popout-frame.popout {
+    position: fixed; 
+    z-index: 10;
+    right: 50%; 
+    bottom: 50%;
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+  } 
+

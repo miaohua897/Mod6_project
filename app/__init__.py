@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect,jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
@@ -97,3 +97,12 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+@app.errorhandler(405)
+def internal_error(error):
+    return jsonify({"error": str(error)}), 405
+
+@app.errorhandler(Exception)
+def handle_all_errors(error):
+    return jsonify({"error": str(error)}), 500
