@@ -41,7 +41,7 @@ I have an array of song Ids, and I need that generate me an array of songs
 */
 
 const testAlbum = {
-  title: "Test Title",
+  title: "TEST Title",
   image_url:
     "https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/3b41e0933d2b41d8b313bf92d0917c4c.jpg",
   release_year: 1989,
@@ -64,23 +64,12 @@ const AlbumDetails = () => {
   const { albumId } = useParams();
   const dispatch = useDispatch();
   // const album = useSelector((state) => state.albums[albumId]);
-  //   const user = useSelector((state) => state.session.user);
+  // const user = useSelector((state) => state.session.user);
   // const albumSongs = useSelector((state) => albumActions.selectAlbumSongs(state, albumId));
-  //   let userOwnsAlbum = false;
+  // let userOwnsAlbum = false;
 
-  //   if (user) userOwnsAlbum = user.id === album.artist.artist_id;
+  // if (user) userOwnsAlbum = user.id === album.artist.artist_id;
 
-  // useEffect(() => {
-  //     dispatch(albumActions.thunkLoadAlbums())
-  // }, [dispatch])
-
-//     useEffect(() => {
-//       dispatch(albumActions.thunkCreateAlbum(testAlbum))
-//   }, [dispatch])
-
-    const handleClick = async () => {
-        await dispatch(albumActions.thunkCreateAlbum(testAlbum))
-    }
     
   return (
     <div>
@@ -101,7 +90,6 @@ const AlbumDetails = () => {
               : `${album.song_ids.length} songs`}
           </p>
           <GoDotFill />
-          <button onClick={handleClick}>TESTING</button>
         </div>
       </div>
     </div>

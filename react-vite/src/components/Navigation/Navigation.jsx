@@ -25,7 +25,7 @@ import './Navigation.css';
 import * as sessionActions from '../../redux/session';
 
 export default function Navigation({ isLoaded }) {
-  // const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
   // const [songs, setSongs] = useState([]);
   // const [currentSong, setCurrentSong] = useState(null);
   // const [isPlaying, setIsPlaying] = useState(false);

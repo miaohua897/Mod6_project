@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect";
 
 // action constants
 
@@ -54,7 +54,7 @@ export const thunkLoadAlbums = () => async (dispatch) => {
 };
 
 export const thunkCreateAlbum = (newAlbum) => async (dispatch) => {
-  const response = await fetch("/api/albums", {
+  const response = await fetch("/api/albums/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newAlbum),
@@ -137,16 +137,16 @@ export const thunkDeleteAlbumSong = (albumId, songId) => async (dispatch) => {
   }
 };
 
-// selectors 
+// selectors
 
-const getSongsState = state => state.songs
+const getSongsState = (state) => state.songs;
 
-const getAlbumSongIds = (state, albumId) => state.albums[albumId].song_ids
+const getAlbumSongIds = (state, albumId) => state.albums[albumId].song_ids;
 
 const selectAlbumSongs = createSelector(
   [getSongsState, getAlbumSongIds],
-  (songsState, songIds) => songIds.map(id => songsState[id])
-)
+  (songsState, songIds) => songIds.map((id) => songsState[id])
+);
 
 // reducer
 
@@ -167,4 +167,4 @@ const albumsReducer = (state = {}, action) => {
   }
 };
 
-export default albumsReducer
+export default albumsReducer;
