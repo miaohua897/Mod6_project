@@ -13,7 +13,7 @@ import {
   IoVolumeMuteOutline,
 } from 'react-icons/io5';
 import ReactPlayer from 'react-player';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
 import LoginFormModal from '../LoginFormModal';
 import OpenModalButton from '../OpenModalButton';
@@ -22,9 +22,7 @@ import SignupFormModal from '../SignupFormModal';
 import museicLogoIcon from './museic-logo-icon.png';
 import './Navigation.css';
 
-import * as sessionActions from '../../redux/session';
-
-export default function Navigation({ isLoaded, outlet }) {
+export default function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
@@ -148,21 +146,6 @@ export default function Navigation({ isLoaded, outlet }) {
     }
   };
 
-  const dispatch = useDispatch();
-
-  const logInDemoUser = () => {
-    return dispatch(
-      sessionActions.thunkLogin({
-        email: 'demo@aa.io',
-        password: 'password',
-      })
-    );
-  };
-
-  const logOutDemoUser = () => {
-    return dispatch(sessionActions.thunkLogout());
-  };
-
   return (
     <>
       <nav className="nav-container">
@@ -176,21 +159,25 @@ export default function Navigation({ isLoaded, outlet }) {
           </NavLink>
         </div>
         <div className="nav-container-right">
-          <div className="sign-up-button">
-            <OpenModalButton
-              modalComponent={SignupFormModal}
-              buttonText="Sign up"
-            />
-          </div>
-          <div className="log-in-button">
-            <OpenModalButton
-              modalComponent={LoginFormModal}
-              buttonText="Log in"
-            />
-          </div>
+          {isLoaded && !sessionUser && (
+            <>
+              <div className="sign-up-button">
+                <OpenModalButton
+                  modalComponent={<SignupFormModal />}
+                  buttonText="Sign up"
+                />
+              </div>
+              <div className="log-in-button">
+                <OpenModalButton
+                  modalComponent={<LoginFormModal />}
+                  buttonText="Log in"
+                />
+              </div>
+            </>
+          )}
           {isLoaded && sessionUser && (
-            <div className="profile-button-div">
-              <ProfileButton user={sessionUser} />
+            <div className="profile-button">
+              <ProfileButton />
             </div>
           )}
         </div>
@@ -202,8 +189,6 @@ export default function Navigation({ isLoaded, outlet }) {
         </div>
         <div className="right-main-div">
           {/* INSERT MAIN COMPONENTS HERE */}
-          <button onClick={logInDemoUser}>Log In Demo User</button>
-          <button onClick={logOutDemoUser}>Log Out Demo User</button>
           <Outlet />
         </div>
       </main>
