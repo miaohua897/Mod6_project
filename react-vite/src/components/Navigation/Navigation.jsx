@@ -240,7 +240,7 @@ export default function Navigation({ isLoaded }) {
             <span className="button-container">
               <IoIosSkipBackward
                 onClick={handlePrevSong}
-                size="auto"
+                style={{ width: '100%', height: 'auto' }}
                 className="skip-button music-player-button"
               />
             </span>
@@ -248,13 +248,13 @@ export default function Navigation({ isLoaded }) {
               {isPlaying ? (
                 <IoIosPause
                   onClick={handlePlayPause}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="pause-play-button music-player-button"
                 />
               ) : (
                 <IoIosPlay
                   onClick={handlePlayPause}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   viewBox="0 0 460 512"
                   className="pause-play-button music-player-button"
                 />
@@ -263,7 +263,7 @@ export default function Navigation({ isLoaded }) {
             <span className="button-container">
               <IoIosSkipForward
                 onClick={handleNextSong}
-                size="auto"
+                style={{ width: '100%', height: 'auto' }}
                 className="skip-button music-player-button"
               />
             </span>
@@ -305,7 +305,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeMuteOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
@@ -314,7 +314,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeOffOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
@@ -323,7 +323,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeLowOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
@@ -332,7 +332,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeMediumOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
@@ -341,7 +341,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeHighOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
