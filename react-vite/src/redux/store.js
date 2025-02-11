@@ -6,12 +6,15 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
+
 import songReducer from './songs'
+import albumsReducer from "./albums"
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  song:songReducer
-});
+  song:songReducer,
+  albums: albumsReducer
+})
 
 let enhancer;
 if (import.meta.env.MODE === "production") {
