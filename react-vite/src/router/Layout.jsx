@@ -15,6 +15,8 @@ export default function Layout() {
     dispatch(thunkAuthenticate()).then(() => setIsLoaded(true));
 
     dispatch(albumActions.thunkLoadAlbums());
+
+    dispatch(songActions.getAllSongs());
   }, [dispatch]);
 
   return (
