@@ -97,18 +97,18 @@ def get_songs_lazeloading_curr():
         'songs':result_song
     })
     
-@song_routes.route('/',methods=['POST'])
-
+@song_routes.route('',methods=['POST'])
+@login_required
 def post_songs():
     try:
         user_id =request.form['user_id']
         
-        user = User.query.filter_by(id=user_id).first()
+        # user = User.query.filter_by(id=user_id).first()
 
-        if user is None:
-            return jsonify({
-                'message':'login first, please'
-            })
+        # if user is None:
+        #     return jsonify({
+        #         'message':'login first, please'
+        #     })
 
         image = request.files["image"]
         image.filename = get_unique_filename(image.filename)

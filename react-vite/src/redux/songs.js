@@ -1,16 +1,16 @@
 // const jwtToken = localStorage.getItem('jwt_token'); 
 
 export const createASong=(data)=>async(dispatch)=>{
-    const csrfToken = document.cookie
-    .split("; ")
-    .find(row => row.startsWith("csrf_token"))
-    ?.split("=")[1];
+    // const csrfToken = document.cookie
+    // .split("; ")
+    // .find(row => row.startsWith("csrf_token"))
+    // ?.split("=")[1];
 
     const res = await fetch('/api/songs',{
         method:'POST',
-        headers:{
-            "X-CSRF-TOKEN": csrfToken,
-        },
+        // headers:{
+        //     "X-CSRF-TOKEN": csrfToken,
+        // },
         body: data,
         
     })

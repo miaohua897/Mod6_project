@@ -14,17 +14,13 @@ import {
 } from 'react-icons/io5';
 import ReactPlayer from 'react-player';
 import { useSelector } from 'react-redux';
-<<<<<<< HEAD
-import { NavLink } from 'react-router-dom';
-// import LoginFormModal from '../LoginFormModal';
-// import OpenModalButton from '../OpenModalButton';
-=======
+
 import { NavLink, Outlet } from 'react-router-dom';
 import LoginFormModal from '../LoginFormModal';
 import OpenModalButton from '../OpenModalButton';
->>>>>>> dev
+
 import ProfileButton from './ProfileButton';
-// import SignupFormModal from '../SignupFormModal';
+import SignupFormModal from '../SignupFormModal';
 import museicLogoIcon from './museic-logo-icon.png';
 import './Navigation.css';
 
