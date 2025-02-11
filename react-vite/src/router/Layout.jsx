@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { ModalProvider, Modal } from '../context/Modal';
 import { thunkAuthenticate } from '../redux/session';
 import Navigation from '../components/Navigation/Navigation';
+import * as albumActions from "../redux/albums";
+import * as songActions from "../redux/songs";
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -11,6 +13,8 @@ export default function Layout() {
 
   useEffect(() => {
     dispatch(thunkAuthenticate()).then(() => setIsLoaded(true));
+
+    dispatch(albumActions.thunkLoadAlbums());
   }, [dispatch]);
 
   return (
