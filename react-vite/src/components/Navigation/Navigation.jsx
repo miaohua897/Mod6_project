@@ -13,16 +13,14 @@ import {
   IoVolumeMuteOutline,
 } from 'react-icons/io5';
 import ReactPlayer from 'react-player';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { NavLink, Outlet } from 'react-router-dom';
 import LoginFormModal from '../LoginFormModal';
 import OpenModalButton from '../OpenModalButton';
 import ProfileButton from './ProfileButton';
 import SignupFormModal from '../SignupFormModal';
 import museicLogoIcon from './museic-logo-icon.png';
 import './Navigation.css';
-
-import * as sessionActions from '../../redux/session';
 
 export default function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -148,21 +146,6 @@ export default function Navigation({ isLoaded }) {
     }
   };
 
-  const dispatch = useDispatch();
-
-  const logInDemoUser = () => {
-    return dispatch(
-      sessionActions.thunkLogin({
-        email: 'demo@aa.io',
-        password: 'password',
-      })
-    );
-  };
-
-  const logOutDemoUser = () => {
-    return dispatch(sessionActions.thunkLogout());
-  };
-
   return (
     <>
       <nav className="nav-container">
@@ -176,15 +159,25 @@ export default function Navigation({ isLoaded }) {
           </NavLink>
         </div>
         <div className="nav-container-right">
-          <div className="sign-up-button">
-            <NavLink to="/signup">Sign up</NavLink>
-          </div>
-          <div className="log-in-button">
-            <NavLink to="/login">Log in</NavLink>
-          </div>
+          {isLoaded && !sessionUser && (
+            <>
+              <div className="sign-up-button">
+                <OpenModalButton
+                  modalComponent={<SignupFormModal />}
+                  buttonText="Sign up"
+                />
+              </div>
+              <div className="log-in-button">
+                <OpenModalButton
+                  modalComponent={<LoginFormModal />}
+                  buttonText="Log in"
+                />
+              </div>
+            </>
+          )}
           {isLoaded && sessionUser && (
-            <div className="profile-button-div">
-              <ProfileButton user={sessionUser} />
+            <div className="profile-button">
+              <ProfileButton />
             </div>
           )}
         </div>
@@ -196,8 +189,7 @@ export default function Navigation({ isLoaded }) {
         </div>
         <div className="right-main-div">
           {/* INSERT MAIN COMPONENTS HERE */}
-          <button onClick={logInDemoUser}>Log In Demo User</button>
-          <button onClick={logOutDemoUser}>Log Out Demo User</button>
+          <Outlet />
         </div>
       </main>
 
