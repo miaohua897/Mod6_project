@@ -146,21 +146,6 @@ export default function Navigation({ isLoaded }) {
     }
   };
 
-  const dispatch = useDispatch();
-
-  const logInDemoUser = () => {
-    return dispatch(
-      sessionActions.thunkLogin({
-        email: 'demo@aa.io',
-        password: 'password',
-      })
-    );
-  };
-
-  const logOutDemoUser = () => {
-    return dispatch(sessionActions.thunkLogout());
-  };
-
   return (
     <>
       <nav className="nav-container">
@@ -174,15 +159,25 @@ export default function Navigation({ isLoaded }) {
           </NavLink>
         </div>
         <div className="nav-container-right">
-          <div className="sign-up-button">
-            <NavLink to="/signup">Sign up</NavLink>
-          </div>
-          <div className="log-in-button">
-            <NavLink to="/login">Log in</NavLink>
-          </div>
+          {isLoaded && !sessionUser && (
+            <>
+              <div className="sign-up-button">
+                <OpenModalButton
+                  modalComponent={<SignupFormModal />}
+                  buttonText="Sign up"
+                />
+              </div>
+              <div className="log-in-button">
+                <OpenModalButton
+                  modalComponent={<LoginFormModal />}
+                  buttonText="Log in"
+                />
+              </div>
+            </>
+          )}
           {isLoaded && sessionUser && (
-            <div className="profile-button-div">
-              <ProfileButton user={sessionUser} />
+            <div className="profile-button">
+              <ProfileButton />
             </div>
           )}
         </div>
@@ -194,8 +189,7 @@ export default function Navigation({ isLoaded }) {
         </div>
         <div className="right-main-div">
           {/* INSERT MAIN COMPONENTS HERE */}
-          <button onClick={logInDemoUser}>Log In Demo User</button>
-          <button onClick={logOutDemoUser}>Log Out Demo User</button>
+          <Outlet />
         </div>
       </main>
 
@@ -246,7 +240,7 @@ export default function Navigation({ isLoaded }) {
             <span className="button-container">
               <IoIosSkipBackward
                 onClick={handlePrevSong}
-                size="auto"
+                style={{ width: '100%', height: 'auto' }}
                 className="skip-button music-player-button"
               />
             </span>
@@ -254,13 +248,13 @@ export default function Navigation({ isLoaded }) {
               {isPlaying ? (
                 <IoIosPause
                   onClick={handlePlayPause}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="pause-play-button music-player-button"
                 />
               ) : (
                 <IoIosPlay
                   onClick={handlePlayPause}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   viewBox="0 0 460 512"
                   className="pause-play-button music-player-button"
                 />
@@ -269,7 +263,7 @@ export default function Navigation({ isLoaded }) {
             <span className="button-container">
               <IoIosSkipForward
                 onClick={handleNextSong}
-                size="auto"
+                style={{ width: '100%', height: 'auto' }}
                 className="skip-button music-player-button"
               />
             </span>
@@ -311,7 +305,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeMuteOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
@@ -320,7 +314,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeOffOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
@@ -329,7 +323,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeLowOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
@@ -338,7 +332,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeMediumOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
@@ -347,7 +341,7 @@ export default function Navigation({ isLoaded }) {
               <span className="button-container">
                 <IoVolumeHighOutline
                   onClick={handleMute}
-                  size="auto"
+                  style={{ width: '100%', height: 'auto' }}
                   className="volume-button music-player-button"
                 />
               </span>
@@ -375,15 +369,15 @@ export default function Navigation({ isLoaded }) {
   );
 
   // ORIGINAL CODE:
-//   return (
-//     <ul>
-//       <li>
-//         <NavLink to="/">Home</NavLink>
-//       </li>
+  // return (
+  //   <ul>
+  //     <li>
+  //       <NavLink to="/">Home</NavLink>
+  //     </li>
 
-//       <li>
-//         <ProfileButton />
-//       </li>
-//     </ul>
-//   );
+  //     <li>
+  //       <ProfileButton />
+  //     </li>
+  //   </ul>
+  // );
 }
