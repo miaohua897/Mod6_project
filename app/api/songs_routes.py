@@ -75,7 +75,10 @@ def get_songs_lazeloading_curr():
             print('album_user',result_dic)
             result_dic_songs=[]
             for song in result_dic['songs']:
-                result_dic_songs.append(song.title )
+                result_dic_songs.append({
+                    'title':song.title,
+                    'duration':song.duration
+                    } )
             result_dic['songs']=result_dic_songs
             
 

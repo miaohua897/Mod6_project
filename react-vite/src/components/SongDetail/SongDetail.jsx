@@ -1,11 +1,13 @@
 import { useEffect ,useState} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {getCurrentAllSongs} from '../../redux/songs'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import './SongDetail.css'
+import { FaPlay } from 'react-icons/fa';
 
 function SongDetail(){
   const {song_id} = useParams()
+  const navigate = useNavigate()
   const [visible_lyrics,setVisible_lyrics] = useState(6)
   
   const dispatch = useDispatch()
@@ -20,6 +22,9 @@ function SongDetail(){
 
     return (
         <div>
+            <div>
+                <button onClick={()=> navigate('/songs/new')}>add a song</button>
+            </div>
         {
               song?
               <div className='song_details'>
@@ -54,24 +59,31 @@ function SongDetail(){
               </audio> */}
               </div>
               <div>
-                <table>
+                <table  className="tableSongList">
                     <thead>
-                        <tr>
+                        <tr className="tableHead">
+                            <th></th>
                             <th>Title</th>
                             <th>Artist</th>
                             <th>🕘</th>
                         </tr>
 
                     </thead>
-                    <tbody>
+                    <tbody >
                         {
+                            song.albums.length !==0?
                            song.albums[0].songs.map((el,index)=>(
-                            <tr key={index}>
-                                <td>{el}</td>
+                            <tr key={index} className="tableBody">
+                                <td>
+                                    <button style={{backgroundColor:"transparent"}} ><FaPlay size={15} color="darkgreen"  /></button>
+                                </td>
+                                <td>{el.title}</td>
                                 <td>{song.albums[0].artist.artist_name}</td>
+                                <td>{el.duration}</td>
 
                             </tr>
                            )) 
+                           :null
                         }
                     </tbody>
                 </table>

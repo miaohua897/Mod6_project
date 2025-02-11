@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import SongDetail from '../components/SongDetail'
+import AddASong from '../components/AddASong'
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([
         // path: "songs",
         element: <SongDetail />,
       },
+    
+      {
+        path: "songs/new",
+        element: <AddASong />,
+      }
     ],
   },
 ]);

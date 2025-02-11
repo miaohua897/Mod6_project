@@ -58,3 +58,21 @@ body{
     border: None;
     color:white
 }
+.tableSongList{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+
+}
+.tableHead{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 1px solid white;
+}
+.tableBody{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
