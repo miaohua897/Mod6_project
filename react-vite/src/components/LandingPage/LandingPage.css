@@ -1,0 +1,42 @@
+.landing-page-songs-div {
+  display: flex;
+}
+
+.song-artist {
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+.song-card {
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.song-card:hover {
+  cursor: pointer;
+  background-color: #1e1e1e;
+}
+
+.song-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  overflow: hidden;
+  overflow-clip-margin: unset;
+}
+
+.song-image-div {
+  aspect-ratio: 1/1;
+  min-width: 136px;
+  min-height: 136px;
+  max-width: 165px;
+  max-height: 165px;
+  margin-bottom: 5px;
+}
+
+.song-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
