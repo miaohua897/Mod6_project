@@ -154,8 +154,9 @@ def post_songs():
         db.session.add(new_song)
         db.session.commit()
 
-
-        return new_song.to_dict()
+        new_song_dict =new_song.to_dict()
+        new_song_dict["artist"]=new_song_dict["artist"].artist_name
+        return new_song_dict
     except KeyError as e:
         return jsonify({"keyerror": str(e)})
     except Exception as e:

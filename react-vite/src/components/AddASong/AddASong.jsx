@@ -7,7 +7,7 @@ import './AddASong.css'
 
 function AddASong(){
     const [title,setTitle] = useState('');
-    const [duration, setDuration] = useState('');
+    // const [duration, setDuration] = useState('');
     const [lyrics,setLyrics]=useState('');
     const [genre,setGenre]=useState('')
     const [image,setImage]=useState(null)
@@ -15,6 +15,7 @@ function AddASong(){
     const [release_year,setRelease_year]=useState(0);
     const [min_duration,setMin_duration] = useState(-1);
     const [s_duration,setS_duration] = useState(-1)
+    const [ryError,setRyError]=useState({'error':''})
 
     const dispatch = useDispatch()
     const navigate=useNavigate()
@@ -25,9 +26,23 @@ function AddASong(){
     const handleSubmit= async (e)=>{
         e.preventDefault();
         const time_value =`${String(min_duration)}:${String(s_duration)}`;
-       
-        setDuration(time_value)
-        console.log('time_value',time_value,duration)
+        if (release_year <=0) {
+            const error = {'error':'release year is a positive number'}
+            setRyError(error)
+            setImage(null)
+            setAudio(null)
+            setTitle('')
+            // setDuration('')
+            setLyrics('')
+            setGenre('')
+            setRelease_year(0)
+            setS_duration(-1)
+            setMin_duration(-1)
+            return ;
+            
+        } 
+        // setDuration(time_value)
+        // console.log('time_value',time_value,duration)
         const formData = new FormData();
         console.log('image',image)
         formData.append('image',image);
@@ -46,7 +61,9 @@ function AddASong(){
         setImage(null)
         setAudio(null)
         setTitle('')
-        setDuration('')
+        // setDuration('')
+        setS_duration(-1)
+        setMin_duration(-1)
         setLyrics('')
         setGenre('')
         setRelease_year(0)
@@ -99,6 +116,7 @@ function AddASong(){
                 >
                 </input> */}
                 <p>release year</p>
+                 {ryError.error!==""? <p style={{color:"red"}}>{ryError.error}</p>: null}
                 <input
                 type='number'
                 value={release_year===0?'':release_year}
@@ -127,6 +145,10 @@ function AddASong(){
                 >
                 </input>
                 <p>upload a image for the song</p>
+                <label>
+                    {/* <span 
+                    className="requiredMessage"
+                    >This field is required</span> */}
                 <input
                 type='file'
                 accept="image/*"
@@ -136,8 +158,14 @@ function AddASong(){
                 id='updatefiles'
                 >
                 </input>
+                </label>
+            
                
                 <p>upload a  song</p>
+                <label>
+                {/* <span
+                 className="requiredMessage"
+                >This field is required</span> */}
                 <input
                 type='file'
                 accept="mp3/*"
@@ -146,6 +174,9 @@ function AddASong(){
                 className="addSonginput"
                 >   
                 </input>
+
+                </label>
+               
                
                 <button 
                 className="submitAddSongButton"
