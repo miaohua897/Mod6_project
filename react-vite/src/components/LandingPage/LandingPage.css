@@ -4,6 +4,7 @@
 
 .song-artist {
   color: #b3b3b3;
+  font-size: 14px;
 }
 
 .song-card {
@@ -31,10 +32,11 @@
   min-height: 136px;
   max-width: 165px;
   max-height: 165px;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .song-title {
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }

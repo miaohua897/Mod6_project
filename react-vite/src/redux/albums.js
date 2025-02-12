@@ -63,6 +63,7 @@ export const thunkCreateAlbum = (newAlbum) => async (dispatch) => {
   if (response.ok) {
     const album = await response.json();
     dispatch(createAlbum(album));
+    return album;
   } else if (response.status < 500) {
     const errorMessages = await response.json();
     return errorMessages;
@@ -82,6 +83,7 @@ export const thunkUpdateAlbum =
     if (response.ok) {
       const album = await response.json();
       dispatch(updateAlbum(album));
+      return album;
     } else if (response.status < 500) {
       const errorMessages = await response.json();
       return errorMessages;
@@ -139,16 +141,16 @@ export const thunkDeleteAlbumSong = (albumId, songId) => async (dispatch) => {
 
 // selectors
 
-const getSongsState = (state) => state.songs;
+const getSongState = (state) => state.song;
 
 const getAlbumSongIds = (state, albumId) => {
-  const album = state.albums[albumId];
-  return album ? album.song_ids : [];
+  const album = state.albums[albumId]
+  return album ? album.song_ids : []
 }
 
 export const selectAlbumSongs = createSelector(
-  [getSongsState, getAlbumSongIds],
-  (songsState, songIds) => songIds.map((id) => songsState[Number(id)])
+  [getSongState, getAlbumSongIds],
+  (songState, songIds) => songState.songs.filter(song => songIds.includes(song.id))
 );
 
 // reducer
