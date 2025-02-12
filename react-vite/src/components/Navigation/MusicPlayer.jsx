@@ -20,6 +20,7 @@ export default function MusicPlayer({ isLoaded, sessionUser }) {
   const player = useSelector(state => state.player);
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isSeeking, setIsSeeking] = useState(false);
@@ -44,26 +45,21 @@ export default function MusicPlayer({ isLoaded, sessionUser }) {
   };
 
   const handleNextSong = () => {
-    const currentIndex = songs.findIndex(song => song.id === currentSong.id);
+    console.log(songs);
     if (currentIndex < songs.length - 1) {
-      const nextIndex = currentIndex + 1;
       // const nextIndex = (currentIndex + 1) % songs.length; // Loop back to the beginning
-      setCurrentSong({ ...songs[nextIndex] });
+      setCurrentSong({ ...songs[currentIndex + 1] });
       setIsPlaying(true);
-    } else {
-      setIsPlaying(false);
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
   const handlePrevSong = () => {
-    const currentIndex = songs.findIndex(song => song.id === currentSong.id);
     if (currentIndex > 0) {
-      const prevIndex = currentIndex - 1;
       // const prevIndex = (currentIndex - 1 + songs.length) % songs.length; // Loop back to the end
-      setCurrentSong({ ...songs[prevIndex] });
+      setCurrentSong({ ...songs[currentIndex - 1] });
       setIsPlaying(true);
-    } else {
-      setIsPlaying(false);
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
