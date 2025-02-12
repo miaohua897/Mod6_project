@@ -13,9 +13,11 @@ import {
   IoVolumeMuteOutline,
 } from 'react-icons/io5';
 import ReactPlayer from 'react-player';
+import { useSelector } from 'react-redux';
 import './MusicPlayer.css';
 
 export default function MusicPlayer({ isLoaded, sessionUser }) {
+  const player = useSelector(state => state.player);
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -28,33 +30,40 @@ export default function MusicPlayer({ isLoaded, sessionUser }) {
   const playerRef = useRef(null);
 
   useEffect(() => {
-    // LOAD SONGS FROM REDUX STATE HERE
-    setSongs([]);
+    // Load songs from Redux state
+    setSongs([...player]);
 
-    if (songs.length) {
-      setCurrentSong(songs[0]);
+    if (player.length) {
+      setCurrentSong({ ...player[0] });
+      setIsPlaying(true);
     }
-  }, []);
+  }, [player]);
 
   const handlePlayPause = () => {
     if (currentSong) setIsPlaying(!isPlaying);
   };
 
   const handleNextSong = () => {
-    const currentIndex = songs.map(song => song.id).indexOf(currentSong.id);
+    const currentIndex = songs.findIndex(song => song.id === currentSong.id);
     if (currentIndex < songs.length - 1) {
       const nextIndex = currentIndex + 1;
       // const nextIndex = (currentIndex + 1) % songs.length; // Loop back to the beginning
-      setCurrentSong(songs[nextIndex]);
+      setCurrentSong({ ...songs[nextIndex] });
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
     }
   };
 
   const handlePrevSong = () => {
-    const currentIndex = songs.map(song => song.id).indexOf(currentSong.id);
+    const currentIndex = songs.findIndex(song => song.id === currentSong.id);
     if (currentIndex > 0) {
       const prevIndex = currentIndex - 1;
       // const prevIndex = (currentIndex - 1 + songs.length) % songs.length; // Loop back to the end
-      setCurrentSong(songs[prevIndex]);
+      setCurrentSong({ ...songs[prevIndex] });
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
     }
   };
 
@@ -155,10 +164,8 @@ export default function MusicPlayer({ isLoaded, sessionUser }) {
             {currentSong && currentSong.title}
           </div>
           <div className="current-song-artist">
-            {/* MAKE REQUEST TO SEARCH DB FOR SONG'S ARTIST NAME HERE */}
             {/* {currentSong &&
-                usersList.find(user => user.id === currentSong.user_id)
-                  .artist_name} */}
+                current_song.artist} */}
           </div>
         </div>
       </div>
