@@ -1,3 +1,20 @@
+.album-details-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.album-info-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#album-info {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
 .album-image {
     height: 200px;
     width: 200px;
