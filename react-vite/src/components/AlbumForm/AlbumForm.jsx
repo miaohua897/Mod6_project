@@ -168,6 +168,9 @@ const AlbumForm = ({ album, formType }) => {
             </p>
           )}
         </div>
+        <div className="album-form-input">
+          <p>(Dont' worry, you can add songs later!)</p>
+        </div>
         <div className="album-form-input">{submitButton}</div>
         {hasSubmitted && (
           <p
