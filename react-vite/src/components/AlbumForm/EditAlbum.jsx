@@ -4,11 +4,15 @@ import { useSelector } from "react-redux";
 
 const EditAlbum = () => {
   const { albumId } = useParams();
-  const album = useSelector((state) => state.album[albumId]);
+  const album = useSelector((state) => state.albums[albumId]);
 
   if (!album) return <h2>Loading...</h2>;
 
-  return <AlbumForm album={album} formType="editAlbum" />;
+  console.log(album)
+
+  return (
+    <AlbumForm album={album} albumId={albumId} formType="editAlbum" />
+  )
 };
 
 export default EditAlbum;

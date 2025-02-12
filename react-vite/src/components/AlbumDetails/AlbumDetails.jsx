@@ -1,17 +1,22 @@
 import { calculateDuration } from '../../resources/helperFunctions';
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { GoDotFill } from "react-icons/go";
 import * as albumActions from "../../redux/albums";
 import * as songActions from "../../redux/songs";
 import OpenModalButton from "../OpenModalButton";
-import { CreateAlbum } from '../AlbumForm';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import { CreateAlbum, EditAlbum } from '../AlbumForm';
 import './AlbumDetails.css'
 
 const AlbumDetails = () => {
   const { albumId } = useParams();
+  const [showMenu, setShowMenu] = useState(false);
+  const [showSecondMenu, setShowSecondMenu] = useState(false)
   const dispatch = useDispatch();
+  const ulRef = useRef();
+  const ulRefSecond = useRef();
   const user = useSelector((state) => state.session.user);
   const album = useSelector((state) => state.albums[albumId]);
   const albumSongs = useSelector((state) => albumActions.selectAlbumSongs(state, albumId));
@@ -19,12 +24,36 @@ const AlbumDetails = () => {
   let albumDuration;
 
   useEffect(() => {
-    dispatch(albumActions.thunkLoadAlbums())
-  }, [dispatch])
+    // if (!showMenu) return;
 
-  useEffect(() => {
-    dispatch(songActions.getAllSongs())
-  }, [dispatch])
+    const closeMenu = e => {
+      if (ulRef.current && !ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+
+      if (ulRefSecond.current && !ulRef.current.contains(e.target)) {
+        setShowSecondMenu(false);
+      }
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener('click', closeMenu);
+  }, []);
+
+  const toggleMenu = e => {
+    e.stopPropagation();
+    setShowMenu(!showMenu);
+  };
+
+  const toggleSecondMenu = (e) => {
+    e.stopPropagation();
+    setShowSecondMenu(!showSecondMenu);
+  };
+
+  const closeMenu = () => setShowMenu(false);
+
+  const closeSecondMenu = () => setShowSecondMenu(false);
 
   if (!album) return <h2>Loading...</h2>
 
@@ -53,19 +82,39 @@ const AlbumDetails = () => {
                 ? `1 song`
                 : `${album.song_ids.length} songs`}
             </p>
+            {albumSongs.length > 0 &&
+            <>
             <GoDotFill />
-            {albumSongs.length && <p>{albumDuration}</p>}
+            <p>{albumDuration}</p>
+            </>}
           </div>
         </div>
       </header>
-      <section className="album-details-update-delete">
-        <div>...</div>
-      </section>
+      {userOwnsAlbum && (
+        <section className="album-details-update-delete">
+        <div onClick={toggleMenu}>...</div>
+        {showMenu && (
+        <ul className={'album-dropdown'} ref={ulRef}>
+            <OpenModalMenuItem 
+            modalComponent={<EditAlbum />}
+            itemText="Update Album"
+            />
+          <li>
+            delete album
+          </li>
+        </ul>
+      )}
+      </section>)}
+
+
       <section>
-        <OpenModalButton
-          modalComponent={<CreateAlbum />}
-          buttonText="Add an Album"
-        />
+      <div onClick={toggleSecondMenu}>...</div>
+        {showSecondMenu && (
+        <ul className={'album-song-dropdown'} ref={ulRefSecond}>
+          <li>Remove song from album</li>
+          <li>Add to Playlist</li>
+        </ul>
+      )}
       </section>
     </article>
   );
@@ -93,3 +142,10 @@ if there is a user that owns the album, the final table row is a dropdown menu f
 I have an array of song Ids, and I need that generate me an array of songs
 
 */
+
+      {/* <section>
+        <OpenModalButton
+          modalComponent={<CreateAlbum />}
+          buttonText="Add an Album"
+        />
+      </section> */}
