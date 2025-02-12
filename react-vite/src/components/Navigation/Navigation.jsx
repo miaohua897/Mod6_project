@@ -1,15 +1,14 @@
 import { useSelector } from 'react-redux';
-
 import { NavLink, Outlet } from 'react-router-dom';
 import LeftNavbar from './LeftNavbar';
 import LoginFormModal from '../LoginFormModal';
 import MusicPlayer from './MusicPlayer';
 import OpenModalButton from '../OpenModalButton';
-
 import ProfileButton from './ProfileButton';
 import SignupFormModal from '../SignupFormModal';
 import museicLogoIcon from './museic-logo-icon.png';
 import './Navigation.css';
+import React from 'react';
 
 export default function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -54,7 +53,6 @@ export default function Navigation({ isLoaded }) {
       <main>
         <LeftNavbar isLoaded={isLoaded} sessionUser={sessionUser} />
         <div className="right-main-div">
-          {/* INSERT MAIN COMPONENTS HERE */}
           <Outlet />
         </div>
       </main>
