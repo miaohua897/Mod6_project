@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {getCurrentAllSongs} from '../../redux/songs'
 import { useNavigate, useParams } from "react-router-dom"
 import './SongDetail.css'
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay ,FaEdit,FaTrash} from 'react-icons/fa';
 import DeleteASong from '../DeleteASong'
 import Modal from 'react-modal';
 
@@ -18,6 +18,14 @@ function SongDetail(){
   const {song_id} = useParams()
   const navigate = useNavigate()
   const [visible_lyrics,setVisible_lyrics] = useState(6)
+  const [dropdown,setDropdown] = useState(false)
+
+  const [selectSong,setSelectSong]=useState(0)
+
+  const closeDropDown =()=>setDropdown(false);
+
+  document.addEventListener('click',closeDropDown)
+
   
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -95,23 +103,58 @@ function SongDetail(){
                                 onClick={()=>navigate(`/song/${el.id}`)}
                                 >{el.duration}</td>
                                 <td>
+                                  <div>
+                                 
                                   
-                                    <button onClick={()=>navigate(`/songs/${el.id}/update`)}>update a song</button>
-                                  
-                                    <div>
-                                    <button onClick={openModal}>delete a song</button>
+                                  <div className="songDetailDropDown">
+                                    <button
+                                    key={index}
+                                    className="songDetailDropDownButton"
+                                     onClick={(e)=>
+                                    {
+                                        e.stopPropagation();
+                                        setDropdown(true);
+                                        setSelectSong(el.id)
+                                    }
+                                        
+                                        }>...</button>
+                                    {
 
-                                    <Modal isOpen={isModalOpen} 
-                                    className="deleteAModal"
-                                    overlayClassName="deleteAOverlay"
-                                    onRequestClose={closeModal} 
-                                    contentLabel="delete a song">
-                                    {/* <button 
-                                    className="closeDeleteButton"
-                                    onClick={closeModal}> ✖️ </button> */}
-                                     <DeleteASong song_id={el.id} closeModal={closeModal} title={el.title}/>  
-                                    </Modal>
-                                    </div>
+                                       dropdown&&selectSong===el.id?
+                                       <div className="updateDeleteContainer">
+                                         <button 
+                                         className="updateASongNav"
+                                         onClick={()=>navigate(`/songs/${el.id}/update`)}>
+                                            <FaEdit />
+                                            {'                                      '}
+                                             update a song</button>
+                                         {/* <p className="updateDeleteDividedLine"></p> */}
+                                         <button 
+                                         className="deleteASongNav"
+                                         onClick={openModal}>
+                                            <FaTrash />
+                                            {'                                      '}
+                                             delete a song</button>
+                                        <Modal isOpen={isModalOpen} 
+                                        className="deleteAModal"
+                                        overlayClassName="deleteAOverlay"
+                                        onRequestClose={closeModal} 
+                                        contentLabel="delete a song">
+                                        {/* <button 
+                                        className="closeDeleteButton"
+                                        onClick={closeModal}> ✖️ </button> */}
+                                        <DeleteASong song_id={el.id} closeModal={closeModal} title={el.title}/>  
+                                        </Modal>
+                                        </div>
+                                      
+                                       :null
+                                 }
+
+                                 
+                                  </div>
+
+                                  </div>
+                           
                                  
                                 </td>
 

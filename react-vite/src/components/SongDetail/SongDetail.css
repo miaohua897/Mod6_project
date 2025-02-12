@@ -98,9 +98,9 @@ body{
         transform: translate(-50%, -50%);
         background: #fff;
         border-radius: 10px;
-        padding: 36px;
-        /* width:400px; */
-        width:auto;
+        padding: 38px;
+        width:400px;
+ 
         height: 120px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         z-index: 1001; 
@@ -119,4 +119,46 @@ body{
 .closeDeleteButton{
     background-color: transparent;
     border: None;
+}
+.songDetailDropDownButton{
+
+    background-color: transparent;
+    border: None;
+    color:white;
+    font-weight: bolder;
+}
+.updateDeleteContainer{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    margin-top: 5px;
+    /* border: 1px solid whitesmoke; */
+    padding: 5px;
+    background-color: rgb(63, 62, 62);
+    border-radius: 10px;
+    opacity: 1;
+    position: absolute;
+    top: -90px;          
+    right: -110px;       
+ 
+  
+}
+.updateASongNav{
+    background-color: transparent;
+    border: None;
+    color:whitesmoke;
+    margin:3px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(104, 102, 102);
+}
+.deleteASongNav{
+    background-color: transparent;
+    border: None;
+    color:whitesmoke;
+    margin:3px;
+ 
+}
+.songDetailDropDown{
+    position: relative;
+   
 }
