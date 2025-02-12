@@ -1,0 +1,30 @@
+.deleteASongButton{
+    /* border:1px solid rgb(95, 4, 181); */
+    background-color: green;
+    color:aliceblue;
+    font-weight: bolder;
+    width:100px;
+    height:30px;
+    border-radius: 20px;   
+}
+.deleteASongCancelButton{
+    border: None;
+    background-color: transparent;
+    font-weight: bolder;
+}
+.deleteASongContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    /* align-items: center;  */
+    gap:30px;
+    margin: 5px;
+    color: black;
+}
+.deleteASongButtonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap:30px;
+}

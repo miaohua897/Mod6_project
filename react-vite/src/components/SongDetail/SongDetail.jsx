@@ -109,7 +109,7 @@ function SongDetail(){
                                     <button 
                                     className="closeDeleteButton"
                                     onClick={closeModal}> ✖️ </button>
-                                     <DeleteASong song_id={el.id} closeModal={closeModal}/>  
+                                     <DeleteASong song_id={el.id} closeModal={closeModal} title={el.title}/>  
                                     </Modal>
                                     </div>
                                  
