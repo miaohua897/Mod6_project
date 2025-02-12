@@ -5,6 +5,8 @@ from sqlalchemy.sql import text
 def seed_album_songs():
     db.session.execute(album_songs.insert().values(album_id=1, song_id=1))
     db.session.execute(album_songs.insert().values(album_id=1, song_id=2))
+    db.session.execute(album_songs.insert().values(album_id=1, song_id=3))
+    db.session.execute(album_songs.insert().values(album_id=1, song_id=4))
     db.session.commit()
     
 
