@@ -1,0 +1,47 @@
+.updateSongContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap:10px;
+    font-weight: bold;
+    font-size: 17px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(77, 77, 77);
+    border-radius: 10px;
+    padding-left: 60px;
+}
+.updateSonginput{
+    width: 90%;
+    border-radius: 5px;
+    text-align: center;
+}
+.updatelyricsinput{
+    width: 90%;
+    height:80px;
+    border-radius: 5px;
+ 
+  
+}
+.durationInputBox{
+    margin-right:10px;
+    margin-left:5px;
+}
+.updateSonginput{
+    width: 90%;
+    border-radius: 5px;
+}
+.submitUpdateSongButton{
+    width: 30%;
+    height:30px;
+    margin:5px;
+    margin-left: 30%;
+    margin-top:10px;
+    margin-bottom:20px;
+    border-radius: 10px;
+    font-weight: bolder;
+    background-color: darkcyan;
+    border: 1px solid rgb(120, 119, 119);
+    box-shadow: 2px 2px rgb(47, 46, 46),2px -2px rgb(47, 46, 46),-2px 2px rgb(47, 46, 46),-2px -2px rgb(47, 46, 46);
+    color:aliceblue
+}

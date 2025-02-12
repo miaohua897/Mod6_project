@@ -188,6 +188,7 @@ def update_song(song_id):
     try:
         print('============>=>',song_id)
         song = Song.query.get(song_id)
+       
         print(song)
         title=request.form['title']
         duration=request.form['duraton']
@@ -246,14 +247,17 @@ def update_song(song_id):
         # song.image_url = new_song['image_url'] 
 
         db.session.commit()
+        artist_name = User.query.get(song.user_id).artist_name
         return {
-            'song_name':song.title,
+            'id':song_id,
+            'title':song.title,
             'audio_url':song.audio_url,
             'duration':song.duration,
             'lyrics':song.lyrics,
             'genre':song.genre,
             'release_year':song.release_year,
-            'image_url':song.image_url
+            'image_url':song.image_url,
+            'artist':artist_name 
             }
     except KeyError as e:
         return jsonify({"keyerror": str(e)})

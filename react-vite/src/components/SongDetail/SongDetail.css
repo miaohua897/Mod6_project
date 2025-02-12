@@ -2,12 +2,13 @@ body{
     background-color: black;
     color: aliceblue;
 }
-.songdetailcontainer{
+/* .songdetailcontainer{
     display: grid;
     grid-template-columns: 0.2fr 0.8fr;
     grid-template-rows: auto;
     grid-template-areas:
-    "sidebar content"
+    "sidebar content";
+    
 }
 .sidebar{
     grid-area: sidebar;
@@ -15,49 +16,64 @@ body{
 .songdetail{
     grid-area:content;
    
-}
-.img_sidebar{
+} */
+/* .img_sidebar{
     width: 20px;
     height: 20px;
     
-}
-.songs_sidebar{
+} */
+/* .songs_sidebar{
     display: flex;
     flex-direction: row;
     padding: 5px;
     gap:5px;
-}
+} */
 .song_details{
     display: grid;
     grid-template-rows: 0.25fr 0.65fr 0.1fr;
     grid-template-areas: 'head' 'body' 'foot';
     height: 92vh; 
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left:20px;
+    margin-right:20px;
+    border-radius: 5px;
 }
 .song_head{
     grid-area: head;
-    background-image: linear-gradient(to bottom, rgb(3, 49, 89), black);
+    background-image: linear-gradient(to bottom, rgb(89, 90, 92), black);
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     padding: 10px;
-    gap:10px
+    gap:10px;
+    border-radius: 10px;
 }
 .song_body{
     grid-area: body;
-    background-image: linear-gradient(to bottom, rgb(5, 61, 110), black);
+    background-image: linear-gradient(to bottom, rgb(117, 119, 121), black);
+    border-radius: 5px;
 }
 .song_foot{
     grid-area: foot;
 }
 .img_song_detail{
-    width:150px;
-    height:150px;
+    width:16%;
+    height:84%;
+    
+    margin: 10px;
+    border-radius: 10px;
 }
 .visible_lyrics{
     background-color: transparent;
     border: None;
-    color:white
+    color:white;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-left:10px;
+    font-size: 14px;
+    
 }
 .tableSongList{
     display: flex;
@@ -111,13 +127,30 @@ body{
         z-index: 1001; 
    
 }
+.updateAModal{
+        position: fixed; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+        background: rgb(77, 76, 76);
+        border: 0.2px solid whitesmoke;
+        border-radius: 10px;
+        padding: 38px;
+        width:600px;
+        height: 400px;
+        /* box-shadow: 0 4px 8px rgba(96, 95, 95, 0.2); */
+        z-index: 1001; 
+        overflow-y: auto;
+
+
+}
 .deleteAOverlay{ 
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(56, 56, 56, 0.5);
+        background: rgba(21, 21, 21, 0.5);
         z-index: 1000; 
 }
 
@@ -166,4 +199,14 @@ body{
 .songDetailDropDown{
     position: relative;
    
+}
+.lyrics_format{
+    font-size: 28px;
+    font-weight: bolder;
+    padding-left: 20px;
+}
+.lyrics_detail_format{
+    padding-left: 20px;
+    font-size: 16px;
+    margin:10px;
 }

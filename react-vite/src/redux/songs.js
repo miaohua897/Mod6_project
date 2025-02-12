@@ -34,6 +34,7 @@ export const updateASong=(data,song_id)=>async(dispatch)=>{
     if(res.ok){
         const data= await res.json()
         console.log('update a song', data)
+        dispatch(update_song(data))
         return data
     }
 }
@@ -87,6 +88,10 @@ const delete_song=(data)=>({
     type:'DELETE_SONG',
     payload:data
 })
+const update_song=(data)=>({
+    type:'UPDATE_SONG',
+    payload:data
+})
 const initialState={songs: [], currentUserAllSongs:[]}
 function songReducer(state=initialState,action){
     switch(action.type){
@@ -105,6 +110,22 @@ function songReducer(state=initialState,action){
                 state.currentUserAllSongs.map(el=>{
                     if(el.id !== action.payload){
                         arr.push(el)
+                    }
+                })
+                return {...state,currentUserAllSongs:arr}
+            }
+        case 'UPDATE_SONG':
+            {
+                let arr=[]
+                let el_new={}
+                state.currentUserAllSongs.map(el=>{
+                    if(el.id !== action.payload.id){
+                        arr.push(el)
+                    }else{
+                        el_new= action.payload
+                        el_new['albums']=el['albums']
+                        el_new['likes']=el['likes']
+                        arr.push(el_new)
                     }
                 })
                 return {...state,currentUserAllSongs:arr}

@@ -1,25 +1,32 @@
 import { useEffect ,useState} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {getCurrentAllSongs} from '../../redux/songs'
-import { useNavigate, useParams } from "react-router-dom"
+import {  useParams } from "react-router-dom"
 import './SongDetail.css'
 import { FaPlay ,FaEdit,FaTrash} from 'react-icons/fa';
 import DeleteASong from '../DeleteASong'
 import Modal from 'react-modal';
+import UpdateASong from '../UpdateASong';
 
 Modal.setAppElement('#root');
 
 function SongDetail(){
 
   const [isModalOpen,setIsModalOpen] = useState(false)
+  const [isUpdateModalOpen,setIsUpdateModalOpen]=useState(false)
   const openModal = (e) => {
-    e.stopPropagation();
+    e.preventDefault();
     setIsModalOpen(true);
 }
+  const openUpdateModal=(e)=>{
+    e.preventDefault();
+    setIsUpdateModalOpen(true)
+  }
   const closeModal = () => setIsModalOpen(false);
+  const closeUpdateModal=()=>setIsUpdateModalOpen(false);
 
   const {song_id} = useParams()
-  const navigate = useNavigate()
+//   const navigate = useNavigate()
   const [visible_lyrics,setVisible_lyrics] = useState(6)
   const [dropdown,setDropdown] = useState(false)
 
@@ -55,11 +62,13 @@ function SongDetail(){
                   </div>
                   </div>
               <div className='song_body'>
-                <p>Lyrics</p>
+                <p className="lyrics_format">Lyrics</p>
                <div>
                {
                song.lyrics.split(',').slice(0,visible_lyrics).map((el,index)=> 
-               (<p key ={index}>{el}</p>)
+               (<p 
+                className="lyrics_detail_format"
+                key ={index}>{el}</p>)
             )}
             </div>
             {
@@ -123,18 +132,32 @@ function SongDetail(){
                 }>...</button>
             {
 
-               dropdown?
+               dropdown||isUpdateModalOpen||isModalOpen?
                <div className="updateDeleteContainer">
                  <button 
                  className="updateASongNav"
-                 onClick={()=>navigate(`/songs/${song.id}/update`)}>
+                 onClick={openUpdateModal}
+                //  onClick={()=>navigate(`/songs/${song.id}/update`)}
+
+                 >
                     <FaEdit />
                     {'                                      '}
                      update a song</button>
                  {/* <p className="updateDeleteDividedLine"></p> */}
+                 <Modal isOpen={isUpdateModalOpen} 
+                className="updateAModal"
+                overlayClassName="deleteAOverlay"
+                onRequestClose={closeUpdateModal} 
+                contentLabel="delete a song">
+                {/* <button 
+                className="closeDeleteButton"
+                onClick={closeModal}> ✖️ </button> */}
+                <UpdateASong song_id={song.id} closeUpdateModal={closeUpdateModal}  />  
+                </Modal>
                  <button 
                  className="deleteASongNav"
-                 onClick={openModal}>
+                 onClick={openModal}
+                 >
                     <FaTrash />
                     {'                                      '}
                      delete a song</button>
