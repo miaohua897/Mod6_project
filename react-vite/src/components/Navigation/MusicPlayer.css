@@ -25,6 +25,9 @@
   width: 56px;
   height: 56px;
   border-radius: 4px;
+  object-fit: cover;
+  overflow: hidden;
+  overflow-clip-margin: unset;
 }
 
 .current-song-image-div {
