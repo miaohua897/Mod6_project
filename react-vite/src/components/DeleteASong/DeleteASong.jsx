@@ -16,23 +16,35 @@ function DeleteASong({song_id,closeModal,title} ){
     }
     return (
         <div className="deleteASongContainer">
-         <h3>Delete from Your Library ?</h3>
-         <p>This will delete {title} from Your Library.</p>
-         <div className="deleteASongButtonContainer">
-         <button 
-            className="deleteASongCancelButton"
-            onClick={closeModal}>
-                cancel
-            </button>
-            <div>
-             <button 
-            className="deleteASongButton"
-            onClick={handleDelete}>
-                delete
-            </button>
+        <p className="deleteASongConfirm">Delete from Your Library ?</p>
+        <div className="deleteASongConfirmAgain">
+            <a>
+            This will delete{' '}
+            </a>
+            <a style={{fontWeight:"bolder"}}>
+            {title}
+            </a>
+            <a>
+            {' '}from Your Library.
+            </a>
             </div>
-         </div>        
-        </div>
+        <div className="deleteASongButtonContainer">
+        <button 
+           className="deleteASongCancelButton"
+           onClick={closeModal}>
+               Cancel
+           </button>
+         <p className="deleteASongButtonFrame"> 
+         <button 
+           className="deleteASongButton"
+           onClick={handleDelete}>
+               delete
+           </button>
+         </p>
+           
+          
+        </div>        
+       </div>
     )
 }
 export default DeleteASong

@@ -11,6 +11,7 @@
     background-color: rgb(77, 77, 77);
     border-radius: 10px;
     padding-left: 60px;
+  
 }
 .addSonginput{
     width: 90%;
@@ -21,10 +22,10 @@
     margin-left:5px;
 }
 .submitAddSongButton{
-    width: 50%;
+    width: 20%;
     height:30px;
     margin:5px;
-    margin-left: 80px;
+    /* margin-left: 80px; */
     margin-top:10px;
     margin-bottom:20px;
     border-radius: 10px;
@@ -34,4 +35,9 @@
     box-shadow: 2px 2px rgb(47, 46, 46),2px -2px rgb(47, 46, 46),-2px 2px rgb(47, 46, 46),-2px -2px rgb(47, 46, 46);
     color:aliceblue
 }
-
+.deleteASongButtonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

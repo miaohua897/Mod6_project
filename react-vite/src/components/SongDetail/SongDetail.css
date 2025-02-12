@@ -98,9 +98,10 @@ body{
         transform: translate(-50%, -50%);
         background: #fff;
         border-radius: 10px;
-        padding: 20px;
-        width:400px;
-        height: auto;
+        padding: 36px;
+        /* width:400px; */
+        width:auto;
+        height: 120px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         z-index: 1001; 
    

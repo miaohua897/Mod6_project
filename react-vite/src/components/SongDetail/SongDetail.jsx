@@ -106,9 +106,9 @@ function SongDetail(){
                                     overlayClassName="deleteAOverlay"
                                     onRequestClose={closeModal} 
                                     contentLabel="delete a song">
-                                    <button 
+                                    {/* <button 
                                     className="closeDeleteButton"
-                                    onClick={closeModal}> ✖️ </button>
+                                    onClick={closeModal}> ✖️ </button> */}
                                      <DeleteASong song_id={el.id} closeModal={closeModal} title={el.title}/>  
                                     </Modal>
                                     </div>
