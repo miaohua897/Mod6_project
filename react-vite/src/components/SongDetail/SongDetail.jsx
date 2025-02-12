@@ -12,7 +12,10 @@ Modal.setAppElement('#root');
 function SongDetail(){
 
   const [isModalOpen,setIsModalOpen] = useState(false)
-  const openModal = () => setIsModalOpen(true);
+  const openModal = (e) => {
+    e.stopPropagation();
+    setIsModalOpen(true);
+}
   const closeModal = () => setIsModalOpen(false);
 
   const {song_id} = useParams()
@@ -20,7 +23,7 @@ function SongDetail(){
   const [visible_lyrics,setVisible_lyrics] = useState(6)
   const [dropdown,setDropdown] = useState(false)
 
-  const [selectSong,setSelectSong]=useState(0)
+//   const [selectSong,setSelectSong]=useState(0)
 
   const closeDropDown =()=>setDropdown(false);
 
@@ -73,6 +76,7 @@ function SongDetail(){
                   <source  src={song.audio_url} type='audio/mp3' />
               </audio> */}
               </div>
+
               <div>
                 <table  className="tableSongList">
                     <thead>
@@ -83,86 +87,84 @@ function SongDetail(){
                             <th>🕘</th>
                             <th></th>
                         </tr>
-
+                        
                     </thead>
-                    <tbody >
-                        {
-                            song.albums.length !==0?
-                           song.albums[0].songs.map((el,index)=>(
-                            <tr key={index} className="tableBody">
-                                <td>
-                                    <button style={{backgroundColor:"transparent"}} ><FaPlay size={15} color="darkgreen"  /></button>
-                                </td>
-                                <td
-                                onClick={()=>navigate(`/song/${el.id}`)}
-                                >{el.title}</td>
-                                <td
-                                onClick={()=>navigate(`/song/${el.id}`)}
-                                >{song.albums[0].artist.artist_name}</td>
-                                <td
-                                onClick={()=>navigate(`/song/${el.id}`)}
-                                >{el.duration}</td>
-                                <td>
-                                  <div>
-                                 
-                                  
-                                  <div className="songDetailDropDown">
-                                    <button
-                                    key={index}
-                                    className="songDetailDropDownButton"
-                                     onClick={(e)=>
-                                    {
-                                        e.stopPropagation();
-                                        setDropdown(true);
-                                        setSelectSong(el.id)
-                                    }
-                                        
-                                        }>...</button>
-                                    {
+                    <tbody>
+                        <tr className="tableBody">
+                        <td>
+                  <button style={{backgroundColor:"transparent",border:'None'}} ><FaPlay size={15} color="darkgray"  /></button>
+                     </td>
+                     <td
+                    //  onClick={()=>navigate(`/song/${song.id}`)}
+                         >{song.title}</td>
 
-                                       dropdown&&selectSong===el.id?
-                                       <div className="updateDeleteContainer">
-                                         <button 
-                                         className="updateASongNav"
-                                         onClick={()=>navigate(`/songs/${el.id}/update`)}>
-                                            <FaEdit />
-                                            {'                                      '}
-                                             update a song</button>
-                                         {/* <p className="updateDeleteDividedLine"></p> */}
-                                         <button 
-                                         className="deleteASongNav"
-                                         onClick={openModal}>
-                                            <FaTrash />
-                                            {'                                      '}
-                                             delete a song</button>
-                                        <Modal isOpen={isModalOpen} 
-                                        className="deleteAModal"
-                                        overlayClassName="deleteAOverlay"
-                                        onRequestClose={closeModal} 
-                                        contentLabel="delete a song">
-                                        {/* <button 
-                                        className="closeDeleteButton"
-                                        onClick={closeModal}> ✖️ </button> */}
-                                        <DeleteASong song_id={el.id} closeModal={closeModal} title={el.title}/>  
-                                        </Modal>
-                                        </div>
-                                      
-                                       :null
-                                 }
+                    <td
+                            // onClick={()=>navigate(`/song/${el.id}`)}
+                            >{song.artist}</td>
+                            <td
+                            // onClick={()=>navigate(`/song/${el.id}`)}
+                            >{song.duration}</td>
 
-                                 
-                                  </div>
+     <td>
+          <div>
+         
+          
+          <div className="songDetailDropDown">
+            <button
+          
+            className="songDetailDropDownButton"
+             onClick={(e)=>
+            {
+                e.stopPropagation();
+                setDropdown(true);
+              
+            }
+                
+                }>...</button>
+            {
 
-                                  </div>
-                           
-                                 
-                                </td>
+               dropdown?
+               <div className="updateDeleteContainer">
+                 <button 
+                 className="updateASongNav"
+                 onClick={()=>navigate(`/songs/${song.id}/update`)}>
+                    <FaEdit />
+                    {'                                      '}
+                     update a song</button>
+                 {/* <p className="updateDeleteDividedLine"></p> */}
+                 <button 
+                 className="deleteASongNav"
+                 onClick={openModal}>
+                    <FaTrash />
+                    {'                                      '}
+                     delete a song</button>
 
-                            </tr>
-                           )) 
-                           :null
-                        }
+                <Modal isOpen={isModalOpen} 
+                className="deleteAModal"
+                overlayClassName="deleteAOverlay"
+                onRequestClose={closeModal} 
+                contentLabel="delete a song">
+                {/* <button 
+                className="closeDeleteButton"
+                onClick={closeModal}> ✖️ </button> */}
+                <DeleteASong song_id={song.id} closeModal={closeModal} title={song.title}/>  
+                </Modal>
+                </div>
+              
+               :null
+         }
+
+         
+          </div>
+
+          </div>
+   
+         
+        </td>
+
+                        </tr>        
                     </tbody>
+                   
                 </table>
 
               </div>

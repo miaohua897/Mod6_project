@@ -13,7 +13,8 @@ body{
     grid-area: sidebar;
 }
 .songdetail{
-    grid-area:content
+    grid-area:content;
+   
 }
 .img_sidebar{
     width: 20px;
@@ -67,13 +68,17 @@ body{
 .tableHead{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     border-bottom: 1px solid white;
+    margin-right:60px;
+    margin-left:60px;
 }
 .tableBody{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin-right:60px;
+    margin-left:60px;
     
 }
 
@@ -83,7 +88,7 @@ body{
 }
 .popout-frame.popout {
     position: fixed; 
-    z-index: 10;
+    z-index: 1000;
     right: 50%; 
     bottom: 50%;
     background-color: white;
