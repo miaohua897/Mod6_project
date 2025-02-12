@@ -3,7 +3,7 @@ song_data=[
     {
        "title":"Eye of the Tiger",
         "audio_url":'https://aws-museic-project.s3.us-east-1.amazonaws.com/b5fa2f66555c440e964192663310bfe0.mp3',
-        "duration":3,
+        "duration":"3:03",
         "lyrics":
                 '''
                 Riin' up, back on the street
@@ -47,7 +47,7 @@ song_data=[
         {
        "title":"I can't hold back",
         "audio_url":'https://aws-museic-project.s3.us-east-1.amazonaws.com/b5fa2f66555c440e964192663310bfe0.mp3',
-        "duration":3,
+        "duration":"3:03",
         "lyrics":
                 '''
                 Genres: Hard Rock, Classic Rock

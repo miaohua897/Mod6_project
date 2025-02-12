@@ -63,6 +63,7 @@ export const thunkCreateAlbum = (newAlbum) => async (dispatch) => {
   if (response.ok) {
     const album = await response.json();
     dispatch(createAlbum(album));
+    return album;
   } else if (response.status < 500) {
     const errorMessages = await response.json();
     return errorMessages;
@@ -82,6 +83,7 @@ export const thunkUpdateAlbum =
     if (response.ok) {
       const album = await response.json();
       dispatch(updateAlbum(album));
+      return album;
     } else if (response.status < 500) {
       const errorMessages = await response.json();
       return errorMessages;
