@@ -101,8 +101,14 @@ function SongDetail(){
                                     <div>
                                     <button onClick={openModal}>delete a song</button>
 
-                                    <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="delete a song">
-                                    <button onClick={closeModal}> ✖️ </button>
+                                    <Modal isOpen={isModalOpen} 
+                                    className="deleteAModal"
+                                    overlayClassName="deleteAOverlay"
+                                    onRequestClose={closeModal} 
+                                    contentLabel="delete a song">
+                                    <button 
+                                    className="closeDeleteButton"
+                                    onClick={closeModal}> ✖️ </button>
                                      <DeleteASong song_id={el.id} closeModal={closeModal}/>  
                                     </Modal>
                                     </div>

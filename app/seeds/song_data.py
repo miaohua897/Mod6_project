@@ -2,7 +2,7 @@
 song_data=[
     {
        "title":"Eye of the Tiger",
-        "audio_url":'https://aws-museic-project.s3.us-east-1.amazonaws.com/b5fa2f66555c440e964192663310bfe0.mp3',
+        "audio_url":'https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/2e17ec3fb19547d3b34149dad59b0026.mp3',
         "duration":3,
         "lyrics":
                 '''

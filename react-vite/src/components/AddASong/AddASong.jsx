@@ -85,6 +85,7 @@ function AddASong(){
                 type='number'
                 value={s_duration===-1?'':s_duration}
                 onChange={(e)=>setS_duration(e.target.value)}
+                className="durationInputBox"
                 >    
                 </input> <a> s</a>
                </div>
@@ -132,10 +133,10 @@ function AddASong(){
                 onChange={(e)=>setImage(e.target.files[0])}
                 required
                 className="addSonginput"
-
+                id='updatefiles'
                 >
-                 
                 </input>
+               
                 <p>upload a  song</p>
                 <input
                 type='file'
@@ -145,7 +146,9 @@ function AddASong(){
                 className="addSonginput"
                 >   
                 </input>
-                <button type="submit">Submit</button>
+                <button 
+                className="submitAddSongButton"
+                type="submit">Submit</button>
 
             </form>
         </div>

@@ -81,7 +81,7 @@ body{
     z-index: 10;
   
 }
-  .popout-frame.popout {
+.popout-frame.popout {
     position: fixed; 
     z-index: 10;
     right: 50%; 
@@ -90,4 +90,32 @@ body{
     color: black;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
   } 
+.deleteAModal{
+    
+        position: fixed; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        width:300px;
+        height: 100px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1001; 
+   
+}
+.deleteAOverlay{ 
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(56, 56, 56, 0.5);
+        z-index: 1000; 
+}
 
+.closeDeleteButton{
+    background-color: transparent;
+    border: None;
+}
