@@ -37,9 +37,9 @@ function SongDetail(){
 
     return (
         <div >
-            <div>
+            {/* <div>
                 <button onClick={()=> navigate('/songs/new')}>add a song</button>
-            </div>
+            </div> */}
         {
               song?
               <div className='song_details'>

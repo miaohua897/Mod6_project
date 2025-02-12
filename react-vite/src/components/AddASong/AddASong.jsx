@@ -146,9 +146,12 @@ function AddASong(){
                 className="addSonginput"
                 >   
                 </input>
+               
                 <button 
                 className="submitAddSongButton"
                 type="submit">Submit</button>
+             
+          
 
             </form>
         </div>
