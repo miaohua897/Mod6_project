@@ -147,11 +147,11 @@ const getAlbumSongIds = (state, albumId) => {
   const album = state.albums[albumId]
   return album ? album.song_ids : []
 }
-
 export const selectAlbumSongs = createSelector(
   [getSongState, getAlbumSongIds],
   (songState, songIds) => songState.songs.filter(song => songIds.includes(song.id))
 );
+
 
 // reducer
 

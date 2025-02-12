@@ -1,32 +1,33 @@
-import { calculateDuration } from '../../resources/helperFunctions';
+import { calculateDuration } from "../../resources/helperFunctions";
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { GoDotFill } from "react-icons/go";
+import { LuClock9 } from "react-icons/lu";
+import { CgPlayButton } from "react-icons/cg";
 import * as albumActions from "../../redux/albums";
-import * as songActions from "../../redux/songs";
-import OpenModalButton from "../OpenModalButton";
-import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
-import { CreateAlbum, EditAlbum } from '../AlbumForm';
-import './AlbumDetails.css'
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import AlbumInfo from "./AlbumInfo";
+import { EditAlbum } from "../AlbumForm";
+import { DeleteAlbum } from "../DeleteAlbum";
+import "./AlbumDetails.css";
 
 const AlbumDetails = () => {
   const { albumId } = useParams();
   const [showMenu, setShowMenu] = useState(false);
-  const [showSecondMenu, setShowSecondMenu] = useState(false)
-  const dispatch = useDispatch();
+  const [showSecondMenu, setShowSecondMenu] = useState(false);
   const ulRef = useRef();
   const ulRefSecond = useRef();
   const user = useSelector((state) => state.session.user);
   const album = useSelector((state) => state.albums[albumId]);
-  const albumSongs = useSelector((state) => albumActions.selectAlbumSongs(state, albumId));
+  const albumSongs = useSelector((state) =>
+    albumActions.selectAlbumSongs(state, albumId)
+  );
+  const dispatch = useDispatch();
   let userOwnsAlbum = false;
   let albumDuration;
 
   useEffect(() => {
-    // if (!showMenu) return;
-
-    const closeMenu = e => {
+    const closeMenu = (e) => {
       if (ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
@@ -36,12 +37,12 @@ const AlbumDetails = () => {
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
-    return () => document.removeEventListener('click', closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
   }, []);
 
-  const toggleMenu = e => {
+  const toggleMenu = (e) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
   };
@@ -55,73 +56,72 @@ const AlbumDetails = () => {
 
   const closeSecondMenu = () => setShowSecondMenu(false);
 
-  if (!album) return <h2>Loading...</h2>
+  if (!album) return <h2>Loading...</h2>;
 
   if (user) userOwnsAlbum = user.id === album.artist.artist_id;
 
   if (albumSongs.length) {
-    albumDuration = calculateDuration(albumSongs)
+    albumDuration = calculateDuration(albumSongs);
   }
-    
+
+  console.log("ALBUM SONGS", albumSongs)
+
   return (
     <article>
       <header className="album-details-header">
-        <div className="album-image-container">
+        <div>
           <img className="album-image" src={album.image_url} />
         </div>
-        <div className="album-info-container">
-          <p>Album</p>
-          <h2>{album.title}</h2>
-          <div id="album-info">
-            <p>{album.artist.artist_name}</p>
-            <GoDotFill />
-            <p>{album.release_year}</p>
-            <GoDotFill />
-            <p>
-              {album.song_ids.length === 1
-                ? `1 song`
-                : `${album.song_ids.length} songs`}
-            </p>
-            {albumSongs.length > 0 &&
-            <>
-            <GoDotFill />
-            <p>{albumDuration}</p>
-            </>}
-          </div>
-        </div>
+        <AlbumInfo albumDuration={albumDuration} />
       </header>
       {userOwnsAlbum && (
         <section className="album-details-update-delete">
-        <div onClick={toggleMenu}>...</div>
-        {showMenu && (
-        <ul className={'album-dropdown'} ref={ulRef}>
-            <OpenModalMenuItem 
-            modalComponent={<EditAlbum />}
-            itemText="Update Album"
-            />
-          <li>
-            delete album
-          </li>
-        </ul>
+          <div onClick={toggleMenu}>...</div>
+          {showMenu && (
+            <ul className={"album-dropdown"} ref={ulRef}>
+              <OpenModalMenuItem
+                modalComponent={<EditAlbum />}
+                itemText="Update Album"
+              />
+              <OpenModalMenuItem
+                modalComponent={<DeleteAlbum />}
+                itemText="Delete Album"
+              />
+            </ul>
+          )}
+        </section>
       )}
-      </section>)}
-
-
-      <section>
-      <div onClick={toggleSecondMenu}>...</div>
-        {showSecondMenu && (
-        <ul className={'album-song-dropdown'} ref={ulRefSecond}>
-          <li>Remove song from album</li>
-          <li>Add to Playlist</li>
-        </ul>
-      )}
+      <section className="album-details-message">
+        {userOwnsAlbum && albumSongs.length === 0 &&
+        <h3>Add songs to your album!</h3>
+        }
+      </section>
+      <section className="album-details-album-songs">
+        <table className="album-songs-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Artist</th>
+              <th><LuClock9 /></th>
+            </tr>
+          </thead>
+          <tbody>
+            {albumSongs.map(song => (
+              <tr key={song.id}>
+                <td><CgPlayButton /></td>
+                <td>{song.title}</td>
+                <td>{song.duration}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </section>
     </article>
   );
 };
 
 export default AlbumDetails;
-
 
 /*
 
@@ -143,9 +143,20 @@ I have an array of song Ids, and I need that generate me an array of songs
 
 */
 
-      {/* <section>
+{
+  /* <section>
         <OpenModalButton
           modalComponent={<CreateAlbum />}
           buttonText="Add an Album"
         />
+      </section> */
+}
+      {/* <section>
+        <div onClick={toggleSecondMenu}>...</div>
+        {showSecondMenu && (
+          <ul className={"album-song-dropdown"} ref={ulRefSecond}>
+            <li>Remove song from album</li>
+            <li>Add to Playlist</li>
+          </ul>
+        )}
       </section> */}

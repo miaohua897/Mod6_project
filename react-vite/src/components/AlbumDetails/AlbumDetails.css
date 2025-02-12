@@ -10,7 +10,7 @@
     padding: 0;
 }
 
-#album-info {
+#album-info-details {
     display: flex;
     flex-direction: row;
     column-gap: 15px;
