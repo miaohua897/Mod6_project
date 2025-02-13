@@ -2,6 +2,48 @@
   display: flex;
 }
 
+.play-button {
+  fill: black;
+}
+
+.play-button-container {
+  background-color: #5c3be8;
+  width: 48px;
+  height: 48px;
+  padding: 10px;
+  border-radius: 50%;
+  top: 122px;
+  right: 20px;
+}
+
+.play-button-container,
+.queue-button-container {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.play-button-container:hover,
+.queue-button-container:hover {
+  scale: 1.04;
+}
+
+.queue-button {
+  fill: #b3b3b3;
+}
+
+.queue-button-container {
+  background-color: #1f1f1f;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border-radius: 50%;
+  top: 138px;
+  right: 77px;
+}
+
 .song-artist {
   color: #b3b3b3;
   font-size: 14px;
@@ -10,6 +52,7 @@
 .song-card {
   padding: 12px;
   border-radius: 6px;
+  position: relative;
 }
 
 .song-card:hover {

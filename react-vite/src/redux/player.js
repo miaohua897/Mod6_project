@@ -1,10 +1,18 @@
 const ADD_TO_PLAYER = 'player/addToPlayer';
+const ADD_TO_PLAYER_TOP = 'player/addToPlayerTop';
 const CLEAR_PLAYER = 'player/clearPlayer';
 
-const addToPlayer = song => {
+const addToPlayer = songId => {
   return {
     type: ADD_TO_PLAYER,
-    song,
+    songId,
+  };
+};
+
+const addToPlayerTop = songId => {
+  return {
+    type: ADD_TO_PLAYER_TOP,
+    songId,
   };
 };
 
@@ -14,8 +22,12 @@ const clearPlayer = () => {
   };
 };
 
-export const thunkAddToPlayer = song => async dispatch => {
-  dispatch(addToPlayer(song));
+export const thunkAddToPlayer = songId => async dispatch => {
+  dispatch(addToPlayer(songId));
+};
+
+export const thunkAddToPlayerTop = songId => async dispatch => {
+  dispatch(addToPlayerTop(songId));
 };
 
 export const thunkClearPlayer = () => async dispatch => {
@@ -25,10 +37,11 @@ export const thunkClearPlayer = () => async dispatch => {
 const playerReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_TO_PLAYER:
-      return [...state, action.song];
-    case CLEAR_PLAYER: {
+      return [...state, action.songId];
+    case ADD_TO_PLAYER_TOP:
+      return [action.songId, ...state];
+    case CLEAR_PLAYER:
       return [];
-    }
     default:
       return state;
   }
