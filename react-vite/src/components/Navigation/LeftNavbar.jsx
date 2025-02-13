@@ -5,12 +5,11 @@ import LeftNavbarPlaylists from './LeftNavbarPlaylists';
 import LeftNavbarSongs from './LeftNavbarSongs';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
-<<<<<<< HEAD
 import OpenModalButtonWithModiftyClassName from '../OpenModalButton/OpenModalButtonWithModiftyClassName';
 import AddASong from '../AddASong/AddASong';
-=======
+
 import { CreateAlbum } from '../AlbumForm';
->>>>>>> album-details
+
 import './LeftNavbar.css';
 
 export default function LeftNavbar({ isLoaded, sessionUser }) {
