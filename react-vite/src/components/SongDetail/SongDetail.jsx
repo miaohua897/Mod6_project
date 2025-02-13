@@ -180,14 +180,14 @@ function SongDetail(){
                 contentLabel="delete a song">
                 <DeleteASong song_id={song.id} closeModal={closeModal} title={song.title}/>  
                 </Modal>
-           
-              <div className="addASongToPlaylistNav">
-              
+
+             {/* replae Testfunction with your component */}
+              <div className="addASongToPlaylistNav"> 
                    <OpenModalButton
                     modalComponent={<Testfunction  />}
                     buttonText={<p>
                       <FaList/>
-                      {'                                                 '}
+             {'                                                 '}
                       add to playlist
                       </p> }
                   />
