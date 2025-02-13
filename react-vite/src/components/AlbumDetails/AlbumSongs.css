@@ -1,0 +1,123 @@
+.album-songs-table {
+  margin: 0 auto;
+  width: 95%;
+  text-align: center;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.album-songs-table th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  height: 30px;
+}
+
+.album-songs-table td {
+  height: 30px;
+}
+
+.album-songs-table tr {
+  border-radius: 15px;
+}
+
+.album-songs-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+}
+
+#table-head1 {
+  width: 5%;
+}
+
+#table-head2 {
+  width: 40%;
+}
+
+#table-head3 {
+  width: 30%;
+}
+
+#table-head4 {
+  width: 10%;
+}
+
+#table-head5 {
+  width: 10%;
+}
+
+#table-head6 {
+  width: 5%;
+}
+
+.album-song-update-delete {
+  position: relative;
+}
+
+.album-song-update-delete ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  list-style: none;
+  padding: 15px 15px;
+  width: 190px;
+}
+
+.album-song-update-delete li {
+  cursor: pointer;
+  padding: 5px 0px;
+}
+
+.album-song-update-delete svg {
+  font-size: 12px;
+}
+
+.remove-album-song {
+  padding-left: 7px;
+}
+
+.album-song-dropdown {
+  border-radius: 6px;
+  background-color: #2a2a2a;
+  font-size: 16px;
+  position: absolute;
+  text-align: left;
+  right: 10px;
+  bottom: 15px;
+}
+
+.album-songs-title {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.album-songs-second-row {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.album-songs-second-row select {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  height: 25px;
+  width: 100%;
+}
+
+#add-album-song-button {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 13px;
+  height: 25px;
+  border: none;
+  border-radius: 16px;
+  padding: 4px 12px;
+}
+
+#album-song-like-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#add-album-song-button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}

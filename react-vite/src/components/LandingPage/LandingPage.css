@@ -1,0 +1,105 @@
+.landing-page-album-artist,
+.landing-page-song-artist {
+  color: #b3b3b3;
+  font-size: 13px;
+}
+
+.landing-page-album-card,
+.landing-page-song-card {
+  padding: 12px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.landing-page-album-card:hover,
+.landing-page-song-card:hover {
+  cursor: pointer;
+  background-color: #1e1e1e;
+}
+
+.landing-page-album-image,
+.landing-page-song-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  overflow: hidden;
+  overflow-clip-margin: unset;
+}
+
+.landing-page-album-image-div,
+.landing-page-song-image-div {
+  aspect-ratio: 1/1;
+  min-width: 136px;
+  min-height: 136px;
+  max-width: 165px;
+  max-height: 165px;
+  margin-bottom: 5px;
+}
+
+.landing-page-album-title,
+.landing-page-song-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.landing-page-albums-header,
+.landing-page-songs-header {
+  width: 100%;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.landing-page-albums-div {
+  margin-top: 16px;
+}
+
+.landing-page-albums-div,
+.landing-page-songs-div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.landing-page-play-button {
+  fill: black;
+}
+
+.landing-page-play-button-container {
+  background-color: #5c3be8;
+  width: 48px;
+  height: 48px;
+  padding: 10px;
+  border-radius: 50%;
+  top: 122px;
+  right: 20px;
+}
+
+.landing-page-play-button-container,
+.landing-page-queue-button-container {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.landing-page-play-button-container:hover,
+.landing-page-queue-button-container:hover {
+  scale: 1.04;
+}
+
+.landing-page-queue-button {
+  fill: #b3b3b3;
+}
+
+.landing-page-queue-button-container {
+  background-color: #1f1f1f;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border-radius: 50%;
+  top: 138px;
+  right: 77px;
+}

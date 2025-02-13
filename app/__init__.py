@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect,jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
@@ -7,6 +7,10 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.songs_routes import song_routes
+from .api.playlist_routes import playlist_routes
+from .api.album_routes import album_routes
+from .api.likes_routes import likes_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -28,6 +32,10 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(song_routes, url_prefix='/api/songs')
+app.register_blueprint(playlist_routes, url_prefix='/api/playlists')
+app.register_blueprint(album_routes, url_prefix='/api/albums')
+app.register_blueprint(likes_routes,url_prefix='/api/likes')
 db.init_app(app)
 Migrate(app, db)
 
@@ -89,3 +97,12 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+@app.errorhandler(405)
+def internal_error(error):
+    return jsonify({"error": str(error)}), 405
+
+@app.errorhandler(Exception)
+def handle_all_errors(error):
+    return jsonify({"error": str(error)}), 500

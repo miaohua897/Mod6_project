@@ -1,3 +1,140 @@
+body {
+  background-color: #222222;
+  color: white;
+}
+
+.log-in-button > button {
+  color: black;
+  background-color: white;
+  font-size: 16px;
+  font-weight: bold;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0 32px;
+  border: none;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.log-in-button > button:hover {
+  background-color: #f0f0f0;
+}
+
+.log-in-button > button:hover,
+.profile-button > button:hover,
+.sign-up-button > button:hover {
+  scale: 1.04;
+}
+
+.log-in-button > button:hover,
+.museic-logo:hover,
+.profile-button > button:hover,
+.profile-dropdown li:hover,
+.sign-up-button > button:hover {
+  cursor: pointer;
+}
+
+.log-out-button {
+  border-top: 1px #3e3e3e solid;
+}
+
+main {
+  height: calc(100vh - 88px - 64px);
+  display: flex;
+  gap: 8px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.museic-logo {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.museic-logo-div {
+  width: 72px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-container {
+  background-color: black;
+  height: 64px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.nav-container-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profile-button > button {
+  color: #5c3be8;
+  background-color: #1f1f1f;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+}
+
 .profile-dropdown {
+  color: #ffffffe6;
+  background-color: #282828;
+  width: 188px;
+  margin: 8px;
+  padding: 4px;
+  border-radius: 4px;
   position: absolute;
+  right: 0;
+  font-weight: bold;
+  z-index: 50;
+}
+
+.profile-dropdown li {
+  padding: 12px;
+  border-radius: 2px;
+  list-style-type: none;
+}
+
+.profile-dropdown li:hover {
+  background-color: #3e3e3e;
+}
+
+.right-main-div {
+  background-image: linear-gradient(#1f1f1f, #121212);
+  flex: 1 1 850px;
+  padding: 28px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.sign-up-button > button {
+  color: #b3b3b3;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: bold;
+  height: 32px;
+  box-sizing: border-box;
+  padding: 0 16px;
+  border: none;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.sign-up-button > button:hover {
+  color: white;
 }
