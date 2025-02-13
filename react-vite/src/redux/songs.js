@@ -112,7 +112,7 @@ function songReducer(state=initialState,action){
                         arr.push(el)
                     }
                 })
-                return {...state,currentUserAllSongs:arr}
+                return {...state, songs:arr}
             }
         case 'UPDATE_SONG':
             {
@@ -128,8 +128,34 @@ function songReducer(state=initialState,action){
                         arr.push(el_new)
                     }
                 })
-                return {...state,currentUserAllSongs:arr}
+                return {...state, songs:arr}
             }
+        // case 'DELETE_SONG':
+        //     {
+        //         let arr =[]
+        //         state.currentUserAllSongs.map(el=>{
+        //             if(el.id !== action.payload){
+        //                 arr.push(el)
+        //             }
+        //         })
+        //         return {...state,currentUserAllSongs:arr}
+        //     }
+        // case 'UPDATE_SONG':
+        //     {
+        //         let arr=[]
+        //         let el_new={}
+        //         state.currentUserAllSongs.map(el=>{
+        //             if(el.id !== action.payload.id){
+        //                 arr.push(el)
+        //             }else{
+        //                 el_new= action.payload
+        //                 el_new['albums']=el['albums']
+        //                 el_new['likes']=el['likes']
+        //                 arr.push(el_new)
+        //             }
+        //         })
+        //         return {...state,currentUserAllSongs:arr}
+        //     }
         default:
             return state
     }

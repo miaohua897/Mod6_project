@@ -59,10 +59,12 @@ function SongDetail(){
   },[dispatch])
 
 
-
+  const sessionUser = useSelector((state) => state.session.user);
+  const userSongs = useSelector(state=>state.song.currentUserAllSongs);
   const songs = useSelector(state=>state.song.songs)
   const song= songs.filter(el=>el.id===Number(song_id))[0]
-   const sessionUser = useSelector((state) => state.session.user);
+  const isUserSong =userSongs.filter(el=>el.id===Number(song_id))
+  // console.log('no login',sessionUser,userSongs,song,isUserSong)
 
 
     return (
@@ -75,7 +77,7 @@ function SongDetail(){
                   <img className='img_song_detail' src={song.image_url}></img>
                   <div >
                   <h1>{song.title}</h1>
-                   <p>{song.release_year} {  '.'  } {song.duration}</p>
+                   <p>{song.artist} {        '●'       } {song.release_year} {      '●'      } {song.duration}</p>
         
                   </div>
                   </div>
@@ -121,16 +123,9 @@ function SongDetail(){
                   className="playSongButton"
                   ><FaPlay size={15} color="darkgray"  /></button>
                      </td>
-                     <td
-                    //  onClick={()=>navigate(`/song/${song.id}`)}
-                         >{song.title}</td>
-
-                    <td
-                            // onClick={()=>navigate(`/song/${el.id}`)}
-                            >{song.artist}</td>
-                            <td
-                            // onClick={()=>navigate(`/song/${el.id}`)}
-                            >{song.duration}</td>
+                     <td>{song.title}</td>
+                    <td>{song.artist}</td>
+                    <td >{song.duration}</td>
 
      <td>
           <div>
@@ -151,7 +146,9 @@ function SongDetail(){
             {
 
                dropdown||isUpdateModalOpen||isModalOpen?
-               <div className="updateDeleteContainer">
+               isUserSong.length !==0?
+               <div>
+                      <div className="updateDeleteContainer">
                  <button 
                  className="updateASongNav"
                  onClick={openUpdateModal}       
@@ -190,35 +187,35 @@ function SongDetail(){
              {'                                                 '}
                       add to playlist
                       </p> }
-                  />
-         
-        </div>
+                  />       
+               </div>
               
               </div>
+              </div>
+               :  
+               <div className="addASongToPlaylistNav"> 
+               <OpenModalButton
+                modalComponent={<Testfunction  />}
+                buttonText={<p>
+                  <FaList/>
+          {'                                                 '}
+                  add to playlist
+                  </p> }
+              />       
+              </div>
+         
               
                :null
-         }
-
-         
+         }   
           </div>
-
           :null
           }
-        
-
-          </div>
-   
-         
+          </div>       
         </td>
-
                         </tr>        
-                    </tbody>
-                   
+                    </tbody>                 
                 </table>
-
-              </div>
-          
-                 
+              </div>        
               </div>
               :null
         }
