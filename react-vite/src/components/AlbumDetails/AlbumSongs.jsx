@@ -3,8 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { LuClock9 } from "react-icons/lu";
 import { CgPlayButton } from "react-icons/cg";
+import { FaMinus } from "react-icons/fa6";
+import { GoPlus } from "react-icons/go";
+import { CiCirclePlus } from "react-icons/ci";
 import * as albumActions from "../../redux/albums";
 import * as sessionActions from "../../redux/session";
+import "./AlbumSongs.css";
 
 const AlbumSongs = ({ userOwnsAlbum }) => {
   const { albumId } = useParams();
@@ -55,14 +59,14 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
       <table className="album-songs-table">
         <thead>
           <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Artist</th>
-            <th></th>
-            <th>
+            <th id="table-head1"></th>
+            <th id="table-head2">Title</th>
+            <th id="table-head3">Artist</th>
+            <th id="table-head4"></th>
+            <th id="table-head5">
               <LuClock9 />
             </th>
-            <th></th>
+            <th id="table-head6"></th>
           </tr>
         </thead>
         <tbody>
@@ -71,49 +75,55 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
               <td>
                 <CgPlayButton />
               </td>
-              <td>{song.title}</td>
+              <td className="album-songs-second-row">{song.title}</td>
               <td>{song.artist}</td>
-              <td>LikeButton</td>
+              <td id="album-song-like-button"><CiCirclePlus /></td>
               <td>{song.duration}</td>
-              {user && (
-                <td>
-                  <div
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setShowMenu(!showMenu);
-                      setMenuId(song.id);
-                    }}
-                  >
-                    ...
-                  </div>
-                  {showMenu && menuId === song.id && (
-                    <ul className={"album-song-dropdown"} ref={ulRef}>
-                      {userOwnsAlbum && (
-                        <li
-                          onClick={async () => {
-                            await dispatch(
-                              albumActions.thunkDeleteAlbumSong(
-                                albumId,
-                                song.id
-                              )
-                            );
-                            closeMenu();
-                          }}
-                        >
-                          Remove song from album
+              <td className="album-song-update-delete">
+                {user && (
+                  <>
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowMenu(!showMenu);
+                        setMenuId(song.id);
+                      }}
+                    >
+                      ...
+                    </div>
+                    {showMenu && menuId === song.id && (
+                      <ul className="album-song-dropdown" ref={ulRef}>
+                        {userOwnsAlbum && (
+                          <li
+                            onClick={async () => {
+                              await dispatch(
+                                albumActions.thunkDeleteAlbumSong(
+                                  albumId,
+                                  song.id
+                                )
+                              );
+                              closeMenu();
+                            }}
+                          >
+                            <span><FaMinus /></span>
+                            <span className="remove-album-song">Remove song from album</span>
+                          </li>
+                        )}
+                        <li>
+                        <span><GoPlus /></span>
+                        <span className="remove-album-song">Add To Playlist</span>
                         </li>
-                      )}
-                      <li>Add to Playlist</li>
-                    </ul>
-                  )}
-                </td>
-              )}
+                      </ul>
+                    )}
+                  </>
+                )}
+              </td>
             </tr>
           ))}
           {userOwnsAlbum && availableSongs && (
             <tr>
               <td></td>
-              <td>
+              <td className="album-songs-second-row">
                 <select
                   value={selectedSong}
                   onChange={(e) => setSelectedSong(e.target.value)}
@@ -133,7 +143,8 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
                 </select>
               </td>
               <td>
-                <button
+              <button
+                  id="add-album-song-button"
                   disabled={selectedSong === "" ? true : false}
                   onClick={addAlbumSong}
                 >

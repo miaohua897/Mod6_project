@@ -13,6 +13,8 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
   const [isSongsActive, setIsSongsActive] = useState(false);
   const [isAlbumsActive, setIsAlbumsActive] = useState(false);
   const [isPlaylistsActive, setIsPlaylistsActive] = useState(false);
+  // const navigate = useNavigate()
+
 
   return (
     <div className="left-navbar-div">

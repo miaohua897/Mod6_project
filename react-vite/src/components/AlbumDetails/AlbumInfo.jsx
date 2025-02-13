@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { GoDotFill } from "react-icons/go";
 import { calculateDuration } from "../../resources/helperFunctions";
 import * as albumActions from "../../redux/albums";
+import "./AlbumInfo.css";
 
 const AlbumInfo = ({ albumDuration }) => {
   const { albumId } = useParams();
@@ -17,12 +18,10 @@ const AlbumInfo = ({ albumDuration }) => {
 
   return (
     <div className="album-info-container">
-      <div className="album-info-title">
-        <p>Album</p>
-        <h2>{album.title}</h2>
-      </div>
-      <div id="album-info-details">
-        <p>{album.artist.artist_name}</p>
+      <p>Album</p>
+      <h2>{album.title}</h2>
+      <div className="album-info-details">
+        <p id="album-artist-name">{album.artist.artist_name}</p>
         <GoDotFill />
         <p>{album.release_year}</p>
         <GoDotFill />
