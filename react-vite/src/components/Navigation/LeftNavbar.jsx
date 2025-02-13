@@ -5,7 +5,6 @@ import LeftNavbarPlaylists from './LeftNavbarPlaylists';
 import LeftNavbarSongs from './LeftNavbarSongs';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
-import OpenModalButtonWithModiftyClassName from '../OpenModalButton/OpenModalButtonWithModiftyClassName';
 import AddASong from '../AddASong/AddASong';
 import { CreateAlbum } from '../AlbumForm';
 import './LeftNavbar.css';
@@ -76,7 +75,8 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
               </div>
               <div className="left-navbar-state-buttons">
                 {isSongsActive && (
-                  <OpenModalButtonWithModiftyClassName
+                
+                  <OpenModalButton
                     className="left-navbar-state-button"
                     modalComponent={<AddASong />}
                     buttonText="Add a song"

@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux"
 import {getCurrentAllSongs} from '../../redux/songs'
 import {  useParams } from "react-router-dom"
 import './SongDetail.css'
-import { FaPlay ,FaEdit,FaTrash,FaList} from 'react-icons/fa';
+import { FaPlay ,FaEdit,FaTrash} from 'react-icons/fa';
 import DeleteASong from '../DeleteASong'
 import Modal from 'react-modal';
 import UpdateASong from '../UpdateASong';
-import Testfunction from './Testfunction ';
-import OpenModalButton from '../OpenModalButton'
-
+import Testfunction from './Testfunction '
 
 Modal.setAppElement('#root');
 
@@ -17,7 +15,7 @@ function SongDetail(){
 
   const [isModalOpen,setIsModalOpen] = useState(false)
   const [isUpdateModalOpen,setIsUpdateModalOpen]=useState(false)
- 
+  const [isAddSongToPlaylistModalOpen, setIsAddSongToPlaylistModalOpen] = useState(false);
   const openModal = (e) => {
     e.preventDefault();
     if(!isModalOpen)
@@ -30,23 +28,38 @@ function SongDetail(){
      setIsUpdateModalOpen(true)
     else return ;
   }
+  // const openAddASongToPlaylistModal=(e)=>{
+  //   e.preventDefault();
+  //   setIsAddSongToPlaylistModalOpen(true)
+  //   console.log('isAddSongToPlaylistModalOpen',isAddSongToPlaylistModalOpen)
+  // }
+  const openAddASongToPlaylistModal = (e) => {
+    e.preventDefault();
+    // 仅在modal未打开时才设置为true
+    if (!isAddSongToPlaylistModalOpen) {
+      setIsAddSongToPlaylistModalOpen(true);
+    }
+  };
+  
 
-  const closeModal = () => {
-
+  const closeModal = (e) => {
+    e.preventDefault();
     setIsModalOpen(false);
   }
-  const closeUpdateModal=()=>{
-   
+  const closeUpdateModal=(e)=>{
+    e.preventDefault();
     setIsUpdateModalOpen(false);
   }
-
+  const closeAddSongToPlaylistModal = () => {
+    setIsAddSongToPlaylistModalOpen(false);
+  };
 
   const {song_id} = useParams()
-
+//   const navigate = useNavigate()
   const [visible_lyrics,setVisible_lyrics] = useState(6)
   const [dropdown,setDropdown] = useState(false)
 
-
+//   const [selectSong,setSelectSong]=useState(0)
 
   const closeDropDown =()=>setDropdown(false);
 
@@ -58,18 +71,21 @@ function SongDetail(){
       dispatch(getCurrentAllSongs())
   },[dispatch])
 
+  useEffect(() => {
+    console.log('Modal is open:', isAddSongToPlaylistModalOpen);
+  }, [isAddSongToPlaylistModalOpen]);
 
-  const sessionUser = useSelector((state) => state.session.user);
-  const userSongs = useSelector(state=>state.song.currentUserAllSongs);
-  const songs = useSelector(state=>state.song.songs)
+  const songs = useSelector(state=>state.song.currentUserAllSongs)
   const song= songs.filter(el=>el.id===Number(song_id))[0]
-  const isUserSong =userSongs.filter(el=>el.id===Number(song_id))
-  // console.log('no login',sessionUser,userSongs,song,isUserSong)
-
+   const sessionUser = useSelector((state) => state.session.user);
+  //  console.log('sessionUser',sessionUser)
+        // if (!sessionUser) return <h1>Log in, please</h1>
 
     return (
         <div >
- 
+            {/* <div>
+                <button onClick={()=> navigate('/songs/new')}>add a song</button>
+            </div> */}
         {
               song?
               <div className='song_details'>
@@ -77,7 +93,7 @@ function SongDetail(){
                   <img className='img_song_detail' src={song.image_url}></img>
                   <div >
                   <h1>{song.title}</h1>
-                   <p>{song.artist} {        '●'       } {song.release_year} {      '●'      } {song.duration}</p>
+                   <p>{song.release_year} {  '.'  } {song.duration}</p>
         
                   </div>
                   </div>
@@ -101,7 +117,9 @@ function SongDetail(){
            
               </div>
               <div className='song_foot'>
-
+              {/* <audio controls >
+                  <source  src={song.audio_url} type='audio/mp3' />
+              </audio> */}
               </div>
 
               <div>
@@ -123,9 +141,16 @@ function SongDetail(){
                   className="playSongButton"
                   ><FaPlay size={15} color="darkgray"  /></button>
                      </td>
-                     <td>{song.title}</td>
-                    <td>{song.artist}</td>
-                    <td >{song.duration}</td>
+                     <td
+                    //  onClick={()=>navigate(`/song/${song.id}`)}
+                         >{song.title}</td>
+
+                    <td
+                            // onClick={()=>navigate(`/song/${el.id}`)}
+                            >{song.artist}</td>
+                            <td
+                            // onClick={()=>navigate(`/song/${el.id}`)}
+                            >{song.duration}</td>
 
      <td>
           <div>
@@ -146,10 +171,8 @@ function SongDetail(){
             {
 
                dropdown||isUpdateModalOpen||isModalOpen?
-               isUserSong.length !==0?
-               <div>
-                      <div className="updateDeleteContainer">
-                 <button 
+               <div className="updateDeleteContainer">
+                 {/* <button 
                  className="updateASongNav"
                  onClick={openUpdateModal}       
                  >
@@ -162,8 +185,8 @@ function SongDetail(){
                 onRequestClose={closeUpdateModal} 
                 contentLabel="delete a song">
                 <UpdateASong song_id={song.id} closeUpdateModal={closeUpdateModal}  />  
-                </Modal> 
-                  <button 
+                </Modal> */}
+                 {/* <button 
                  className="deleteASongNav"
                  onClick={openModal}
                  >
@@ -176,46 +199,52 @@ function SongDetail(){
                 onRequestClose={closeModal} 
                 contentLabel="delete a song">
                 <DeleteASong song_id={song.id} closeModal={closeModal} title={song.title}/>  
-                </Modal>
+                </Modal> */}
+           
+              <div>
+          <button className="addASongToPlaylistNav" onClick={openAddASongToPlaylistModal}>
+            <FaTrash />
+            {' '}
+            Add a song to playlist
+          </button>
 
-             {/* replae Testfunction with your component */}
-              <div className="addASongToPlaylistNav"> 
-                   <OpenModalButton
-                    modalComponent={<Testfunction  />}
-                    buttonText={<p>
-                      <FaList/>
-             {'                                                 '}
-                      add to playlist
-                      </p> }
-                  />       
-               </div>
+          <Modal
+            isOpen={isAddSongToPlaylistModalOpen}
+            key={isAddSongToPlaylistModalOpen ? 'open' : 'closed'}
+            className="deleteAModal"
+            overlayClassName="deleteAOverlay"
+            onRequestClose={closeAddSongToPlaylistModal}
+            contentLabel="Add a song to playlist"
+          >
+            <Testfunction closeModal={closeAddSongToPlaylistModal} />
+          </Modal>
+        </div>
               
               </div>
-              </div>
-               :  
-               <div className="addASongToPlaylistNav"> 
-               <OpenModalButton
-                modalComponent={<Testfunction  />}
-                buttonText={<p>
-                  <FaList/>
-          {'                                                 '}
-                  add to playlist
-                  </p> }
-              />       
-              </div>
-         
               
                :null
-         }   
+         }
+
+         
           </div>
+
           :null
           }
-          </div>       
+        
+
+          </div>
+   
+         
         </td>
+
                         </tr>        
-                    </tbody>                 
+                    </tbody>
+                   
                 </table>
-              </div>        
+
+              </div>
+          
+                 
               </div>
               :null
         }

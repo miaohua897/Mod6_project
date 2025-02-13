@@ -1,4 +1,4 @@
-// import { createSelector } from 'reselect';
+import { createSelector } from 'reselect';
 import { addUserPlaylist } from "./session"
 
 const LOAD_USER_PLAYLISTS = "playlists/loadUserPlaylists";
@@ -98,9 +98,12 @@ export const addSongToUserPlaylist = (playlist_id, song_id) => async (dispatch) 
   if (response.ok) {
     dispatch(addSongToPlaylist( parseInt(playlist_id), parseInt(song_id)))
     return data;     
+  }  else if (response.status < 500) {
+    const errorMessages = await response.json();
+    return errorMessages;
   } else {
-      return response;
-  }  
+    return { server: "Something went wrong. Please try again" };
+  }
 }
 
 export const removeSongFromUserPlaylist = (playlist_id, song_id ) => async (dispatch) => {
@@ -113,14 +116,37 @@ export const removeSongFromUserPlaylist = (playlist_id, song_id ) => async (disp
     const data = await response.json();
     dispatch(removeSongFromPlaylist( parseInt(playlist_id), parseInt(song_id)));  
     return data;
+  } else if (response.status < 500) {
+    const errorMessages = await response.json();
+    return errorMessages;
   } else {
-    return response;
+    return { server: "Something went wrong. Please try again" };
   }
 }
 
 /*-------------------------- Selectors --------------------------- */
 
+const getSongState = (state) => state.song;
 
+const getPlaylistSongIds = (state, playlistId) => {
+  const playlist = state.playlists[playlistId]
+  return playlist ? playlist.song_ids : []
+}
+export const selectPlaylistSongs = createSelector(
+  [getSongState, getPlaylistSongIds],
+  (songState, songIds) => songState.songs.filter(song => songIds.includes(song.id))
+);
+
+const getSongs = (state) => state.song.songs;
+const getLikedSongIds = (state) => state.session.user?.likedSongIds || [];
+
+// Memoized selector for liked songs
+export const selectLikedSongs = createSelector(
+  [getSongs, getLikedSongIds],
+  (songs, likedSongIds) => {
+    return Object.values(songs).filter(song => likedSongIds.includes(song.id));
+  }
+);
 
 /*-------------------------- Reducer ---------------------------- */
 
@@ -157,7 +183,7 @@ const playlistsReducer = (state = {}, action) => {
             }
         };
       }
-      case "REMOVE_SONG_FROM_PLAYLIST": {
+      case REMOVE_SONG_FROM_PLAYLIST: {
         const { playlistId, songId } = action;
     
         return {
