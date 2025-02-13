@@ -21,6 +21,7 @@ const PlaylistDetails = () => {
     if (playlistSongs.length) {
         playlistDuration = calculateDuration(playlistSongs);
     }
+    
     useEffect(() => {
     const closeMenu = (e) => {
         if (ulRef.current && !ulRef.current.contains(e.target)) {
@@ -36,8 +37,8 @@ const PlaylistDetails = () => {
       e.stopPropagation();
       setShowMenu(!showMenu);
     };  
-    const url = "https://images.unsplash.com/photo-1580951630746-cc6d7528cab6?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-    
+    const url = "https://img.freepik.com/free-photo/top-view-music-concept-with-vinyl_23-2148605812.jpg";
+
     const handleEdit = (e) => {
         e.preventDefault();
         e.stopPropagation();  

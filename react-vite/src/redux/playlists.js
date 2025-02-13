@@ -137,6 +137,16 @@ export const selectPlaylistSongs = createSelector(
   (songState, songIds) => songState.songs.filter(song => songIds.includes(song.id))
 );
 
+const getSongs = (state) => state.song.songs;
+const getLikedSongIds = (state) => state.session.user?.likedSongIds || [];
+
+// Memoized selector for liked songs
+export const selectLikedSongs = createSelector(
+  [getSongs, getLikedSongIds],
+  (songs, likedSongIds) => {
+    return Object.values(songs).filter(song => likedSongIds.includes(song.id));
+  }
+);
 
 /*-------------------------- Reducer ---------------------------- */
 
