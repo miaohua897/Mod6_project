@@ -104,7 +104,9 @@ function SongDetail(){
                     <tbody>
                         <tr className="tableBody">
                         <td>
-                  <button style={{backgroundColor:"transparent",border:'None'}} ><FaPlay size={15} color="darkgray"  /></button>
+                  <button style={{backgroundColor:"transparent",border:'None'}} 
+                  className="playSongButton"
+                  ><FaPlay size={15} color="darkgray"  /></button>
                      </td>
                      <td
                     //  onClick={()=>navigate(`/song/${song.id}`)}

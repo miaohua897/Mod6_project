@@ -47,6 +47,7 @@ body{
     font-weight: bold;
     margin-top: 5px;
     margin-left:10px;
+    padding-left: 20px;
     font-size: 14px;
     
 }
@@ -182,4 +183,18 @@ body{
     padding-left: 20px;
     font-size: 16px;
     margin:10px;
+}
+.tableBody{
+    position: relative;
+}
+.playSongButton{
+    display: None;
+    position: absolute; 
+    /* bottom: 10px;  */
+    left: 5%; 
+    transform: translateX(-50%); 
+}
+
+.tableBody:hover .playSongButton{
+    display: block;
 }
