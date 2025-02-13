@@ -78,21 +78,6 @@ const AlbumDetails = () => {
 
 export default AlbumDetails;
 
-/*
-
-then, we render a table. Each row has sing title, artist name, duration
-if there is a user, we render the like button and a SECOND crud dropdown
-
-in the SECOND crud dropdown, we render:
-add to playlist modal button
-(if user owns the album): remove song link
-
-if there is a user that owns the album, the final table row is a dropdown menu for adding songs
-
-I have an array of song Ids, and I need that generate me an array of songs
-
-*/
-
 {
   /* <section>
         <OpenModalButton
@@ -101,8 +86,4 @@ I have an array of song Ids, and I need that generate me an array of songs
         />
       </section> */
 }
-{
-  /* <section>
-        
-      </section> */
-}
+

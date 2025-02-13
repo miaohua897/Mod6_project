@@ -12,11 +12,12 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
   const [selectedSong, setSelectedSong] = useState("");
   const ulRef = useRef();
   const user = useSelector((state) => state.session.user);
+  const album = useSelector((state) => state.albums[albumId]);
   const albumSongs = useSelector((state) =>
     albumActions.selectAlbumSongs(state, albumId)
   );
-
   const userSongs = useSelector(sessionActions.getUserSongs);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const closeMenu = (e) => {
@@ -36,6 +37,10 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
   };
 
   const closeMenu = () => setShowMenu(false);
+
+  const addAlbumSong = async () => {
+    await dispatch(albumActions.thunkAddAlbumSong(albumId, selectedSong))
+  };
 
   return (
     <section className="album-songs-container">
@@ -67,7 +72,18 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
                   <div onClick={toggleMenu}>...</div>
                   {showMenu && (
                     <ul className={"album-song-dropdown"} ref={ulRef}>
-                      {userOwnsAlbum && <li>Remove song from album</li>}
+                      {userOwnsAlbum && (
+                        <li
+                          onClick={async () => {
+                            await dispatch(
+                              albumActions.thunkDeleteAlbumSong(song.id)
+                            );
+                            closeMenu();
+                          }}
+                        >
+                          Remove song from album
+                        </li>
+                      )}
                       <li>Add to Playlist</li>
                     </ul>
                   )}
@@ -75,20 +91,35 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
               )}
             </tr>
           ))}
-          <tr>
-            <td></td>
-            <td>
-              <select
-                value={selectedSong}
-                onChange={(e) => setSelectedSong(e.target.value)}
-              >
-                <option value="" disabled>
-                  Add a song to your album...
-                </option>
-              </select>
-            </td>
-            <td></td>
-          </tr>
+          {userOwnsAlbum && (
+            <tr>
+              <td></td>
+              <td>
+                <select
+                  value={selectedSong}
+                  onChange={(e) => setSelectedSong(e.target.value)}
+                >
+                  <option value="" disabled>
+                    Add a song to your album...
+                  </option>
+                  {userSongs.map((song) => {
+                    if (!album.song_ids.includes(song.id)) {
+                      return (
+                        <option key={song.id} value={song.id}>
+                          {song.title}
+                        </option>
+                      );
+                    }
+                  })}
+                </select>
+              </td>
+              <td>
+                <button disabled={selectedSong === "" ? true : false} onClick={addAlbumSong}>
+                  Add Song
+                </button>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </section>
