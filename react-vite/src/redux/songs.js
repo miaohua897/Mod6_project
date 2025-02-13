@@ -100,25 +100,42 @@ function songReducer(state=initialState,action){
         case 'LOAD_SONGS':
             return {...state,currentUserAllSongs:action.payload}
         case 'ADD_SONG':
-           {let arr =[]
-            arr=state.currentUserAllSongs
-            arr.push(action.payload)
-            return {...state,currentUserAllSongs:arr}} 
+                {
+                let arr =[]
+                arr=state.songs
+                arr.push(action.payload)
+                let arr1=[]
+                arr1=state.currentUserAllSongs
+                arr1.push(action.payload)
+                
+            return {...state,songs:arr,currentUserAllSongs:arr1}} 
+        //    {let arr =[]
+        //     arr=state.currentUserAllSongs
+        //     arr.push(action.payload)
+        //     return {...state,currentUserAllSongs:arr}} 
         case 'DELETE_SONG':
             {
                 let arr =[]
-                state.currentUserAllSongs.map(el=>{
+                state.songs.map(el=>{
                     if(el.id !== action.payload){
                         arr.push(el)
                     }
                 })
-                return {...state, songs:arr}
+
+              let arr1 =[]
+                state.currentUserAllSongs.map(el=>{
+                    if(el.id !== action.payload){
+                        arr1.push(el)
+                    }
+                })
+
+                return {...state, songs:arr,currentUserAllSongs:arr1}
             }
         case 'UPDATE_SONG':
             {
                 let arr=[]
                 let el_new={}
-                state.currentUserAllSongs.map(el=>{
+                state.songs.map(el=>{
                     if(el.id !== action.payload.id){
                         arr.push(el)
                     }else{
@@ -128,7 +145,19 @@ function songReducer(state=initialState,action){
                         arr.push(el_new)
                     }
                 })
-                return {...state, songs:arr}
+                let arr1=[]
+                let el_new1={}
+                state.currentUserAllSongs.map(el=>{
+                    if(el.id !== action.payload.id){
+                        arr1.push(el)
+                    }else{
+                        el_new1= action.payload
+                        el_new1['albums']=el['albums']
+                        el_new1['likes']=el['likes']
+                        arr1.push(el_new1)
+                    }
+                })
+                return {...state, songs:arr,currentUserAllSongs:arr1}
             }
         // case 'DELETE_SONG':
         //     {
