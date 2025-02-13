@@ -16,12 +16,12 @@
 }
 
 .album-songs-table tr {
-    border-radius: 15px;
-  }
+  border-radius: 15px;
+}
 
-.album-songs-table tr:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
+.album-songs-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
 }
 
 #table-head1 {
@@ -113,9 +113,9 @@
 }
 
 #album-song-like-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #add-album-song-button:hover {
