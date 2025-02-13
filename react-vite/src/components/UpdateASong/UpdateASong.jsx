@@ -2,11 +2,14 @@ import { useState} from "react";
 import {useDispatch} from 'react-redux';
 import {updateASong} from '../../redux/songs'
 import { useSelector} from "react-redux";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import {FaTimes} from 'react-icons/fa';
+
 import './UpdateASong.css'
 
 function UpdateASong({song_id,closeUpdateModal}){
     // const {song_id} = useParams()
+    
     const songs = useSelector(state=>state.song.currentUserAllSongs)
     const song = songs.filter(el=>el.id===Number(song_id))[0]
      
@@ -79,6 +82,13 @@ function UpdateASong({song_id,closeUpdateModal}){
          
     return (
         <div>
+               <div className="closeUpdateASongButtonPosition">
+                      <button
+                      className="closeUpdateASongModal"
+                      onClick={()=> closeUpdateModal()}
+                      >  <FaTimes /> </button>
+                </div>
+
             <form
             onSubmit={handleSubmit}
               encType="multipart/form-data"

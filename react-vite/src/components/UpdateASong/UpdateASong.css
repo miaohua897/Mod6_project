@@ -45,3 +45,15 @@
     box-shadow: 2px 2px rgb(47, 46, 46),2px -2px rgb(47, 46, 46),-2px 2px rgb(47, 46, 46),-2px -2px rgb(47, 46, 46);
     color:aliceblue
 }
+.closeUpdateASongButtonPosition{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    font-weight: bolder;
+    font-size: 18px;
+}
+.closeUpdateASongModal{
+    background-color: transparent;
+    color:white;
+    border: None;
+}

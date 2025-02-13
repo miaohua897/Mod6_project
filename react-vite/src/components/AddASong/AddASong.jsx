@@ -3,6 +3,8 @@ import {useDispatch} from 'react-redux';
 import {createASong} from '../../redux/songs';
 import { useSelector} from "react-redux";
 import { useNavigate } from 'react-router-dom'
+import { useModal } from '../../context/Modal';
+import {FaTimes} from 'react-icons/fa';
 import './AddASong.css'
 
 function AddASong(){
@@ -15,7 +17,8 @@ function AddASong(){
     const [release_year,setRelease_year]=useState(0);
     const [min_duration,setMin_duration] = useState(-1);
     const [s_duration,setS_duration] = useState(-1)
-    const [ryError,setRyError]=useState({'error':''})
+    const [ryError,setRyError]=useState({'error':''});
+    const { closeModal } = useModal();
 
     const dispatch = useDispatch()
     const navigate=useNavigate()
@@ -68,10 +71,18 @@ function AddASong(){
         setGenre('')
         setRelease_year(0)
         await navigate(`/song/${res.id}`)
+        closeModal()
     }
 
     return (
         <div >
+            <div className="closeAddASongButtonPosition">
+            <button
+            className="closeAddASongModal"
+            onClick={()=> closeModal()}
+            >  <FaTimes /> </button>
+            </div>
+           
             <form
             onSubmit={handleSubmit}
               encType="multipart/form-data"

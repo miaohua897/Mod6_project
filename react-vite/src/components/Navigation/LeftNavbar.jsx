@@ -5,14 +5,16 @@ import LeftNavbarPlaylists from './LeftNavbarPlaylists';
 import LeftNavbarSongs from './LeftNavbarSongs';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
-import { useNavigate } from 'react-router-dom';
+import OpenModalButtonWithModiftyClassName from '../OpenModalButton/OpenModalButtonWithModiftyClassName';
+import AddASong from '../AddASong/AddASong';
 import './LeftNavbar.css';
 
 export default function LeftNavbar({ isLoaded, sessionUser }) {
   const [isSongsActive, setIsSongsActive] = useState(false);
   const [isAlbumsActive, setIsAlbumsActive] = useState(false);
   const [isPlaylistsActive, setIsPlaylistsActive] = useState(false);
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
+
 
   return (
     <div className="left-navbar-div">
@@ -75,15 +77,17 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
               </div>
               <div className="left-navbar-state-buttons">
                 {isSongsActive && (
-                  <button
-                    className="left-navbar-state-button"
-                    onClick={() => 
-                      // ADD FUNCTION TO ADD A SONG HERE
-                      navigate('/songs/new')
-                    }
-                  >
-                    Add a song
-                  </button>
+                  // <button
+                  //   className="left-navbar-state-button"
+                  //   onClick={() => {}}
+                  // >
+                  //   Add a song
+                  // </button>
+                      <OpenModalButtonWithModiftyClassName
+                      className="left-navbar-state-button"
+                      modalComponent={<AddASong />}
+                      buttonText="Add a song"
+                     />
                 )}
                 {isAlbumsActive && (
                   <button
