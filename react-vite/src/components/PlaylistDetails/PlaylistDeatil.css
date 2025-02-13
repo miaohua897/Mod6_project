@@ -1,6 +1,6 @@
 .playlist-header img{
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
 }
 
 .playlist-header{
@@ -17,4 +17,21 @@
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+.playlist-dropdown{
+    background-color: grey;
+    width: 100px;
+}
+
+.playlist-dropdown li{
+    list-style: none;  /* Removes bullets/numbers */
+    padding: 0;
+    margin: 0;
+}
+
+.playlist-details ul {
+    list-style: none; /* Removes bullet points */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
 }

@@ -1,0 +1,8 @@
+.playlist-songs-table td, th{
+   
+   padding: 10px; /* Adds space inside cells */
+    line-height: 1.5; /* Increases row height */  
+}
+table {
+    border-spacing: 15px; /* Adjust the value as needed */
+}
