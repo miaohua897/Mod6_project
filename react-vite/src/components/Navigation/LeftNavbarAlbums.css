@@ -1,0 +1,18 @@
+.albums-sidebar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.albums-sidebar-entry {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    cursor: pointer;
+}
+
+.albums-sidebar-entry img {
+    flex: 2 1 0;
+    max-width: 50px;
+    max-height: 50px;
+}
