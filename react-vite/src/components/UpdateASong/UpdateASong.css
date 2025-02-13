@@ -7,7 +7,7 @@
     font-weight: bold;
     font-size: 17px;
     font-family: 'Times New Roman', Times, serif;
-    background-color: rgb(77, 77, 77);
+    background-color: rgb(77, 77, 77,0.2);
     border-radius: 10px;
     padding-left: 60px;
 }
@@ -19,9 +19,7 @@
 .updatelyricsinput{
     width: 90%;
     height:80px;
-    border-radius: 5px;
- 
-  
+    border-radius: 5px; 
 }
 .durationInputBox{
     margin-right:10px;
@@ -40,10 +38,12 @@
     margin-bottom:20px;
     border-radius: 10px;
     font-weight: bolder;
-    background-color: darkcyan;
+    /* background-color: darkcyan; */
+    background-color: #5c3be8;
     border: 1px solid rgb(120, 119, 119);
     box-shadow: 2px 2px rgb(47, 46, 46),2px -2px rgb(47, 46, 46),-2px 2px rgb(47, 46, 46),-2px -2px rgb(47, 46, 46);
-    color:aliceblue
+    color:aliceblue;
+    opacity: 0.9;
 }
 .closeUpdateASongButtonPosition{
     display: flex;

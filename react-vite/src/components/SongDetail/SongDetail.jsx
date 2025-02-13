@@ -44,6 +44,9 @@ function SongDetail(){
 
   const songs = useSelector(state=>state.song.currentUserAllSongs)
   const song= songs.filter(el=>el.id===Number(song_id))[0]
+   const sessionUser = useSelector((state) => state.session.user);
+   console.log('sessionUser',sessionUser)
+        // if (!sessionUser) return <h1>Log in, please</h1>
 
     return (
         <div >
@@ -101,7 +104,9 @@ function SongDetail(){
                     <tbody>
                         <tr className="tableBody">
                         <td>
-                  <button style={{backgroundColor:"transparent",border:'None'}} ><FaPlay size={15} color="darkgray"  /></button>
+                  <button style={{backgroundColor:"transparent",border:'None'}} 
+                  className="playSongButton"
+                  ><FaPlay size={15} color="darkgray"  /></button>
                      </td>
                      <td
                     //  onClick={()=>navigate(`/song/${song.id}`)}
@@ -117,8 +122,8 @@ function SongDetail(){
      <td>
           <div>
          
-          
-          <div className="songDetailDropDown">
+          {sessionUser?
+            <div className="songDetailDropDown">
             <button
           
             className="songDetailDropDownButton"
@@ -136,22 +141,16 @@ function SongDetail(){
                <div className="updateDeleteContainer">
                  <button 
                  className="updateASongNav"
-                 onClick={openUpdateModal}
-                //  onClick={()=>navigate(`/songs/${song.id}/update`)}
-
+                 onClick={openUpdateModal}       
                  >
                     <FaEdit />
                     {'                                      '}
-                     update a song</button>
-                 {/* <p className="updateDeleteDividedLine"></p> */}
+                     update a song</button>             
                  <Modal isOpen={isUpdateModalOpen} 
                 className="updateAModal"
                 overlayClassName="deleteAOverlay"
                 onRequestClose={closeUpdateModal} 
                 contentLabel="delete a song">
-                {/* <button 
-                className="closeDeleteButton"
-                onClick={closeModal}> ✖️ </button> */}
                 <UpdateASong song_id={song.id} closeUpdateModal={closeUpdateModal}  />  
                 </Modal>
                  <button 
@@ -161,15 +160,11 @@ function SongDetail(){
                     <FaTrash />
                     {'                                      '}
                      delete a song</button>
-
                 <Modal isOpen={isModalOpen} 
                 className="deleteAModal"
                 overlayClassName="deleteAOverlay"
                 onRequestClose={closeModal} 
                 contentLabel="delete a song">
-                {/* <button 
-                className="closeDeleteButton"
-                onClick={closeModal}> ✖️ </button> */}
                 <DeleteASong song_id={song.id} closeModal={closeModal} title={song.title}/>  
                 </Modal>
                 </div>
@@ -179,6 +174,10 @@ function SongDetail(){
 
          
           </div>
+
+          :null
+          }
+        
 
           </div>
    

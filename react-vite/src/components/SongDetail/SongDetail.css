@@ -2,32 +2,7 @@ body{
     background-color: black;
     color: aliceblue;
 }
-/* .songdetailcontainer{
-    display: grid;
-    grid-template-columns: 0.2fr 0.8fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-    "sidebar content";
-    
-}
-.sidebar{
-    grid-area: sidebar;
-}
-.songdetail{
-    grid-area:content;
-   
-} */
-/* .img_sidebar{
-    width: 20px;
-    height: 20px;
-    
-} */
-/* .songs_sidebar{
-    display: flex;
-    flex-direction: row;
-    padding: 5px;
-    gap:5px;
-} */
+
 .song_details{
     display: grid;
     grid-template-rows: 0.25fr 0.65fr 0.1fr;
@@ -72,6 +47,7 @@ body{
     font-weight: bold;
     margin-top: 5px;
     margin-left:10px;
+    padding-left: 20px;
     font-size: 14px;
     
 }
@@ -132,8 +108,8 @@ body{
         top: 50%; 
         left: 50%; 
         transform: translate(-50%, -50%);
-        background: rgb(77, 76, 76);
-        border: 0.2px solid whitesmoke;
+        background: rgba(40, 40, 41, 0.7);
+        /* border: 0.2px solid whitesmoke; */
         border-radius: 10px;
         padding: 38px;
         width:600px;
@@ -141,8 +117,6 @@ body{
         /* box-shadow: 0 4px 8px rgba(96, 95, 95, 0.2); */
         z-index: 1001; 
         overflow-y: auto;
-
-
 }
 .deleteAOverlay{ 
         position: fixed;
@@ -150,7 +124,7 @@ body{
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(21, 21, 21, 0.5);
+        background: rgba(21, 21, 21, 0.3);
         z-index: 1000; 
 }
 
@@ -172,13 +146,13 @@ body{
     margin-top: 5px;
     /* border: 1px solid whitesmoke; */
     padding: 5px;
-    background-color: rgb(63, 62, 62);
+    background-color: rgba(53, 53, 53, 0.95);
     border-radius: 10px;
     opacity: 1;
     position: absolute;
-    top: -90px;          
-    right: -110px;       
- 
+    top: -110px;       
+    left: -110px;       
+    box-shadow: 0 4px 8px rgb(23, 23, 23);
   
 }
 .updateASongNav{
@@ -209,4 +183,18 @@ body{
     padding-left: 20px;
     font-size: 16px;
     margin:10px;
+}
+.tableBody{
+    position: relative;
+}
+.playSongButton{
+    display: None;
+    position: absolute; 
+    /* bottom: 10px;  */
+    left: 5%; 
+    transform: translateX(-50%); 
+}
+
+.tableBody:hover .playSongButton{
+    display: block;
 }

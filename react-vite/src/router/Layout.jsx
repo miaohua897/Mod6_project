@@ -5,6 +5,7 @@ import { thunkAuthenticate } from '../redux/session';
 import Navigation from '../components/Navigation/Navigation';
 import * as albumActions from "../redux/albums";
 import * as songActions from "../redux/songs";
+import { getUserPlaylists, resetUserPlaylists } from '../redux/playlists';
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -16,6 +17,14 @@ export default function Layout() {
     dispatch(albumActions.thunkLoadAlbums());
 
     dispatch(songActions.getAllSongs());
+
+    dispatch(getUserPlaylists()).catch(async (res) => {
+      const resError = await res.json();
+      if (resError) {
+        dispatch(resetUserPlaylists());
+      }
+    });
+    
   }, [dispatch]);
 
   return (
