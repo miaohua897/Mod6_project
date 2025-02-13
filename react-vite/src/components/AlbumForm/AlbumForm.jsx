@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useModal } from "../../context/Modal";
-import * as albumActions from "../../redux/albums";
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useModal } from '../../context/Modal';
+import * as albumActions from '../../redux/albums';
 
 const AlbumForm = ({ album, albumId, formType }) => {
   const [title, setTitle] = useState(album.title);
@@ -17,31 +17,31 @@ const AlbumForm = ({ album, albumId, formType }) => {
   useEffect(() => {
     const validationErrors = {};
 
-    const acceptedImageExtensions = [".png", ".jpg", ".jpeg"];
+    const acceptedImageExtensions = ['.png', '.jpg', '.jpeg'];
 
     if (!title.length) {
-      validationErrors.title = "Album title is required";
+      validationErrors.title = 'Album title is required';
     } else if (title.length > 200) {
       validationErrors.title =
-        "Album title cannot be longer that 200 characters";
+        'Album title cannot be longer that 200 characters';
     }
 
     if (!image.length) {
-      validationErrors.image = "Album cover image is required";
+      validationErrors.image = 'Album cover image is required';
     } else if (
-      !acceptedImageExtensions.some((extension) => image.endsWith(extension))
+      !acceptedImageExtensions.some(extension => image.endsWith(extension))
     ) {
       validationErrors.image =
-        "Album cover image URL must end in .png, .jpg, .jpeg";
+        'Album cover image URL must end in .png, .jpg, .jpeg';
     }
 
     if (releaseYear === null)
-      validationErrors.releaseYear = "Album release year is required";
+      validationErrors.releaseYear = 'Album release year is required';
 
     setErrors(validationErrors);
   }, [title, image, releaseYear]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     if (Object.values(errors).length) return setHasSubmitted(true);
@@ -52,14 +52,14 @@ const AlbumForm = ({ album, albumId, formType }) => {
       release_year: releaseYear,
     };
 
-    if (formType === "createAlbum") {
+    if (formType === 'createAlbum') {
       const newAlbum = await dispatch(
         albumActions.thunkCreateAlbum(album)
-      ).catch(async (res) => {
+      ).catch(async res => {
         const data = await res.json();
         if (data?.errors)
           return setErrors({
-            serverError: "There was a server issue, please try again.",
+            serverError: 'There was a server issue, please try again.',
           });
       });
 
@@ -69,11 +69,11 @@ const AlbumForm = ({ album, albumId, formType }) => {
     } else {
       const updatedAlbum = await dispatch(
         albumActions.thunkUpdateAlbum(album, albumId)
-      ).catch(async (res) => {
+      ).catch(async res => {
         const data = await res.json();
         if (data?.errors)
           return setErrors({
-            serverError: "There was a server issue, please try again.",
+            serverError: 'There was a server issue, please try again.',
           });
       });
 
@@ -84,14 +84,14 @@ const AlbumForm = ({ album, albumId, formType }) => {
   };
 
   const header =
-    formType === "createAlbum" ? (
+    formType === 'createAlbum' ? (
       <h2>Add an album to Museic</h2>
     ) : (
       <h2>Update your album</h2>
     );
 
   const submitButton =
-    formType === "createAlbum" ? (
+    formType === 'createAlbum' ? (
       <button onClick={handleSubmit}>Add Album</button>
     ) : (
       <button onClick={handleSubmit}>Update Album</button>
@@ -107,7 +107,7 @@ const AlbumForm = ({ album, albumId, formType }) => {
             type="text"
             placeholder="Enter your album's title..."
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={e => setTitle(e.target.value)}
           />
         </div>
         <div className="album-form-error-message-container">
@@ -115,8 +115,8 @@ const AlbumForm = ({ album, albumId, formType }) => {
             <p
               className={
                 hasSubmitted && errors.title
-                  ? "album-error-message"
-                  : "album-error-message hidden"
+                  ? 'album-error-message'
+                  : 'album-error-message hidden'
               }
             >
               {errors.title}
@@ -129,7 +129,7 @@ const AlbumForm = ({ album, albumId, formType }) => {
             type="text"
             placeholder="Enter a url for your album cover..."
             value={image}
-            onChange={(e) => setImage(e.target.value)}
+            onChange={e => setImage(e.target.value)}
           />
         </div>
         <div className="album-form-error-message-container">
@@ -137,8 +137,8 @@ const AlbumForm = ({ album, albumId, formType }) => {
             <p
               className={
                 hasSubmitted && errors.image
-                  ? "album-error-message"
-                  : "album-error-message hidden"
+                  ? 'album-error-message'
+                  : 'album-error-message hidden'
               }
             >
               {errors.image}
@@ -152,7 +152,7 @@ const AlbumForm = ({ album, albumId, formType }) => {
             min={1940}
             placeholder="Enter the year your album was released..."
             value={releaseYear}
-            onChange={(e) => setReleaseYear(e.target.value)}
+            onChange={e => setReleaseYear(e.target.value)}
           />
         </div>
         <div className="album-form-error-message-container">
@@ -160,8 +160,8 @@ const AlbumForm = ({ album, albumId, formType }) => {
             <p
               className={
                 hasSubmitted && errors.releaseYear
-                  ? "album-error-message"
-                  : "album-error-message hidden"
+                  ? 'album-error-message'
+                  : 'album-error-message hidden'
               }
             >
               {errors.releaseYear}
@@ -169,15 +169,15 @@ const AlbumForm = ({ album, albumId, formType }) => {
           )}
         </div>
         <div className="album-form-input">
-          <p>(Dont' worry, you can add songs later!)</p>
+          <p>(Don&apos;t worry, you can add songs later!)</p>
         </div>
         <div className="album-form-input">{submitButton}</div>
         {hasSubmitted && (
           <p
             className={
               hasSubmitted && errors.serverError
-                ? "album-error-message"
-                : "album-error-message hidden"
+                ? 'album-error-message'
+                : 'album-error-message hidden'
             }
           >
             {errors.serverError}
