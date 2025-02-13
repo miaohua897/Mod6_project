@@ -60,7 +60,7 @@ function SongDetail(){
 
 
 
-  const songs = useSelector(state=>state.song.currentUserAllSongs)
+  const songs = useSelector(state=>state.song.songs)
   const song= songs.filter(el=>el.id===Number(song_id))[0]
    const sessionUser = useSelector((state) => state.session.user);
 
