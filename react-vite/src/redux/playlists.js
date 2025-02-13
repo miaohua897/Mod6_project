@@ -98,9 +98,12 @@ export const addSongToUserPlaylist = (playlist_id, song_id) => async (dispatch) 
   if (response.ok) {
     dispatch(addSongToPlaylist( parseInt(playlist_id), parseInt(song_id)))
     return data;     
+  }  else if (response.status < 500) {
+    const errorMessages = await response.json();
+    return errorMessages;
   } else {
-      return response;
-  }  
+    return { server: "Something went wrong. Please try again" };
+  }
 }
 
 export const removeSongFromUserPlaylist = (playlist_id, song_id ) => async (dispatch) => {
@@ -113,8 +116,11 @@ export const removeSongFromUserPlaylist = (playlist_id, song_id ) => async (disp
     const data = await response.json();
     dispatch(removeSongFromPlaylist( parseInt(playlist_id), parseInt(song_id)));  
     return data;
+  } else if (response.status < 500) {
+    const errorMessages = await response.json();
+    return errorMessages;
   } else {
-    return response;
+    return { server: "Something went wrong. Please try again" };
   }
 }
 
