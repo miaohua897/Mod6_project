@@ -16,7 +16,7 @@ import ReactPlayer from 'react-player';
 import { useSelector } from 'react-redux';
 import './MusicPlayer.css';
 
-export default function MusicPlayer({ isLoaded, sessionUser }) {
+export default function MusicPlayer() {
   const player = useSelector(state => state.player);
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
@@ -160,8 +160,7 @@ export default function MusicPlayer({ isLoaded, sessionUser }) {
             {currentSong && currentSong.title}
           </div>
           <div className="current-song-artist">
-            {/* {currentSong &&
-                current_song.artist} */}
+            {currentSong && currentSong.artist}
           </div>
         </div>
       </div>
@@ -187,32 +186,31 @@ export default function MusicPlayer({ isLoaded, sessionUser }) {
 
       <div className="music-player-controls">
         <div className="music-player-buttons">
-          <span className="button-container">
+          <span className="button-container" onClick={handlePrevSong}>
             <IoIosSkipBackward
-              onClick={handlePrevSong}
               style={{ width: '100%', height: 'auto' }}
               className="skip-button music-player-button"
             />
           </span>
-          <span className="pause-play-button button-container">
+          <span
+            className="pause-play-button button-container"
+            onClick={handlePlayPause}
+          >
             {isPlaying ? (
               <IoIosPause
-                onClick={handlePlayPause}
                 style={{ width: '100%', height: 'auto' }}
                 className="pause-play-button music-player-button"
               />
             ) : (
               <IoIosPlay
-                onClick={handlePlayPause}
                 style={{ width: '100%', height: 'auto' }}
                 viewBox="0 0 460 512"
                 className="pause-play-button music-player-button"
               />
             )}
           </span>
-          <span className="button-container">
+          <span className="button-container" onClick={handleNextSong}>
             <IoIosSkipForward
-              onClick={handleNextSong}
               style={{ width: '100%', height: 'auto' }}
               className="skip-button music-player-button"
             />
@@ -251,51 +249,38 @@ export default function MusicPlayer({ isLoaded, sessionUser }) {
 
       <div className="music-player-right-div">
         <div className="volume-control">
-          {isMuted && (
-            <span className="button-container">
+          <span className="button-container" onClick={handleMute}>
+            {isMuted && (
               <IoVolumeMuteOutline
-                onClick={handleMute}
                 style={{ width: '100%', height: 'auto' }}
                 className="volume-button music-player-button"
               />
-            </span>
-          )}
-          {volume === 0 && !isMuted && (
-            <span className="button-container">
+            )}
+            {volume === 0 && !isMuted && (
               <IoVolumeOffOutline
-                onClick={handleMute}
                 style={{ width: '100%', height: 'auto' }}
                 className="volume-button music-player-button"
               />
-            </span>
-          )}
-          {volume > 0 && volume <= 0.33 && !isMuted && (
-            <span className="button-container">
+            )}
+            {volume > 0 && volume <= 0.33 && !isMuted && (
               <IoVolumeLowOutline
-                onClick={handleMute}
                 style={{ width: '100%', height: 'auto' }}
                 className="volume-button music-player-button"
               />
-            </span>
-          )}
-          {volume > 0.33 && volume <= 0.66 && !isMuted && (
-            <span className="button-container">
+            )}
+            {volume > 0.33 && volume <= 0.66 && !isMuted && (
               <IoVolumeMediumOutline
-                onClick={handleMute}
                 style={{ width: '100%', height: 'auto' }}
                 className="volume-button music-player-button"
               />
-            </span>
-          )}
-          {volume > 0.66 && volume <= 1 && !isMuted && (
-            <span className="button-container">
+            )}
+            {volume > 0.66 && volume <= 1 && !isMuted && (
               <IoVolumeHighOutline
-                onClick={handleMute}
                 style={{ width: '100%', height: 'auto' }}
                 className="volume-button music-player-button"
               />
-            </span>
-          )}
+            )}
+          </span>
           <div
             className="volume-bar-background"
             onMouseDown={handleVolumeDragStart}

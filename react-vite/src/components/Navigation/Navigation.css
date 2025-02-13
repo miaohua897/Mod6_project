@@ -99,6 +99,7 @@ main {
   position: absolute;
   right: 0;
   font-weight: bold;
+  z-index: 50;
 }
 
 .profile-dropdown li {

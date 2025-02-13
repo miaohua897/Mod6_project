@@ -150,7 +150,7 @@ body{
     border-radius: 10px;
     opacity: 1;
     position: absolute;
-    top: -110px;       
+    top: -150px;       
     left: -110px;       
     box-shadow: 0 4px 8px rgb(23, 23, 23);
   
@@ -168,7 +168,14 @@ body{
     border: None;
     color:whitesmoke;
     margin:3px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(104, 102, 102);
  
+}
+.addASongToPlaylistNav button{
+    background-color: transparent;
+    border: None;
+    color:whitesmoke;
 }
 .songDetailDropDown{
     position: relative;

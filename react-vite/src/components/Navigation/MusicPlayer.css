@@ -1,13 +1,12 @@
 .button-container {
   box-sizing: border-box;
-  max-width: 32px;
-  min-width: 32px;
+  width: 32px;
   height: 32px;
   padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
+  border-radius: 50%;
 }
 
 .current-song-artist {
@@ -114,7 +113,7 @@
   border-radius: 2px;
   top: 0;
   left: 0;
-  pointer-events: none; /* Prevent interaction with the progress bar itself */
+  pointer-events: none;
 }
 
 .progress-bar-background {
@@ -123,7 +122,7 @@
   background-color: #b3b3b3;
   border-radius: 2px;
   cursor: pointer;
-  position: relative; /* Needed for positioning the actual progress bar */
+  position: relative;
 }
 
 .progress-bar-background:hover .progress-bar {
@@ -171,7 +170,7 @@
   border-radius: 2px;
   top: 0;
   left: 0;
-  pointer-events: none; /* Prevent interaction with the progress bar itself */
+  pointer-events: none;
 }
 
 .volume-bar-background {
@@ -180,7 +179,7 @@
   background-color: #b3b3b3;
   border-radius: 2px;
   cursor: pointer;
-  position: relative; /* Needed for positioning the actual progress bar */
+  position: relative;
 }
 
 .volume-bar-background:hover .volume-bar {
@@ -194,7 +193,6 @@
   background-color: white;
   position: absolute;
   top: 50%;
-  /* transform: translateY(-50%); */
   transform: translate(-50%, -50%);
 }
 
