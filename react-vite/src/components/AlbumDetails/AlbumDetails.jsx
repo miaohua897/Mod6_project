@@ -6,6 +6,7 @@ import AlbumInfo from "./AlbumInfo";
 import AlbumSongs from "./AlbumSongs";
 import { EditAlbum } from "../AlbumForm";
 import { DeleteAlbum } from "../DeleteAlbum";
+import { BsThreeDots } from "react-icons/bs";
 import "./AlbumDetails.css";
 
 const AlbumDetails = () => {
@@ -42,36 +43,42 @@ const AlbumDetails = () => {
   if (user) userOwnsAlbum = user.id === album.artist.artist_id;
 
   return (
-    <article>
+    <article className="album-details">
       <header className="album-details-header">
-        <div>
-          <img className="album-image" src={album.image_url} />
+        <div className="album-image-container">
+          <img id="album-image" src={album.image_url} />
         </div>
         <AlbumInfo albumDuration={albumDuration} />
       </header>
-      {userOwnsAlbum && (
+      <section className="album-details-main">
         <section className="album-details-update-delete">
-          <div onClick={toggleMenu}>...</div>
-          {showMenu && (
-            <ul className={"album-dropdown"} ref={ulRef}>
-              <OpenModalMenuItem
-                modalComponent={<EditAlbum />}
-                itemText="Update Album"
-              />
-              <OpenModalMenuItem
-                modalComponent={<DeleteAlbum />}
-                itemText="Delete Album"
-              />
-            </ul>
+          {userOwnsAlbum && (
+            <>
+              <div onClick={toggleMenu}>
+                <BsThreeDots />
+              </div>
+              {showMenu && (
+                <ul className={"album-dropdown"} ref={ulRef}>
+                  <OpenModalMenuItem
+                    modalComponent={<EditAlbum />}
+                    itemText="Update Album"
+                  />
+                  <OpenModalMenuItem
+                    modalComponent={<DeleteAlbum />}
+                    itemText="Delete Album"
+                  />
+                </ul>
+              )}
+            </>
           )}
         </section>
-      )}
-      <section className="album-details-message">
-        {userOwnsAlbum && album.song_ids === 0 && (
-          <h3>Add songs to your album!</h3>
-        )}
+        <section className="album-details-message">
+          {userOwnsAlbum && album.song_ids === 0 && (
+            <h3>Add songs to your album!</h3>
+          )}
+        </section>
+        <AlbumSongs userOwnsAlbum={userOwnsAlbum} />
       </section>
-      <AlbumSongs userOwnsAlbum={userOwnsAlbum}/>
     </article>
   );
 };
@@ -86,4 +93,3 @@ export default AlbumDetails;
         />
       </section> */
 }
-

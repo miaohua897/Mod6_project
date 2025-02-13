@@ -7,7 +7,7 @@
 .albums-sidebar-entry {
     display: flex;
     flex-direction: row;
-    column-gap: 10px;
+    column-gap: 15px;
     cursor: pointer;
 }
 
@@ -15,4 +15,5 @@
     flex: 2 1 0;
     max-width: 50px;
     max-height: 50px;
+    border-radius: 6px;
 }
