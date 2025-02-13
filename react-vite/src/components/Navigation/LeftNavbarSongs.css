@@ -1,0 +1,19 @@
+.img_sidebar{
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    
+}
+.songs_sidebar{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    gap:10px;
+}
+.title_sidebar{
+    background-color: transparent;
+    color:aliceblue;
+    font-size: 18px;
+    border:None;
+    font-family: 'Times New Roman', Times, serif;
+}
