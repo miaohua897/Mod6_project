@@ -80,7 +80,7 @@ export const updateUserPlaylist = (playlist_id, image_url, name, description) =>
   const playlist = await response.json();
 
   if (response.ok) {
-    if (playlist && playlist.id )  dispatch(addUserPlaylist(parseInt(playlist.id)))
+    if (playlist && playlist.id )  dispatch(addPlaylistData(playlist)); //dispatch(addUserPlaylist(parseInt(playlist.id)))
     return playlist;
   }
 
