@@ -1,3 +1,5 @@
+import { createSelector } from "reselect";
+
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
@@ -143,6 +145,19 @@ export const thunkRemoveLikedSong = songId => async dispatch => {
     return { server: 'Something went wrong. Please try again.' };
   }
 };
+
+//selectors
+
+const getSongState = (state) => state.song;
+
+const getUserSongIds = (state) => state.session.user?.likedSongIds || [];
+
+export const getUserSongs = createSelector(
+  [getSongState, getUserSongIds],
+  (songState, userSongIds) => songState.songs.filter(song => userSongIds.includes(song.id))
+);
+
+//reducer 
 
 const initialState = { user: null };
 

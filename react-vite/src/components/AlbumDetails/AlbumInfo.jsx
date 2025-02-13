@@ -1,10 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { GoDotFill } from "react-icons/go";
+import { calculateDuration } from "../../resources/helperFunctions";
+import * as albumActions from "../../redux/albums";
 
 const AlbumInfo = ({ albumDuration }) => {
   const { albumId } = useParams();
   const album = useSelector((state) => state.albums[albumId]);
+  const albumSongs = useSelector((state) =>
+    albumActions.selectAlbumSongs(state, albumId)
+  );
+
+  if (albumSongs.length) {
+    albumDuration = calculateDuration(albumSongs);
+  }
 
   return (
     <div className="album-info-container">
