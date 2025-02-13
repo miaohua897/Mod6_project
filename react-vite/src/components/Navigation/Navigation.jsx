@@ -8,7 +8,6 @@ import ProfileButton from './ProfileButton';
 import SignupFormModal from '../SignupFormModal';
 import museicLogoIcon from './museic-logo-icon.png';
 import './Navigation.css';
-import React from 'react';
 
 export default function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);

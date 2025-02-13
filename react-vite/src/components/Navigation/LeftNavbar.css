@@ -3,7 +3,8 @@
 }
 
 .left-navbar-button,
-.left-navbar-state-button {
+.left-navbar-state-button,
+.left-navbar-state-buttons button {
   color: white;
   background-color: rgba(255, 255, 255, 0.1);
   font-size: 13px;
@@ -14,18 +15,21 @@
 }
 
 .left-navbar-button:hover,
-.left-navbar-state-button:hover {
+.left-navbar-state-button:hover,
+.left-navbar-state-buttons button:hover {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
 .left-navbar-button:hover,
 .left-navbar-state-button:hover,
+.left-navbar-state-buttons button:hover,
 .left-navbar-sign-up-button > button:hover {
   cursor: pointer;
 }
 
 .left-navbar-button:active,
-.left-navbar-state-button:active {
+.left-navbar-state-button:active,
+.left-navbar-state-buttons button:active {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
