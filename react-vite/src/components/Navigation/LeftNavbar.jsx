@@ -5,20 +5,15 @@ import LeftNavbarPlaylists from './LeftNavbarPlaylists';
 import LeftNavbarSongs from './LeftNavbarSongs';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
-<<<<<<< HEAD
 import OpenModalButtonWithModiftyClassName from '../OpenModalButton/OpenModalButtonWithModiftyClassName';
 import AddASong from '../AddASong/AddASong';
-=======
 import { CreateAlbum } from '../AlbumForm';
->>>>>>> album-details
 import './LeftNavbar.css';
 
 export default function LeftNavbar({ isLoaded, sessionUser }) {
   const [isSongsActive, setIsSongsActive] = useState(false);
   const [isAlbumsActive, setIsAlbumsActive] = useState(false);
   const [isPlaylistsActive, setIsPlaylistsActive] = useState(false);
-  // const navigate = useNavigate()
-
 
   return (
     <div className="left-navbar-div">
@@ -81,31 +76,17 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
               </div>
               <div className="left-navbar-state-buttons">
                 {isSongsActive && (
-                  // <button
-                  //   className="left-navbar-state-button"
-                  //   onClick={() => {}}
-                  // >
-                  //   Add a song
-                  // </button>
-                      <OpenModalButtonWithModiftyClassName
-                      className="left-navbar-state-button"
-                      modalComponent={<AddASong />}
-                      buttonText="Add a song"
-                     />
+                  <OpenModalButtonWithModiftyClassName
+                    className="left-navbar-state-button"
+                    modalComponent={<AddASong />}
+                    buttonText="Add a song"
+                  />
                 )}
                 {isAlbumsActive && (
-                  // <button
-                  //   className="left-navbar-state-button"
-                  //   onClick={() => {
-                  //     // ADD FUNCTION TO ADD AN ALBUM HERE
-                  //   }}
-                  // >
-                  //   Add an album
-                  // </button>
                   <OpenModalButton
-                  className="left-navbar-state-button"
-                  modalComponent={<CreateAlbum />}
-                  buttonText="Add an album"
+                    className="left-navbar-state-button"
+                    modalComponent={<CreateAlbum />}
+                    buttonText="Add an album"
                   />
                 )}
                 {isPlaylistsActive && (
