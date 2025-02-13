@@ -32,7 +32,8 @@
     margin-bottom:20px;
     border-radius: 10px;
     font-weight: bolder;
-    background-color: darkcyan;
+    /* background-color: darkcyan; */
+    background-color: #5c3be8;
     border: 1px solid rgb(120, 119, 119);
     box-shadow: 2px 2px rgb(47, 46, 46),2px -2px rgb(47, 46, 46),-2px 2px rgb(47, 46, 46),-2px -2px rgb(47, 46, 46);
     color:aliceblue
