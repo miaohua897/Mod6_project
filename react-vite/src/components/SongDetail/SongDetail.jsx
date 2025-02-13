@@ -44,6 +44,9 @@ function SongDetail(){
 
   const songs = useSelector(state=>state.song.currentUserAllSongs)
   const song= songs.filter(el=>el.id===Number(song_id))[0]
+   const sessionUser = useSelector((state) => state.session.user);
+   console.log('sessionUser',sessionUser)
+        // if (!sessionUser) return <h1>Log in, please</h1>
 
     return (
         <div >
@@ -117,8 +120,8 @@ function SongDetail(){
      <td>
           <div>
          
-          
-          <div className="songDetailDropDown">
+          {sessionUser?
+            <div className="songDetailDropDown">
             <button
           
             className="songDetailDropDownButton"
@@ -179,6 +182,10 @@ function SongDetail(){
 
          
           </div>
+
+          :null
+          }
+        
 
           </div>
    
