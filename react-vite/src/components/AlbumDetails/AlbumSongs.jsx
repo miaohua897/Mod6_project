@@ -9,7 +9,9 @@ import * as sessionActions from "../../redux/session";
 const AlbumSongs = ({ userOwnsAlbum }) => {
   const { albumId } = useParams();
   const [showMenu, setShowMenu] = useState(false);
+  const [menuId, setMenuId] = useState("");
   const [selectedSong, setSelectedSong] = useState("");
+  const [availableSongs, setAvailableSongs] = useState(false);
   const ulRef = useRef();
   const user = useSelector((state) => state.session.user);
   const album = useSelector((state) => state.albums[albumId]);
@@ -18,6 +20,16 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
   );
   const userSongs = useSelector(sessionActions.getUserSongs);
   const dispatch = useDispatch();
+
+  // check if there are available songs, which controls whether the
+  // add songs display shows
+  useEffect(() => {
+    const isSongs = userSongs.some((song) => !album.song_ids.includes(song.id));
+
+    if (selectedSong === "") {
+      setAvailableSongs(isSongs);
+    }
+  }, [userSongs, album.song_ids, selectedSong]);
 
   useEffect(() => {
     const closeMenu = (e) => {
@@ -31,15 +43,11 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
     return () => document.removeEventListener("click", closeMenu);
   }, []);
 
-  const toggleMenu = (e) => {
-    e.stopPropagation();
-    setShowMenu(!showMenu);
-  };
-
   const closeMenu = () => setShowMenu(false);
 
   const addAlbumSong = async () => {
-    await dispatch(albumActions.thunkAddAlbumSong(albumId, selectedSong))
+    await dispatch(albumActions.thunkAddAlbumSong(albumId, selectedSong));
+    setSelectedSong("");
   };
 
   return (
@@ -69,14 +77,25 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
               <td>{song.duration}</td>
               {user && (
                 <td>
-                  <div onClick={toggleMenu}>...</div>
-                  {showMenu && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowMenu(!showMenu);
+                      setMenuId(song.id);
+                    }}
+                  >
+                    ...
+                  </div>
+                  {showMenu && menuId === song.id && (
                     <ul className={"album-song-dropdown"} ref={ulRef}>
                       {userOwnsAlbum && (
                         <li
                           onClick={async () => {
                             await dispatch(
-                              albumActions.thunkDeleteAlbumSong(song.id)
+                              albumActions.thunkDeleteAlbumSong(
+                                albumId,
+                                song.id
+                              )
                             );
                             closeMenu();
                           }}
@@ -91,7 +110,7 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
               )}
             </tr>
           ))}
-          {userOwnsAlbum && (
+          {userOwnsAlbum && availableSongs && (
             <tr>
               <td></td>
               <td>
@@ -114,7 +133,10 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
                 </select>
               </td>
               <td>
-                <button disabled={selectedSong === "" ? true : false} onClick={addAlbumSong}>
+                <button
+                  disabled={selectedSong === "" ? true : false}
+                  onClick={addAlbumSong}
+                >
                   Add Song
                 </button>
               </td>
