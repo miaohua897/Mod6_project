@@ -8,11 +8,11 @@ function DeleteASong({song_id,closeModal,title} ){
    const navigate = useNavigate()
   
     const dispatch=useDispatch()
+
     const handleDelete=()=>{
          dispatch(deleteASong(song_id))
-         navigate('/')
-
-       
+         navigate('/')  
+         closeModal() 
     }
     return (
         <div className="deleteASongContainer">

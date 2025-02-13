@@ -205,3 +205,8 @@ body{
 .tableBody:hover .playSongButton{
     display: block;
 }
+.addlyricsinput{
+    width: 90%;
+    height:80px;
+    border-radius: 5px; 
+}
