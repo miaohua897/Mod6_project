@@ -1,4 +1,4 @@
-// import { createSelector } from 'reselect';
+import { createSelector } from 'reselect';
 import { addUserPlaylist } from "./session"
 
 const LOAD_USER_PLAYLISTS = "playlists/loadUserPlaylists";
@@ -120,6 +120,16 @@ export const removeSongFromUserPlaylist = (playlist_id, song_id ) => async (disp
 
 /*-------------------------- Selectors --------------------------- */
 
+const getSongState = (state) => state.song;
+
+const getPlaylistSongIds = (state, playlistId) => {
+  const playlist = state.playlists[playlistId]
+  return playlist ? playlist.song_ids : []
+}
+export const selectPlaylistSongs = createSelector(
+  [getSongState, getPlaylistSongIds],
+  (songState, songIds) => songState.songs.filter(song => songIds.includes(song.id))
+);
 
 
 /*-------------------------- Reducer ---------------------------- */
@@ -157,7 +167,7 @@ const playlistsReducer = (state = {}, action) => {
             }
         };
       }
-      case "REMOVE_SONG_FROM_PLAYLIST": {
+      case REMOVE_SONG_FROM_PLAYLIST: {
         const { playlistId, songId } = action;
     
         return {
