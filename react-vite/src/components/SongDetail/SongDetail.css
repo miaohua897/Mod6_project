@@ -168,7 +168,14 @@ body{
     border: None;
     color:whitesmoke;
     margin:3px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(104, 102, 102);
  
+}
+.addASongToPlaylistNav{
+    background-color: transparent;
+    border: None;
+    color:whitesmoke;
 }
 .songDetailDropDown{
     position: relative;

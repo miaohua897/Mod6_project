@@ -7,8 +7,7 @@ import { FaPlay ,FaEdit,FaTrash} from 'react-icons/fa';
 import DeleteASong from '../DeleteASong'
 import Modal from 'react-modal';
 import UpdateASong from '../UpdateASong';
-import Testfunction from './Testfunction ';
-import OpenModalButton from '../OpenModalButton'
+import Testfunction from './Testfunction '
 
 Modal.setAppElement('#root');
 
@@ -29,16 +28,31 @@ function SongDetail(){
      setIsUpdateModalOpen(true)
     else return ;
   }
+  // const openAddASongToPlaylistModal=(e)=>{
+  //   e.preventDefault();
+  //   setIsAddSongToPlaylistModalOpen(true)
+  //   console.log('isAddSongToPlaylistModalOpen',isAddSongToPlaylistModalOpen)
+  // }
+  const openAddASongToPlaylistModal = (e) => {
+    e.preventDefault();
+    // 仅在modal未打开时才设置为true
+    if (!isAddSongToPlaylistModalOpen) {
+      setIsAddSongToPlaylistModalOpen(true);
+    }
+  };
+  
 
-  const closeModal = () => {
-
+  const closeModal = (e) => {
+    e.preventDefault();
     setIsModalOpen(false);
   }
-  const closeUpdateModal=()=>{
-   
+  const closeUpdateModal=(e)=>{
+    e.preventDefault();
     setIsUpdateModalOpen(false);
   }
-
+  const closeAddSongToPlaylistModal = () => {
+    setIsAddSongToPlaylistModalOpen(false);
+  };
 
   const {song_id} = useParams()
 //   const navigate = useNavigate()
@@ -158,7 +172,7 @@ function SongDetail(){
 
                dropdown||isUpdateModalOpen||isModalOpen?
                <div className="updateDeleteContainer">
-                 <button 
+                 {/* <button 
                  className="updateASongNav"
                  onClick={openUpdateModal}       
                  >
@@ -171,8 +185,8 @@ function SongDetail(){
                 onRequestClose={closeUpdateModal} 
                 contentLabel="delete a song">
                 <UpdateASong song_id={song.id} closeUpdateModal={closeUpdateModal}  />  
-                </Modal> 
-                  <button 
+                </Modal> */}
+                 {/* <button 
                  className="deleteASongNav"
                  onClick={openModal}
                  >
@@ -185,15 +199,25 @@ function SongDetail(){
                 onRequestClose={closeModal} 
                 contentLabel="delete a song">
                 <DeleteASong song_id={song.id} closeModal={closeModal} title={song.title}/>  
-                </Modal>
+                </Modal> */}
            
               <div>
-                   <OpenModalButton
-                    className='addASongToPlaylistNav'
-                    modalComponent={<Testfunction  />}
-                    buttonText="Add a song to a playlist"
-                  />
-         
+          <button className="addASongToPlaylistNav" onClick={openAddASongToPlaylistModal}>
+            <FaTrash />
+            {' '}
+            Add a song to playlist
+          </button>
+
+          <Modal
+            isOpen={isAddSongToPlaylistModalOpen}
+            key={isAddSongToPlaylistModalOpen ? 'open' : 'closed'}
+            className="deleteAModal"
+            overlayClassName="deleteAOverlay"
+            onRequestClose={closeAddSongToPlaylistModal}
+            contentLabel="Add a song to playlist"
+          >
+            <Testfunction closeModal={closeAddSongToPlaylistModal} />
+          </Modal>
         </div>
               
               </div>
