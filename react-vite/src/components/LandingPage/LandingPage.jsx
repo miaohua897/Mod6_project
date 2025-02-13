@@ -9,7 +9,6 @@ import './LandingPage.css';
 export default function LandingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const sessionUser = useSelector(state => state.session.user);
   const songs = useSelector(state => state.song.songs);
   const [isHovering, setIsHovering] = useState(false);
 

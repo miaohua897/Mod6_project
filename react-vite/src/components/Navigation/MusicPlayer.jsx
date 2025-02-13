@@ -16,7 +16,7 @@ import ReactPlayer from 'react-player';
 import { useSelector } from 'react-redux';
 import './MusicPlayer.css';
 
-export default function MusicPlayer({ isLoaded, sessionUser }) {
+export default function MusicPlayer() {
   const player = useSelector(state => state.player);
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
