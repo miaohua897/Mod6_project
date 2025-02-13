@@ -5,8 +5,12 @@ import LeftNavbarPlaylists from './LeftNavbarPlaylists';
 import LeftNavbarSongs from './LeftNavbarSongs';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
+<<<<<<< HEAD
 import OpenModalButtonWithModiftyClassName from '../OpenModalButton/OpenModalButtonWithModiftyClassName';
 import AddASong from '../AddASong/AddASong';
+=======
+import { CreateAlbum } from '../AlbumForm';
+>>>>>>> album-details
 import './LeftNavbar.css';
 
 export default function LeftNavbar({ isLoaded, sessionUser }) {
@@ -90,14 +94,19 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
                      />
                 )}
                 {isAlbumsActive && (
-                  <button
-                    className="left-navbar-state-button"
-                    onClick={() => {
-                      // ADD FUNCTION TO ADD AN ALBUM HERE
-                    }}
-                  >
-                    Add an album
-                  </button>
+                  // <button
+                  //   className="left-navbar-state-button"
+                  //   onClick={() => {
+                  //     // ADD FUNCTION TO ADD AN ALBUM HERE
+                  //   }}
+                  // >
+                  //   Add an album
+                  // </button>
+                  <OpenModalButton
+                  className="left-navbar-state-button"
+                  modalComponent={<CreateAlbum />}
+                  buttonText="Add an album"
+                  />
                 )}
                 {isPlaylistsActive && (
                   <button

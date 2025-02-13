@@ -3,16 +3,17 @@
     flex-direction: row;
 }
 
-.album-info-container {
+.album-info-container * {
     display: flex;
     flex-direction: column;
-}
-
-#album-info {
     margin: 0;
     padding: 0;
+}
+
+#album-info-details {
     display: flex;
     flex-direction: row;
+    column-gap: 15px;
 }
 
 .album-image {

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import * as albumActions from "../../redux/albums";
 
-const AlbumForm = ({ album, formType }) => {
+const AlbumForm = ({ album, albumId, formType }) => {
   const [title, setTitle] = useState(album.title);
   const [image, setImage] = useState(album.image_url);
   const [releaseYear, setReleaseYear] = useState(album.release_year);
@@ -68,7 +68,7 @@ const AlbumForm = ({ album, formType }) => {
       navigate(`/albums/${Object.keys(newAlbum)[0]}`);
     } else {
       const updatedAlbum = await dispatch(
-        albumActions.thunkUpdateAlbum(album)
+        albumActions.thunkUpdateAlbum(album, albumId)
       ).catch(async (res) => {
         const data = await res.json();
         if (data?.errors)

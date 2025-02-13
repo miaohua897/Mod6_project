@@ -7,7 +7,9 @@ const CreateAlbum = () => {
     release_year: null,
   };
 
-  return <AlbumForm album={album} formType="createAlbum" />;
+  return (
+    <AlbumForm album={album} albumId={null} formType="createAlbum" />
+  )
 };
 
 export default CreateAlbum;
