@@ -7,6 +7,7 @@ import Layout from './Layout';
 import SongDetail from '../components/SongDetail';
 import AddASong from '../components/AddASong';
 import PlaylistDetails from '../components/PlaylistDetails';
+import LikesDetails from '../components/LikesDetails';
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "playlists/:playlistId",
         element: <PlaylistDetails />,
+      },
+      {
+        path: "likes",
+        element: <LikesDetails />,
       },
     ],
   },
