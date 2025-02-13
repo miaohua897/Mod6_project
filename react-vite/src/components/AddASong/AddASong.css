@@ -1,4 +1,11 @@
-
+.addSongModalContainer{
+    position: fixed;
+    left: 25%;
+    top:10%;
+    width: 600px;
+    height: 600px;
+    overflow: scroll;
+}
 .addSongContainer{
     display: flex;
     flex-direction: column;
@@ -8,16 +15,18 @@
     font-weight: bold;
     font-size: 17px;
     font-family: 'Times New Roman', Times, serif;
-    background-color: rgb(77, 77, 77,0.25);
+    background-color: rgba(59, 58, 58, 0.75);
     border-radius: 10px;
     padding-left: 60px;
-    width: 600px;
-
+  
   
 }
 .addSonginput{
     width: 90%;
     border-radius: 5px;
+}
+.addlyricsinput{
+    height: 400px;
 }
 .durationInputBox{
     margin-right:10px;
