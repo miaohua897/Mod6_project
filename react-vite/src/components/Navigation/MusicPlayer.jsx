@@ -13,10 +13,12 @@ import {
   IoVolumeMuteOutline,
 } from 'react-icons/io5';
 import ReactPlayer from 'react-player';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import * as playerActions from '../../redux/player';
 import './MusicPlayer.css';
 
 export default function MusicPlayer() {
+  const dispatch = useDispatch();
   const player = useSelector(state => state.player);
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
@@ -32,25 +34,33 @@ export default function MusicPlayer() {
 
   useEffect(() => {
     // Load songs from Redux state
-    setSongs([...player]);
+    setSongs([...player.songs]);
 
-    if (player.length) {
-      setCurrentSong({ ...player[0] });
+    if (player.songs.length) {
+      setCurrentSong({ ...player.songs[0] });
       setIsPlaying(true);
     }
-  }, [player]);
+  }, [player.songs]);
+
+  const incrementPlayerIndex = async () => {
+    await dispatch(playerActions.thunkIncrementPlayerIndex());
+  };
+
+  const decrementPlayerIndex = async () => {
+    await dispatch(playerActions.thunkDecrementPlayerIndex());
+  };
 
   const handlePlayPause = () => {
     if (currentSong) setIsPlaying(!isPlaying);
   };
 
   const handleNextSong = () => {
-    console.log(songs);
     if (currentIndex < songs.length - 1) {
       // const nextIndex = (currentIndex + 1) % songs.length; // Loop back to the beginning
       setCurrentSong({ ...songs[currentIndex + 1] });
       setIsPlaying(true);
       setCurrentIndex(currentIndex + 1);
+      incrementPlayerIndex();
     }
   };
 
@@ -60,6 +70,7 @@ export default function MusicPlayer() {
       setCurrentSong({ ...songs[currentIndex - 1] });
       setIsPlaying(true);
       setCurrentIndex(currentIndex - 1);
+      decrementPlayerIndex();
     }
   };
 

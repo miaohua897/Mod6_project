@@ -1,18 +1,21 @@
 const ADD_TO_PLAYER = 'player/addToPlayer';
-const ADD_TO_PLAYER_TOP = 'player/addToPlayerTop';
+const ADD_SONG_TO_PLAYER_INDEX = 'player/addSongToPlayerIndex';
 const CLEAR_PLAYER = 'player/clearPlayer';
+const DECREMENT_PLAYER_INDEX = 'player/decrementPlayerIndex';
+const INCREMENT_PLAYER_INDEX = 'player/incrementPlayerIndex';
 
-const addToPlayer = songId => {
+const addToPlayer = song => {
   return {
     type: ADD_TO_PLAYER,
-    songId,
+    song,
   };
 };
 
-const addToPlayerTop = songId => {
+const addSongToPlayerIndex = (song, index) => {
   return {
-    type: ADD_TO_PLAYER_TOP,
-    songId,
+    type: ADD_SONG_TO_PLAYER_INDEX,
+    song,
+    index,
   };
 };
 
@@ -22,26 +25,53 @@ const clearPlayer = () => {
   };
 };
 
-export const thunkAddToPlayer = songId => async dispatch => {
-  dispatch(addToPlayer(songId));
+const decrementPlayerIndex = () => {
+  return {
+    type: DECREMENT_PLAYER_INDEX,
+  };
 };
 
-export const thunkAddToPlayerTop = songId => async dispatch => {
-  dispatch(addToPlayerTop(songId));
+const incrementPlayerIndex = () => {
+  return {
+    type: INCREMENT_PLAYER_INDEX,
+  };
+};
+
+export const thunkAddToPlayer = song => async dispatch => {
+  dispatch(addToPlayer(song));
+};
+
+export const thunkAddSongToPlayerIndex = (song, index) => async dispatch => {
+  dispatch(addSongToPlayerIndex(song, index));
 };
 
 export const thunkClearPlayer = () => async dispatch => {
   dispatch(clearPlayer());
 };
 
-const playerReducer = (state = [], action) => {
+export const thunkDecrementPlayerIndex = () => async dispatch => {
+  dispatch(decrementPlayerIndex());
+};
+
+export const thunkIncrementPlayerIndex = () => async dispatch => {
+  dispatch(incrementPlayerIndex());
+};
+
+const playerReducer = (state = { currentIndex: 0, songs: [] }, action) => {
   switch (action.type) {
     case ADD_TO_PLAYER:
-      return [...state, action.songId];
-    case ADD_TO_PLAYER_TOP:
-      return [action.songId, ...state];
+      return { ...state, songs: [...state.songs, action.song] };
+    case ADD_SONG_TO_PLAYER_INDEX:
+      return {
+        ...state,
+        songs: state.songs.toSpliced(action.index, 0, action.song),
+      };
     case CLEAR_PLAYER:
       return [];
+    case DECREMENT_PLAYER_INDEX:
+      return { ...state, currentIndex: state.currentIndex - 1 };
+    case INCREMENT_PLAYER_INDEX:
+      return { ...state, currentIndex: state.currentIndex + 1 };
     default:
       return state;
   }
