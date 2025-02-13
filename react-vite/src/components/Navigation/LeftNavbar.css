@@ -1,0 +1,112 @@
+.left-navbar-button {
+  width: 80px;
+}
+
+.left-navbar-button,
+.left-navbar-state-button,
+.left-navbar-state-buttons button {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 13px;
+  height: 32px;
+  border: none;
+  border-radius: 16px;
+  padding: 4px 12px;
+}
+
+.left-navbar-button:hover,
+.left-navbar-state-button:hover,
+.left-navbar-state-buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.left-navbar-button:hover,
+.left-navbar-state-button:hover,
+.left-navbar-state-buttons button:hover,
+.left-navbar-sign-up-button > button:hover {
+  cursor: pointer;
+}
+
+.left-navbar-button:active,
+.left-navbar-state-button:active,
+.left-navbar-state-buttons button:active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.left-navbar-buttons,
+.left-navbar-state-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.left-navbar-buttons-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 8px 20px;
+}
+
+.left-navbar-div {
+  background-color: #121212;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 0px;
+  min-width: 280px;
+  max-width: 420px;
+  padding: 16px 8px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.left-navbar-header {
+  display: flex;
+  margin: 4px 12px 20px;
+}
+
+.left-navbar-header-text {
+  margin-left: 4px;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.left-navbar-no-user-div {
+  background-color: #1f1f1f;
+  padding: 16px 20px;
+  border-radius: 8px;
+}
+
+.left-navbar-no-user-div > div:first-child {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.left-navbar-no-user-div > div:nth-child(2) {
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.left-navbar-state-button {
+  width: 150px;
+}
+
+.left-navbar-sign-up-button > button {
+  color: black;
+  background-color: white;
+  font-size: 14px;
+  font-weight: bold;
+  height: 32px;
+  box-sizing: border-box;
+  padding: 0 16px;
+  border: none;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.left-navbar-sign-up-button > button:hover {
+  background-color: #f0f0f0;
+  scale: 1.04;
+}

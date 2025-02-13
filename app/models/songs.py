@@ -29,6 +29,7 @@ class Song(db.Model):
         "Playlist", secondary=playlist_songs, back_populates="songs"
     )
 
+
     def to_dict(self):
         return {
             "id":self.id,
@@ -41,5 +42,6 @@ class Song(db.Model):
             "image_url":self.image_url,
             "user_id":self.user_id,
             "albums":self.albums,
-            "likes":self.likes
+            "likes":self.user_likes,
+            "artist":self.artist
         }

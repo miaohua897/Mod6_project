@@ -1,0 +1,205 @@
+.button-container {
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.current-song-artist {
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.current-song-details {
+  width: 30vw;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.current-song-image {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  object-fit: cover;
+  overflow: hidden;
+  overflow-clip-margin: unset;
+}
+
+.current-song-image-div {
+  margin: 0 8px;
+}
+
+.current-song-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.current-song-title-artist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 8px;
+  text-align: left;
+}
+
+.music-player {
+  background-color: black;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100vw;
+  padding: 8px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+}
+
+.music-player-button:hover {
+  cursor: pointer;
+}
+
+.music-player-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-player-controls {
+  background-color: black;
+  width: 40vw;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.music-player-progress-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.music-player-right-div {
+  width: 30vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pause-play-button {
+  fill: black;
+}
+
+.pause-play-button.button-container {
+  background-color: white;
+  margin: 0 16px;
+}
+
+.pause-play-button.button-container:hover {
+  scale: 1.04;
+}
+
+.progress-bar {
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.progress-bar-background {
+  width: 100%;
+  height: 4px;
+  background-color: #b3b3b3;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar-background:hover .progress-bar {
+  background-color: #5c3be8;
+}
+
+.progress-bar-background:hover .progress-bar-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.skip-button,
+.volume-button {
+  fill: #b3b3b3;
+}
+
+.skip-button:hover,
+.volume-button:hover {
+  fill: white;
+}
+
+.time-left {
+  text-align: right;
+}
+
+.time-left,
+.time-right {
+  color: #b3b3b3;
+  font-size: 12px;
+  min-width: 40px;
+}
+
+.time-right {
+  text-align: left;
+}
+
+.volume-bar {
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.volume-bar-background {
+  width: 100%;
+  height: 4px;
+  background-color: #b3b3b3;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.volume-bar-background:hover .volume-bar {
+  background-color: #5c3be8;
+}
+
+.volume-bar-background:hover .volume-bar-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.volume-control {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 8px;
+}
