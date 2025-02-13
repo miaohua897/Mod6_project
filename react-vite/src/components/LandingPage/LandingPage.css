@@ -14,7 +14,7 @@
 .landing-page-album-card:hover,
 .landing-page-song-card:hover {
   cursor: pointer;
-  background-color: #1e1e1e;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .landing-page-album-image,

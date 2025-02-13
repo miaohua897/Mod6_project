@@ -40,7 +40,7 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className="login-modal-div">
       <img
         src={museicLogoIcon}
         className="login-modal-museic-logo"
@@ -81,7 +81,7 @@ function LoginFormModal() {
           Log In as Demo User
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

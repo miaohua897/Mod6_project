@@ -21,6 +21,7 @@
 }
 
 .current-song-image {
+  display: block;
   width: 56px;
   height: 56px;
   border-radius: 4px;

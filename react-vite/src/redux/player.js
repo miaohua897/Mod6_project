@@ -3,6 +3,7 @@ const ADD_SONG_TO_PLAYER_INDEX = 'player/addSongToPlayerIndex';
 const CLEAR_PLAYER = 'player/clearPlayer';
 const DECREMENT_PLAYER_INDEX = 'player/decrementPlayerIndex';
 const INCREMENT_PLAYER_INDEX = 'player/incrementPlayerIndex';
+const SET_PLAYER_INDEX = 'player/setPlayerIndex';
 
 const addToPlayer = song => {
   return {
@@ -37,6 +38,13 @@ const incrementPlayerIndex = () => {
   };
 };
 
+const setPlayerIndex = index => {
+  return {
+    type: SET_PLAYER_INDEX,
+    index,
+  };
+};
+
 export const thunkAddToPlayer = song => async dispatch => {
   dispatch(addToPlayer(song));
 };
@@ -57,6 +65,10 @@ export const thunkIncrementPlayerIndex = () => async dispatch => {
   dispatch(incrementPlayerIndex());
 };
 
+export const thunkSetPlayerIndex = index => async dispatch => {
+  dispatch(setPlayerIndex(index));
+};
+
 const playerReducer = (state = { currentIndex: 0, songs: [] }, action) => {
   switch (action.type) {
     case ADD_TO_PLAYER:
@@ -72,6 +84,8 @@ const playerReducer = (state = { currentIndex: 0, songs: [] }, action) => {
       return { ...state, currentIndex: state.currentIndex - 1 };
     case INCREMENT_PLAYER_INDEX:
       return { ...state, currentIndex: state.currentIndex + 1 };
+    case SET_PLAYER_INDEX:
+      return { ...state, currentIndex: action.index };
     default:
       return state;
   }

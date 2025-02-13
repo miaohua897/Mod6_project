@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { HiSquare2Stack } from 'react-icons/hi2';
+import { MdQueue } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
 import LeftNavbarAlbums from './LeftNavbarAlbums';
 import LeftNavbarPlaylists from './LeftNavbarPlaylists';
 import LeftNavbarSongs from './LeftNavbarSongs';
@@ -7,14 +9,19 @@ import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
 import AddASong from '../AddASong/AddASong';
 import { CreateAlbum } from '../AlbumForm';
+import * as playerActions from '../../redux/player';
 import './LeftNavbar.css';
 
 export default function LeftNavbar({ isLoaded, sessionUser }) {
+  const dispatch = useDispatch();
+  const player = useSelector(state => state.player);
   const [isSongsActive, setIsSongsActive] = useState(false);
   const [isAlbumsActive, setIsAlbumsActive] = useState(false);
   const [isPlaylistsActive, setIsPlaylistsActive] = useState(false);
-  // const navigate = useNavigate()
 
+  const setPlayerIndex = async index => {
+    await dispatch(playerActions.thunkSetPlayerIndex(index));
+  };
 
   return (
     <div className="left-navbar-div">
@@ -77,7 +84,6 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
               </div>
               <div className="left-navbar-state-buttons">
                 {isSongsActive && (
-                
                   <OpenModalButton
                     className="left-navbar-state-button"
                     modalComponent={<AddASong />}
@@ -137,6 +143,38 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
                 />
               ))}
           </>
+        )}
+        {player.songs.length > 0 && (
+          <div className="player-queue-div">
+            <div className="player-queue-header">
+              <MdQueue style={{ width: 'auto', height: '24px' }} />
+              <span className="player-queue-header-text">
+                Currently Playing
+              </span>
+            </div>
+            <div className="player-queue-songs">
+              {player.songs.map((song, index) => (
+                <div
+                  className="player-queue-song-card"
+                  key={song.id}
+                  onClick={() => setPlayerIndex(index)}
+                >
+                  <div className="player-queue-song-image-div">
+                    <img
+                      src={song.image_url}
+                      className="player-queue-song-image"
+                    />
+                  </div>
+                  <div className="player-queue-song-title-artist">
+                    <div className="player-queue-song-title">{song.title}</div>
+                    <div className="player-queue-song-artist">
+                      {song.artist}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </nav>
     </div>
