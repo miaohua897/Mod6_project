@@ -148,7 +148,6 @@ function UpdateASong({song_id,closeUpdateModal}){
                   cols='10'
                    className="updatelyricsinput"
                 >
-
                 </textarea>
                 {/* <input
                 type='text'

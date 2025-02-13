@@ -2,108 +2,83 @@ import { useEffect ,useState} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {getCurrentAllSongs} from '../../redux/songs'
 import {  useParams } from "react-router-dom"
-import './SongDetail.css'
 import { FaPlay ,FaEdit,FaTrash,FaList} from 'react-icons/fa';
 import DeleteASong from '../DeleteASong'
 import Modal from 'react-modal';
 import UpdateASong from '../UpdateASong';
 import Testfunction from './Testfunction ';
 import OpenModalButton from '../OpenModalButton'
-
+import './SongDetail.css'
 
 Modal.setAppElement('#root');
 
 function SongDetail(){
 
-  const [isModalOpen,setIsModalOpen] = useState(false)
-  const [isUpdateModalOpen,setIsUpdateModalOpen]=useState(false)
+        const {song_id} = useParams();
+        const [isModalOpen,setIsModalOpen] = useState(false);
+        const [isUpdateModalOpen,setIsUpdateModalOpen]=useState(false);
+        const [visible_lyrics,setVisible_lyrics] = useState(6)
+        const [dropdown,setDropdown] = useState(false)
+        const dispatch = useDispatch()
  
-  const openModal = (e) => {
-    e.preventDefault();
-    if(!isModalOpen)
-     setIsModalOpen(true);
-    else return ;
-}
-  const openUpdateModal=(e)=>{
-    e.preventDefault();
-    if (!isUpdateModalOpen)
-     setIsUpdateModalOpen(true)
-    else return ;
-  }
 
-  const closeModal = () => {
+        useEffect(()=>{
+            dispatch(getCurrentAllSongs())
+        },[dispatch]);
 
-    setIsModalOpen(false);
-  }
-  const closeUpdateModal=()=>{
-   
-    setIsUpdateModalOpen(false);
-  }
+        const openModal = (e) => {
+          e.preventDefault();
+          if(!isModalOpen)
+          setIsModalOpen(true);
+          else return ;
+          }
+        const openUpdateModal=(e)=>{
+          e.preventDefault();
+          if (!isUpdateModalOpen)
+          setIsUpdateModalOpen(true)
+          else return ;
+          }
+        const closeDropDown =()=>setDropdown(false);
+        const closeModal = () => {setIsModalOpen(false);}
+        const closeUpdateModal=()=>{setIsUpdateModalOpen(false);}
+        document.addEventListener('click',closeDropDown)
 
+        const sessionUser = useSelector((state) => state.session.user);
+        const userSongs = useSelector(state=>state.song.currentUserAllSongs);
+        const songs = useSelector(state=>state.song.songs)
+        const song= songs.filter(el=>el.id===Number(song_id))[0]
+        const isUserSong =userSongs.filter(el=>el.id===Number(song_id))
+  return (
 
-  const {song_id} = useParams()
-
-  const [visible_lyrics,setVisible_lyrics] = useState(6)
-  const [dropdown,setDropdown] = useState(false)
-
-
-
-  const closeDropDown =()=>setDropdown(false);
-
-  document.addEventListener('click',closeDropDown)
-
-  
-  const dispatch = useDispatch()
-  useEffect(()=>{
-      dispatch(getCurrentAllSongs())
-  },[dispatch])
-
-
-  const sessionUser = useSelector((state) => state.session.user);
-  const userSongs = useSelector(state=>state.song.currentUserAllSongs);
-  const songs = useSelector(state=>state.song.songs)
-  const song= songs.filter(el=>el.id===Number(song_id))[0]
-  const isUserSong =userSongs.filter(el=>el.id===Number(song_id))
-  // console.log('no login',sessionUser,userSongs,song,isUserSong)
-
-
-    return (
-        <div >
- 
-        {
-              song?
-              <div className='song_details'>
-                  <div className="song_head">
+      <div >
+        { song?
+            <div className='song_details'>
+                <div className="song_head">
                   <img className='img_song_detail' src={song.image_url}></img>
                   <div >
                   <h1>{song.title}</h1>
-                   <p>{song.artist} {        '●'       } {song.release_year} {      '●'      } {song.duration}</p>
-        
+                  <p>{song.artist} {        '●'       } {song.release_year} {      '●'      } {song.duration}</p>        
                   </div>
-                  </div>
-              <div className='song_body'>
+                </div>
+                <div className='song_body'>
                 <p className="lyrics_format">Lyrics</p>
-               <div>
+                <div>
                {
                song.lyrics.split(',').slice(0,visible_lyrics).map((el,index)=> 
                (<p 
                 className="lyrics_detail_format"
-                key ={index}>{el}</p>)
-            )}
+                key ={index}>
+                  {el}
+                  </p>))}
             </div>
-            {
-                visible_lyrics===6?
-                <button onClick={()=>setVisible_lyrics(song.lyrics.length)} className="visible_lyrics">... show more</button>
-                :
-                <button onClick={()=>setVisible_lyrics(6)} className="visible_lyrics">show less</button>
+              {
+                  visible_lyrics===6?
+                  <button onClick={()=>setVisible_lyrics(song.lyrics.length)} className="visible_lyrics">... show more</button>
+                  :
+                  <button onClick={()=>setVisible_lyrics(6)} className="visible_lyrics">show less</button>
 
-            }
-           
+              }
               </div>
-              <div className='song_foot'>
-
-              </div>
-
               <div>
                 <table  className="tableSongList">
                     <thead>
@@ -113,8 +88,7 @@ function SongDetail(){
                             <th>Artist</th>
                             <th>🕘</th>
                             <th></th>
-                        </tr>
-                        
+                        </tr>   
                     </thead>
                     <tbody>
                         <tr className="tableBody">
@@ -122,30 +96,25 @@ function SongDetail(){
                   <button style={{backgroundColor:"transparent",border:'None'}} 
                   className="playSongButton"
                   ><FaPlay size={15} color="darkgray"  /></button>
-                     </td>
+                   </td>
                      <td>{song.title}</td>
                     <td>{song.artist}</td>
                     <td >{song.duration}</td>
-
-     <td>
-          <div>
-         
-          {sessionUser?
-            <div className="songDetailDropDown">
-            <button
-          
-            className="songDetailDropDownButton"
-             onClick={(e)=>
-            {
-                e.stopPropagation();
-                setDropdown(true);
+                    <td>
+              <div>             
+              {sessionUser?
+                <div className="songDetailDropDown">
+                <button
               
-            }
+                className="songDetailDropDownButton"
+                onClick={(e)=>
+                {
+                    e.stopPropagation();
+                    setDropdown(true);   
+                }}>...</button>
                 
-                }>...</button>
-            {
-
-               dropdown||isUpdateModalOpen||isModalOpen?
+                { 
+              dropdown||isUpdateModalOpen||isModalOpen?
                isUserSong.length !==0?
                <div>
                       <div className="updateDeleteContainer">
@@ -184,12 +153,11 @@ function SongDetail(){
                     modalComponent={<Testfunction  />}
                     buttonText={<p>
                       <FaList/>
-             {'                                                 '}
+                  {'                                                 '}
                       add to playlist
                       </p> }
                   />       
-               </div>
-              
+               </div>             
               </div>
               </div>
                :  
@@ -198,28 +166,28 @@ function SongDetail(){
                 modalComponent={<Testfunction  />}
                 buttonText={<p>
                   <FaList/>
-          {'                                                 '}
+                  {'                                                 '}
                   add to playlist
-                  </p> }
-              />       
-              </div>
-         
-              
-               :null
-         }   
-          </div>
-          :null
-          }
-          </div>       
-        </td>
-                        </tr>        
-                    </tbody>                 
-                </table>
-              </div>        
-              </div>
-              :null
-        }
-        </div>
+                    </p> }
+                />       
+                </div>
+          
+                
+                :null
+                }   
+                  </div>
+                  :null
+                  }
+                  </div>       
+                </td>
+                  </tr>        
+                  </tbody>                 
+                  </table>
+                      </div>        
+                      </div>
+                      :null
+                }
+                </div>
     )
 }
 export default SongDetail

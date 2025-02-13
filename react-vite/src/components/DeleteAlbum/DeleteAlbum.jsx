@@ -7,7 +7,7 @@ import * as albumActions from "../../redux/albums";
 const DeleteAlbum = () => {
   const { closeModal } = useModal();
   const { albumId } = useParams();
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -38,6 +38,7 @@ const DeleteAlbum = () => {
         <button onClick={handleClick}>Yes</button>
         <button onClick={() => closeModal()}>No</button>
       </div>
+      {errors.serverError && <p>{errors.serverError}</p>}
     </article>
   );
 };

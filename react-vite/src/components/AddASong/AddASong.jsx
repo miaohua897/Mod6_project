@@ -18,6 +18,8 @@ function AddASong(){
     const [min_duration,setMin_duration] = useState(-1);
     const [s_duration,setS_duration] = useState(-1)
     const [ryError,setRyError]=useState({'error':''});
+    const [minError,setMinError] = useState('');
+    const [sError,setSError] = useState('');
     const { closeModal } = useModal();
 
     const dispatch = useDispatch()
@@ -28,6 +30,19 @@ function AddASong(){
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
+
+        setMinError('')
+        setSError('')
+        if( min_duration <0 || min_duration>60) {
+            const errorMes = "Minutes can't be less than 0 or greater than 60."
+            setMinError(errorMes)
+            return ;
+        }
+        if( s_duration <0 || s_duration>60) {
+            const errorMes = "Second can't be less than 0 or greater than 60."
+            setSError(errorMes)
+            return ;
+        }
         const time_value =`${String(min_duration)}:${String(s_duration)}`;
         if (release_year <=0) {
             const error = {'error':'release year is a positive number'}
@@ -70,12 +85,13 @@ function AddASong(){
         setLyrics('')
         setGenre('')
         setRelease_year(0)
-        await navigate(`/song/${res.id}`)
         closeModal()
+        await navigate(`/song/${res.id}`)
+      
     }
 
     return (
-        <div >
+        <div className="addSongModalContainer">
             <div className="closeAddASongButtonPosition">
             <button
             className="closeAddASongModal"
@@ -88,7 +104,7 @@ function AddASong(){
               encType="multipart/form-data"
               className="addSongContainer"
             >
-       
+              
                <p>song title</p>
                 <input
                 type='text'
@@ -98,9 +114,12 @@ function AddASong(){
                 className="addSonginput"
                 >
                 </input>
+                <p>song duration</p>
+               {minError!==""? <p style={{color:"red"}}>{minError}</p>: null}
+               {sError!==""? <p style={{color:"red"}}>{sError}</p>: null}
         
                <div className='durationInputContainer'>
-               <p>song duration</p>
+             
                 <input 
                 type='number'
                 value={min_duration===-1?'':min_duration}
@@ -141,10 +160,17 @@ function AddASong(){
                 type='text'
                 value ={lyrics}
                 onChange={(e)=>setLyrics(e.target.value)}
-                required
-                className="addSonginput"
+                 className="addlyricsinput"
+                 required
                 >
                 </input>
+                 {/* <p>song lyrics</p>
+                <textarea
+                value ={lyrics}
+                onChange={(e)=>setLyrics(e.target.value)}
+                className="addlyricsinput"
+                >
+                </textarea> */}
                 <p>song genre</p>
                 <input
                 type='text'
@@ -192,9 +218,8 @@ function AddASong(){
                 <button 
                 className="submitAddSongButton"
                 type="submit">Submit</button>
-             
-          
-
+ 
+        
             </form>
         </div>
     )
