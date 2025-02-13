@@ -75,7 +75,7 @@ function AddASong(){
     }
 
     return (
-        <div >
+        <div  className="addASongModalContainer">
             <div className="closeAddASongButtonPosition">
             <button
             className="closeAddASongModal"
