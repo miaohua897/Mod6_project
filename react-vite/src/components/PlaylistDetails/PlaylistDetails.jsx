@@ -14,8 +14,7 @@ const PlaylistDetails = () => {
     const ulRef = useRef();
     const playlist = useSelector((state) => state.playlists[playlistId]);
     const user = useSelector((state) => state.session.user);
-    // const songs = useSelector((state) => state.songs)
-    // console.log(songs);
+    
     const playlistSongs = useSelector((state) => selectPlaylistSongs(state, playlistId));
     let playlistDuration = 0;
     if (playlistSongs.length) {
@@ -62,8 +61,8 @@ const PlaylistDetails = () => {
                                 ? `${playlist?.song_ids.length} song`
                                 : `${playlist?.song_ids.length} songs`}
                         </span>
-                        { playlistDuration > 0 && (<><span> &middot; </span>
-                        <p>{playlistDuration}</p></>)}
+                        { playlistDuration && (<><span> &middot; </span>
+                        <span>{playlistDuration}</span></>)}
                     </div>
                 </div>
             </div>
