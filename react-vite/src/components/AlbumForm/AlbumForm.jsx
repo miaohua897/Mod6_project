@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import * as albumActions from '../../redux/albums';
+import * as sessionActions from '../../redux/session';
 import './AlbumForm.css';
 
 const AlbumForm = ({ album, albumId, formType }) => {
@@ -67,6 +68,8 @@ const AlbumForm = ({ album, albumId, formType }) => {
             serverError: 'There was a server issue, please try again.',
           });
       });
+
+      dispatch(sessionActions.addUserAlbum(Object.keys(newAlbum)[0]))
 
       closeModal();
 
