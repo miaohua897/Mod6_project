@@ -7,6 +7,7 @@ import "./PlaylistDeatil.css";
 import { selectPlaylistSongs } from "../../redux/playlists";
 import PlaylistSongs from "./PlaylistSongs";
 import { calculateDuration } from "../../resources/helperFunctions";
+import { BsThreeDots } from "react-icons/bs";
 
 const PlaylistDetails = () => {
     const { playlistId } = useParams();
@@ -46,7 +47,7 @@ const PlaylistDetails = () => {
     return (
         <div className="playlist-details">
             <div className="playlist-header">
-                <div>
+                <div className="image-container">
                     <img src={playlist?.image_url? playlist.image_url : url } />
                 </div>
                 <div className="playlist-desc">
@@ -61,23 +62,29 @@ const PlaylistDetails = () => {
                                 ? `${playlist?.song_ids.length} song`
                                 : `${playlist?.song_ids.length} songs`}
                         </span>
-                        { playlistDuration && (<><span> &middot; </span>
+                        { playlistDuration > 0 && (<><span> &middot; </span>
                         <span>{playlistDuration}</span></>)}
                     </div>
                 </div>
             </div>
-            <div className="togle-menu" onClick={toggleMenu}>. . .</div>
-            {showMenu && (
-                <ul className={"playlist-dropdown"} ref={ulRef}>
-                <OpenModalMenuItem
-                    itemText="Update Playlist"
-                    onItemClick={handleEdit}
-                    modalComponent={<EditPlaylistForm playlist={playlist}/>}
-                 />
-                </ul>
-            )}
-            <div>
-                {playlist?.song_ids.length > 0 && (<PlaylistSongs />)}
+            <div className="playlist-details-main">
+                <div className="playlist-edit-button">
+                    <div  className="toggle-menu" onClick={toggleMenu}>
+                        <BsThreeDots />
+                    </div>
+                    {showMenu && (
+                        <ul className={"playlist-dropdown"} ref={ulRef}>
+                        <OpenModalMenuItem
+                            itemText="Update Playlist"
+                            onItemClick={handleEdit}
+                            modalComponent={<EditPlaylistForm playlist={playlist}/>}
+                        />
+                        </ul>
+                    )}
+                </div>
+                <div>
+                    {playlist?.song_ids.length > 0 && (<PlaylistSongs />)}
+                </div>
             </div>
         </div>
     );

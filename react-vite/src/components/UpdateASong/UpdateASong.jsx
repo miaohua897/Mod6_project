@@ -8,13 +8,12 @@ import {FaTimes} from 'react-icons/fa';
 import './UpdateASong.css'
 
 function UpdateASong({song_id,closeUpdateModal}){
-    // const {song_id} = useParams()
-    
-    const songs = useSelector(state=>state.song.currentUserAllSongs)
-    const song = songs.filter(el=>el.id===Number(song_id))[0]
+
+        const songs = useSelector(state=>state.song.currentUserAllSongs)
+        const song = songs.filter(el=>el.id===Number(song_id))[0]
      
         const [title,setTitle] = useState(song.title);
-        // const [duration, setDuration] = useState(song.duration);
+       
         const [lyrics,setLyrics]=useState(song.lyrics);
         const [genre,setGenre]=useState(song.genre)
         const [image,setImage]=useState(null)
@@ -23,15 +22,27 @@ function UpdateASong({song_id,closeUpdateModal}){
         const [s_duration,setS_duration] = useState(song.duration.split(':')[1])
         const [release_year,setRelease_year]=useState(song.release_year)
         const [ryError,setRyError]=useState({'error':''})
+        const [minError,setMinError] = useState('');
+        const [sError,setSError] = useState('');
         const dispatch = useDispatch()
         const navigate=useNavigate()
-    
-        // const sessionUser = useSelector((state) => state.session.user);
-        // if (!sessionUser) return <h1>Log in, please</h1>
-    
-        // console.log('update a song',song)
+        
         const handleSubmit= async (e)=>{
                  e.preventDefault();
+
+                 setMinError('')
+                 setSError('')
+                 if( min_duration <0 || min_duration>60) {
+                     const errorMes = "Minutes can't be less than 0 or greater than 60."
+                     setMinError(errorMes)
+                     return ;
+                 }
+                 if( s_duration <0 || s_duration>60) {
+                     const errorMes = "Second can't be less than 0 or greater than 60."
+                     setSError(errorMes)
+                     return ;
+                 }
+
                        const time_value =`${String(min_duration)}:${String(s_duration)}`;
                        console.log('release year',release_year )
                        if (release_year <=0) {
@@ -107,12 +118,8 @@ function UpdateASong({song_id,closeUpdateModal}){
                 className='durationInputContainer'
                 >
                 <p>song duration</p>
-                {/* <input
-                type='text'
-                value={duration?duration:song.duration}
-                onChange={(e)=>setDuration(e.target.value)}
-                >
-                </input> */}
+                {minError!==""? <p style={{color:"red"}}>{minError}</p>: null}
+                {sError!==""? <p style={{color:"red"}}>{sError}</p>: null}
                   <input 
                 type='number'
                 value={min_duration===-1?'':min_duration}
@@ -149,13 +156,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                    className="updatelyricsinput"
                 >
                 </textarea>
-                {/* <input
-                type='text'
-                value ={lyrics?lyrics:song.lyrics}
-                onChange={(e)=>setLyrics(e.target.value)}
-                 className="updatelyricsinput"
-                >
-                </input> */}
+         
                 <p>song genre</p>
                 <input
                 type='text'

@@ -149,7 +149,6 @@ function SongDetail() {
                           >
                             ...
                           </button>
-
                           {dropdown || isUpdateModalOpen || isModalOpen ? (
                             isUserSong.length !== 0 ? (
                               <div>
@@ -246,5 +245,6 @@ function SongDetail() {
       ) : null}
     </div>
   );
+
 }
 export default SongDetail;

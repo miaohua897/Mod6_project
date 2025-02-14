@@ -17,7 +17,7 @@ song_data=[
                 ''',
         "genre":'pop,uplight,light',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/chasingSunBean.png",
         "user_id" :1
     },
         {
@@ -39,7 +39,7 @@ song_data=[
         ,
        "genre":'pop,uplight,light',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(1).png",
        "user_id" :1
     }
     ,
@@ -62,7 +62,7 @@ song_data=[
         ,
        "genre":'pop,uplight,light',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(2).png",
        "user_id" :1
     } ,
         {

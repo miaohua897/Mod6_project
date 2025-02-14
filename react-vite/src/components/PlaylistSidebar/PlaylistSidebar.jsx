@@ -1,28 +1,35 @@
-import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"; 
 import CreatePlaylistForm from "../CreatePlaylistForm/CreatePlaylistForm";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import './PlaylistSidebar.css'
+import OpenModalButton from "../OpenModalButton";
+import { useEffect } from 'react';
+import { getUserPlaylists, resetUserPlaylists } from '../../redux/playlists';
 
 const PlaylistSidebar = () => {
     const user = useSelector((state) => state.session.user);
     const playlists = useSelector( (state) => Object.values(state.playlists) || []);
-  
-    console.log(playlists)
+    const dispatch = useDispatch();
+     useEffect(() => {
+    
+        dispatch(getUserPlaylists()).catch(async (res) => {
+          const resError = await res.json();
+          if (resError) {
+            dispatch(resetUserPlaylists());
+          }
+        });
+        
+      }, [dispatch]);
       
     const url = "https://img.freepik.com/free-photo/top-view-music-concept-with-vinyl_23-2148605812.jpg";
     const LikeUrl = "https://img.freepik.com/free-photo/minimalist-heart-mockup_64049-79.jpg";
-    const handleCreatePlaylistClick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();      
-    }    
-   
+       
     return (
         <div className="playlist-sidebar">
-            { user && (<><OpenModalMenuItem
-                itemText="Create new playlist"
-                onItemClick={handleCreatePlaylistClick}
+            { user && (<><OpenModalButton
+                className="left-navbar-state-button"
                 modalComponent={<CreatePlaylistForm />}
+                buttonText="Create new playlist"
               />
               {/* <button onClick={handleUnlike}>add song</button>          */}
             <div className="playlist-folders">
