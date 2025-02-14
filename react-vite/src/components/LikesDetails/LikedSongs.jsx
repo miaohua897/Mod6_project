@@ -57,7 +57,7 @@ const LikedSongs = () => {
               <td>{song.artist}</td>
               <td>{song.duration}</td>
               {user && (
-                <td>
+                <td className="playlist-song-delete">
                   <div
                     onClick={(e) => {
                       e.stopPropagation();
@@ -75,7 +75,7 @@ const LikedSongs = () => {
                                     closeMenu();
                                 }}
                         >
-                        Remove song from Liked Songs
+                        Remove song from Likes
                         </li>
                     </ul>
                   )}
