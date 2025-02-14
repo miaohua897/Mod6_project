@@ -135,7 +135,7 @@ song_data=[
         ,
        "genre":'hard techno',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(5).png",
        "user_id" :1
     }
     ,
@@ -158,7 +158,7 @@ song_data=[
         ,
        "genre":'hard techno, old school thrash',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(6).png",
        "user_id" :3
     } ,
     
@@ -186,7 +186,7 @@ song_data=[
         ,
        "genre":'house',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(7).png",
        "user_id" :2
     },
     
@@ -214,7 +214,7 @@ song_data=[
         ,
        "genre":'anthem',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(8).png",
        "user_id" :2
     }
 ]
