@@ -11,6 +11,7 @@ import AddASong from '../AddASong/AddASong';
 import { CreateAlbum } from '../AlbumForm';
 import * as playerActions from '../../redux/player';
 import './LeftNavbar.css';
+import CreatePlaylistForm from '../CreatePlaylistForm/CreatePlaylistForm';
 
 export default function LeftNavbar({ isLoaded, sessionUser }) {
   const dispatch = useDispatch();
@@ -98,14 +99,11 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
                   />
                 )}
                 {isPlaylistsActive && (
-                  <button
-                    className="left-navbar-state-button"
-                    onClick={() => {
-                      // ADD FUNCTION TO CREATE A PLAYLIST HERE
-                    }}
-                  >
-                    Create a playlist
-                  </button>
+                  <OpenModalButton
+                className="left-navbar-state-button"
+                modalComponent={<CreatePlaylistForm />}
+                buttonText="Create new playlist"
+              />
                 )}
               </div>
             </div>
