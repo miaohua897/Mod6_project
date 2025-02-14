@@ -6,6 +6,8 @@ import { CgPlayButton } from "react-icons/cg";
 import { FaMinus } from "react-icons/fa6";
 import { GoPlus } from "react-icons/go";
 import { CiCirclePlus } from "react-icons/ci";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import AddToPlaylistModal from "../AddToPlaylistModal/AddToPlaylistModal";
 import * as albumActions from "../../redux/albums";
 import * as sessionActions from "../../redux/session";
 import "./AlbumSongs.css";
@@ -77,7 +79,9 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
               </td>
               <td className="album-songs-second-row">{song.title}</td>
               <td>{song.artist}</td>
-              <td id="album-song-like-button"><CiCirclePlus /></td>
+              <td id="album-song-like-button">
+                <CiCirclePlus />
+              </td>
               <td>{song.duration}</td>
               <td className="album-song-update-delete">
                 {user && (
@@ -105,14 +109,27 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
                               closeMenu();
                             }}
                           >
-                            <span><FaMinus /></span>
-                            <span className="remove-album-song">Remove song from album</span>
+                            <span>
+                              <FaMinus />
+                            </span>
+                            <span className="remove-album-song">
+                              Remove song from album
+                            </span>
                           </li>
                         )}
-                        <li>
+                        {/* <li>
                         <span><GoPlus /></span>
                         <span className="remove-album-song">Add To Playlist</span>
-                        </li>
+                        </li> */}
+                        <div className="add-to-playlist">
+                          <span>
+                            <GoPlus />
+                          </span>
+                          <OpenModalMenuItem
+                            modalComponent={<AddToPlaylistModal songId={song.id} />}
+                            itemText="Add To Playlist"
+                          />
+                        </div>
                       </ul>
                     )}
                   </>
@@ -143,7 +160,7 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
                 </select>
               </td>
               <td>
-              <button
+                <button
                   id="add-album-song-button"
                   disabled={selectedSong === "" ? true : false}
                   onClick={addAlbumSong}
