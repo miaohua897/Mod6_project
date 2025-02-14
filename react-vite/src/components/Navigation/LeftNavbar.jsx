@@ -100,46 +100,48 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
                 )}
                 {isPlaylistsActive && (
                   <OpenModalButton
-                className="left-navbar-state-button"
-                modalComponent={<CreatePlaylistForm />}
-                buttonText="Create new playlist"
-              />
+                    className="left-navbar-state-button"
+                    modalComponent={<CreatePlaylistForm />}
+                    buttonText="Create new playlist"
+                  />
                 )}
               </div>
             </div>
-            {isSongsActive &&
-              (!sessionUser.songIds || !sessionUser.songIds.length ? (
-                <span className="add-to-library">
-                  Add a song to your library
-                </span>
-              ) : (
-                <LeftNavbarSongs
-                  isLoaded={isLoaded}
-                  sessionUser={sessionUser}
-                />
-              ))}
-            {isAlbumsActive &&
-              (!sessionUser.albumIds || !sessionUser.albumIds.length ? (
-                <span className="add-to-library">
-                  Add an album to your library
-                </span>
-              ) : (
-                <LeftNavbarAlbums
-                  isLoaded={isLoaded}
-                  sessionUser={sessionUser}
-                />
-              ))}
-            {isPlaylistsActive &&
-              (!sessionUser.playlistIds || !sessionUser.playlistIds.length ? (
-                <span className="add-to-library">
-                  Add a playlist to your library
-                </span>
-              ) : (
-                <LeftNavbarPlaylists
-                  isLoaded={isLoaded}
-                  sessionUser={sessionUser}
-                />
-              ))}
+            <div className="left-navbar-library-div">
+              {isSongsActive &&
+                (!sessionUser.songIds || !sessionUser.songIds.length ? (
+                  <span className="add-to-library">
+                    Add a song to your library
+                  </span>
+                ) : (
+                  <LeftNavbarSongs
+                    isLoaded={isLoaded}
+                    sessionUser={sessionUser}
+                  />
+                ))}
+              {isAlbumsActive &&
+                (!sessionUser.albumIds || !sessionUser.albumIds.length ? (
+                  <span className="add-to-library">
+                    Add an album to your library
+                  </span>
+                ) : (
+                  <LeftNavbarAlbums
+                    isLoaded={isLoaded}
+                    sessionUser={sessionUser}
+                  />
+                ))}
+              {isPlaylistsActive &&
+                (!sessionUser.playlistIds || !sessionUser.playlistIds.length ? (
+                  <span className="add-to-library">
+                    Add a playlist to your library
+                  </span>
+                ) : (
+                  <LeftNavbarPlaylists
+                    isLoaded={isLoaded}
+                    sessionUser={sessionUser}
+                  />
+                ))}
+            </div>
           </>
         )}
         {player.songs.length > 0 && (
@@ -154,7 +156,7 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
               {player.songs.map((song, index) => (
                 <div
                   className="player-queue-song-card"
-                  key={song.id}
+                  key={index}
                   onClick={() => setPlayerIndex(index)}
                 >
                   <div className="player-queue-song-image-div">
