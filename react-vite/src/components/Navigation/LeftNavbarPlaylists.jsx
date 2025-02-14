@@ -1,10 +1,10 @@
 import './LeftNavbarPlaylists.css';
 import PlaylistSidebar from '../PlaylistSidebar/PlaylistSidebar';
 
-export default function LeftNavbarPlaylists() {
+export default function LeftNavbarPlaylists({ sessionUser }) {
   return (
     <>
-      <PlaylistSidebar />
+      {sessionUser && <PlaylistSidebar />}
     </>
   );
 }
