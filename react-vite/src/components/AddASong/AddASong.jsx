@@ -32,6 +32,12 @@ function AddASong(){
     const handleSubmit= async (e)=>{
         e.preventDefault();
 
+        if(title.length>30){
+            const errorMes ='Title is too long';
+            setTittleError(errorMes);
+            return ;
+        }
+
         setMinError('')
         setSError('')
         if( min_duration <0 || min_duration>60) {
@@ -109,6 +115,7 @@ function AddASong(){
             >
               
                <p>song title</p>
+               {titleError!==""? <p style={{color:"red"}}>{titleError}</p>: null}
                 <input
                 type='text'
                 value={title}

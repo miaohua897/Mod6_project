@@ -78,17 +78,9 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* justify-content:flex-start; */
     margin-right:60px;
     margin-left:60px;
-    /* gap:16%; */
-    /* max-height: 50px; 
-    overflow-y: auto; 
-    width: 100%; */
-    /* table-layout: fixed;
-    width: 100%; */
-    overflow: hidden;  
-    text-overflow: ellipsis;  
+  
 
 }
 #song-table-title {
@@ -191,6 +183,7 @@ body{
     top: -160px;       
     left: -110px;       
     box-shadow: 0 4px 8px rgb(23, 23, 23);
+ 
   
 }
 .updateASongNav{
