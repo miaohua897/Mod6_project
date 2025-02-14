@@ -102,8 +102,7 @@
 }
 
 #add-album-song-button {
-  color: white;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #5c3be8;
   font-size: 13px;
   height: 25px;
   border: none;
@@ -118,8 +117,8 @@
 }
 
 #add-album-song-button:hover {
-  background-color: rgba(255, 255, 255, 0.15);
   cursor: pointer;
+  scale: 1.04;
 }
 
 .album-songs-play-button {
