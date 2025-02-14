@@ -42,7 +42,7 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="signup-modal-div">
       <img
         src={museicLogoIcon}
         className="signup-modal-museic-logo"
@@ -123,7 +123,7 @@ function SignupFormModal() {
           Sign Up
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

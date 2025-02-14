@@ -35,12 +35,13 @@ export default function MusicPlayer() {
   useEffect(() => {
     // Load songs from Redux state
     setSongs([...player.songs]);
+    setCurrentSong(songs[player.currentIndex]);
 
     if (player.songs.length) {
       setCurrentSong({ ...player.songs[0] });
       setIsPlaying(true);
     }
-  }, [player.songs]);
+  }, [player.songs, player.currentIndex]);
 
   const incrementPlayerIndex = async () => {
     await dispatch(playerActions.thunkIncrementPlayerIndex());
