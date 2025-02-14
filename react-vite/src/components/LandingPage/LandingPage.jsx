@@ -41,6 +41,10 @@ export default function LandingPage() {
     }
   };
 
+  const incrementPlayerIndex = async () => {
+    await dispatch(playerActions.thunkIncrementPlayerIndex());
+  };
+
   return (
     <>
       <div className="landing-page-songs-div">
@@ -62,7 +66,10 @@ export default function LandingPage() {
               <>
                 <span
                   onClick={e => {
-                    if (song.id !== player.songs[player.currentIndex].id) {
+                    if (
+                      !player.songs.length ||
+                      song.id !== player.songs[player.songs.length - 1].id
+                    ) {
                       addToPlayer(song);
                     }
                     e.stopPropagation();
@@ -76,7 +83,12 @@ export default function LandingPage() {
                 </span>
                 <span
                   onClick={e => {
-                    addSongToPlayerIndex(song, player.currentIndex + 1);
+                    if (!player.songs.length) {
+                      addSongToPlayerIndex(song, player.currentIndex);
+                    } else {
+                      addSongToPlayerIndex(song, player.currentIndex + 1);
+                      incrementPlayerIndex();
+                    }
                     e.stopPropagation();
                   }}
                   className="landing-page-play-button-container"

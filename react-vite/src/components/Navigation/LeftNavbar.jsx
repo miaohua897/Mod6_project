@@ -154,7 +154,7 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
               {player.songs.map((song, index) => (
                 <div
                   className="player-queue-song-card"
-                  key={song.id}
+                  key={index}
                   onClick={() => setPlayerIndex(index)}
                 >
                   <div className="player-queue-song-image-div">
