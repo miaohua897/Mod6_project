@@ -55,23 +55,25 @@ body{
     margin-left:10px;
     padding-left: 20px;
     font-size: 14px;
-    
+    margin-bottom: 15px;
 }
-.tableSongList{
-    display: flex;
-    flex-direction: column;
-    gap:15px;
+.table-songs-container{
+
+    margin-top:15px;
+    width: 95%;
+    text-align: center;
+    table-layout: fixed;
+    border-collapse: collapse;
 
 }
 .tableHead{
     display: flex;
     flex-direction: row;
-    /* justify-content: flex-start; */
+    justify-content: flex-start;
     justify-content: space-between;
     border-bottom: 1px solid white;
     margin-right:60px;
     margin-left:60px;
-    /* gap:15%; */
 
 }
 .tableBody{
@@ -80,7 +82,7 @@ body{
     justify-content: space-between;
     margin-right:60px;
     margin-left:60px;
-  
+    margin-top:10px;
 
 }
 #song-table-title {
@@ -88,6 +90,7 @@ body{
     white-space: nowrap;  
     overflow: hidden;
     text-overflow: ellipsis; 
+
   }
 #song-head-title{
     width: 300px; 
