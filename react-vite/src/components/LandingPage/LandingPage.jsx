@@ -9,7 +9,8 @@ import './LandingPage.css';
 export default function LandingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const albums = useSelector(state => Object.values(state.albums));
+  const albumsState = useSelector(state => state.albums);
+  const albums = Object.values(albumsState);
   const songs = useSelector(state => state.song.songs);
   const player = useSelector(state => state.player);
   const [isHoveringAlbum, setIsHoveringAlbum] = useState(false);
@@ -85,7 +86,11 @@ export default function LandingPage() {
                   onClick={e => {
                     if (!player.songs.length) {
                       addSongToPlayerIndex(song, player.currentIndex);
-                    } else {
+                    } else if (
+                      song.id !== player.songs[player.currentIndex].id &&
+                      (!player.songs[player.currentIndex + 1] ||
+                        song.id !== player.songs[player.currentIndex + 1].id)
+                    ) {
                       addSongToPlayerIndex(song, player.currentIndex + 1);
                       incrementPlayerIndex();
                     }
