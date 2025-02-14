@@ -6,14 +6,14 @@ def seed_albums():
     albumA = Album(
         user_id=1,
         title="Eye Of The Tiger",
-        image_url="https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/3b41e0933d2b41d8b313bf92d0917c4c.jpg",
+        image_url="https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(10).png",
         release_year=1982,
     )
 
     albumB = Album(
         user_id=2,
         title="Songs of India",
-        image_url="https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/3b41e0933d2b41d8b313bf92d0917c4c.jpg",
+        image_url="https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(11).png",
         release_year=1996,
     )
 
