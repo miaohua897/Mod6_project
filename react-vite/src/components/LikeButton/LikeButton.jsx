@@ -1,13 +1,13 @@
-import { BiPlusCircle } from 'react-icons/bi';
+import { BiSolidHeartCircle, BiPlusCircle } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../redux/session';
 import './LikeButton.css';
 
-export default function LikeButton(songId) {
+export default function LikeButton({ songId }) {
   const dispatch = useDispatch();
   const likedSongIds = useSelector(state => state.session.user.likedSongIds);
 
-  const handleClick = async ({ songId }) => {
+  const handleClick = async songId => {
     if (!likedSongIds.includes(songId)) {
       await dispatch(sessionActions.thunkAddLikedSong(songId));
     } else {
@@ -17,10 +17,18 @@ export default function LikeButton(songId) {
 
   return (
     <span onClick={() => handleClick(songId)} className="like-button-container">
-      <BiPlusCircle
-        style={{ width: '100%', height: 'auto' }}
-        className="like-button"
-      />
+      {likedSongIds.includes(songId) && (
+        <BiSolidHeartCircle
+          style={{ width: '100%', height: 'auto' }}
+          className="like-button"
+        />
+      )}
+      {!likedSongIds.includes(songId) && (
+        <BiPlusCircle
+          style={{ width: '100%', height: 'auto' }}
+          className="like-button"
+        />
+      )}
     </span>
   );
 }
