@@ -16,7 +16,7 @@ def playlists():
     return {"playlists": [playlist.to_dict() for playlist in playlists]}
 
 
-@playlist_routes.route("/", methods=["POST"])
+@playlist_routes.route("", methods=["POST"])
 @login_required
 def add_playlist():
     """

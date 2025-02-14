@@ -27,7 +27,6 @@ export const router = createBrowserRouter([
       },
       {
         path: 'song/:song_id',
-        // path: "songs",
         element: <SongDetail />,
       },
 

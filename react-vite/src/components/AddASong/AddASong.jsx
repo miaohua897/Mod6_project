@@ -91,7 +91,9 @@ function AddASong(){
     }
 
     return (
+
         <div className="addSongModalContainer">
+
             <div className="closeAddASongButtonPosition">
             <button
             className="closeAddASongModal"
@@ -136,15 +138,6 @@ function AddASong(){
                 >    
                 </input> <a> s</a>
                </div>
-               
-                {/* <input
-                type='text'
-                value={duration}
-                onChange={(e)=>setDuration(e.target.value)}
-                required
-                className="addSonginput"
-                >
-                </input> */}
                 <p>release year</p>
                  {ryError.error!==""? <p style={{color:"red"}}>{ryError.error}</p>: null}
                 <input
@@ -164,13 +157,6 @@ function AddASong(){
                  required
                 >
                 </input>
-                 {/* <p>song lyrics</p>
-                <textarea
-                value ={lyrics}
-                onChange={(e)=>setLyrics(e.target.value)}
-                className="addlyricsinput"
-                >
-                </textarea> */}
                 <p>song genre</p>
                 <input
                 type='text'
@@ -183,9 +169,7 @@ function AddASong(){
                 </input>
                 <p>upload a image for the song</p>
                 <label>
-                    {/* <span 
-                    className="requiredMessage"
-                    >This field is required</span> */}
+                 
                 <input
                 type='file'
                 accept="image/*"

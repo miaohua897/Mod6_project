@@ -9,7 +9,8 @@ import './LandingPage.css';
 export default function LandingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const albums = useSelector(state => Object.values(state.albums));
+  const albumsState = useSelector(state => state.albums);
+  const albums = Object.values(albumsState);
   const songs = useSelector(state => state.song.songs);
   const player = useSelector(state => state.player);
   const [isHoveringAlbum, setIsHoveringAlbum] = useState(false);
@@ -41,6 +42,10 @@ export default function LandingPage() {
     }
   };
 
+  const incrementPlayerIndex = async () => {
+    await dispatch(playerActions.thunkIncrementPlayerIndex());
+  };
+
   return (
     <>
       <div className="landing-page-songs-div">
@@ -62,7 +67,10 @@ export default function LandingPage() {
               <>
                 <span
                   onClick={e => {
-                    if (song.id !== player.songs[player.currentIndex].id) {
+                    if (
+                      !player.songs.length ||
+                      song.id !== player.songs[player.songs.length - 1].id
+                    ) {
                       addToPlayer(song);
                     }
                     e.stopPropagation();
@@ -76,7 +84,16 @@ export default function LandingPage() {
                 </span>
                 <span
                   onClick={e => {
-                    addSongToPlayerIndex(song, player.currentIndex + 1);
+                    if (!player.songs.length) {
+                      addSongToPlayerIndex(song, player.currentIndex);
+                    } else if (
+                      song.id !== player.songs[player.currentIndex].id &&
+                      (!player.songs[player.currentIndex + 1] ||
+                        song.id !== player.songs[player.currentIndex + 1].id)
+                    ) {
+                      addSongToPlayerIndex(song, player.currentIndex + 1);
+                      incrementPlayerIndex();
+                    }
                     e.stopPropagation();
                   }}
                   className="landing-page-play-button-container"
