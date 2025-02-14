@@ -31,11 +31,15 @@
 }
 
 .playlist-add-song-container select {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1) !important;
   border-radius: 16px;
-  color: white;
+  color: white !important;
   height: 30px;
   width: 80%;
+  /*appearance: none;  Removes default OS styling */
+  /* -webkit-appearance: none;
+  -moz-appearance: none; */
+  /* cursor: pointer; */
 }
 
 .playlist-add-song-container button {
@@ -52,4 +56,9 @@
 .playlist-add-song-container button:hover {
   cursor: pointer;
   scale: 1.04;
+}
+
+.playlist-add-song-form select option{
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Dark background */
+  color: #fff !important; /* Light text */
 }
