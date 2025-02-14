@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import * as albumActions from '../../redux/albums';
+import * as sessionActions from '../../redux/session';
 import './AlbumForm.css';
 
 const AlbumForm = ({ album, albumId, formType }) => {
@@ -36,8 +37,12 @@ const AlbumForm = ({ album, albumId, formType }) => {
         'Album cover image URL must end in .png, .jpg, .jpeg';
     }
 
-    if (releaseYear === null)
+    if (releaseYear === null) {
       validationErrors.releaseYear = 'Album Release Year is required';
+    } else if (releaseYear < 1940) {
+      validationErrors.releaseYear = 'Album Release Year must be 1940 or later';
+    }
+      
 
     setErrors(validationErrors);
   }, [title, image, releaseYear]);
@@ -63,6 +68,8 @@ const AlbumForm = ({ album, albumId, formType }) => {
             serverError: 'There was a server issue, please try again.',
           });
       });
+
+      dispatch(sessionActions.addUserAlbum(Object.keys(newAlbum)[0]))
 
       closeModal();
 

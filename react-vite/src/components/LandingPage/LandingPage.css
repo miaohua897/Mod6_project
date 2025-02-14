@@ -2,6 +2,9 @@
 .landing-page-song-artist {
   color: #b3b3b3;
   font-size: 13px;
+  max-height: 15px;
+  overflow-wrap: break-word;
+  overflow: auto;
 }
 
 .landing-page-album-card,
@@ -9,6 +12,10 @@
   padding: 12px;
   border-radius: 6px;
   position: relative;
+  box-sizing: border-box;
+  min-width: 160px;
+  max-width: 190px;
+  flex-grow: 1;
 }
 
 .landing-page-album-card:hover,
@@ -25,15 +32,12 @@
   object-fit: cover;
   overflow: hidden;
   overflow-clip-margin: unset;
+  display: block;
 }
 
 .landing-page-album-image-div,
 .landing-page-song-image-div {
   aspect-ratio: 1/1;
-  min-width: 136px;
-  min-height: 136px;
-  max-width: 165px;
-  max-height: 165px;
   margin-bottom: 5px;
 }
 
@@ -42,6 +46,9 @@
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
+  max-height: 38px;
+  overflow-wrap: break-word;
+  overflow: auto;
 }
 
 .landing-page-albums-header,

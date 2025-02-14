@@ -31,11 +31,15 @@
     display: flex;
     width: 30%;
 } */
+/* .add-to-library{
 
+} */
 .folder-img img{    
-    /* flex: 2 1 0; */
-    max-width: 50px;
-    max-height: 50px;
+    flex: 2 1 0;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .playlist-sidebar li{

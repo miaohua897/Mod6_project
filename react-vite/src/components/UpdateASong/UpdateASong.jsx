@@ -19,7 +19,8 @@ function UpdateASong({song_id,closeUpdateModal}){
         const [image,setImage]=useState(null)
         const [audio, setAudio]=useState(null)
         const [min_duration,setMin_duration] = useState(song.duration.split(':')[0]);
-        const [s_duration,setS_duration] = useState(song.duration.split(':')[1])
+        const [s_duration,setS_duration] = useState(song.duration.split(':')[1]);
+        const [titleError, setTittleError]=useState('');
         const [release_year,setRelease_year]=useState(song.release_year)
         const [ryError,setRyError]=useState({'error':''})
         const [minError,setMinError] = useState('');
@@ -29,6 +30,12 @@ function UpdateASong({song_id,closeUpdateModal}){
         
         const handleSubmit= async (e)=>{
                  e.preventDefault();
+
+                  if(title.length>30){
+                    const errorMes ='Title is too long';
+                    setTittleError(errorMes);
+                    return ;
+                }
 
                  setMinError('')
                  setSError('')
@@ -52,11 +59,11 @@ function UpdateASong({song_id,closeUpdateModal}){
                            setAudio(null)
                            setTitle('')
                            // setDuration('')
-                           setLyrics('')
-                           setGenre('')
-                           setRelease_year(0)
-                           setS_duration(-1)
-                           setMin_duration(-1)
+                           setLyrics(song.lyrics)
+                           setGenre(song.genre)
+                           setRelease_year(song.release_year)
+                           setS_duration(song.duration.split(':')[1])
+                           setMin_duration(song.duration.split(':')[0])
                            return ;
                            
                        } 
@@ -107,6 +114,7 @@ function UpdateASong({song_id,closeUpdateModal}){
             >
                
                 <p>song title</p>
+                {titleError!==""? <p style={{color:"red"}}>{titleError}</p>: null}
                 <input
                 type='text'
                 value={title?title:song.title}
@@ -142,7 +150,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 {ryError.error!==""? <p style={{color:"red"}}>{ryError.error}</p>: null}
                 <input
                 type='number'
-                value={release_year?release_year:song.release_year}
+                value={release_year}
                 onChange={(e)=>setRelease_year(e.target.value)}
                  className="updateSonginput"
                 >

@@ -128,16 +128,11 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
                   />
                 ))}
               {isPlaylistsActive &&
-                (!sessionUser.playlistIds || !sessionUser.playlistIds.length ? (
-                  <span className="add-to-library">
-                    Add a playlist to your library
-                  </span>
-                ) : (
-                  <LeftNavbarPlaylists
+                ( <LeftNavbarPlaylists
                     isLoaded={isLoaded}
                     sessionUser={sessionUser}
                   />
-                ))}
+                )}
             </div>
           </>
         )}

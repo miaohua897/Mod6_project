@@ -8,20 +8,15 @@
 
 .album-songs-table th {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  height: 20px;
+  height: 10px;
 }
 
 .album-songs-table td {
   height: 35px;
 }
 
-.album-songs-table tr {
-  border-radius: 15px;
-}
-
 .album-songs-table tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
 }
 
 #table-head1 {
@@ -106,9 +101,13 @@
   width: 100%;
 }
 
+.album-songs-second-row option{
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Dark background */
+  color: #5c3be8 !important; /* Light text */
+}
+
 #add-album-song-button {
-  color: white;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #5c3be8;
   font-size: 13px;
   height: 25px;
   border: none;
@@ -123,6 +122,10 @@
 }
 
 #add-album-song-button:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  scale: 1.04;
+}
+
+.album-songs-play-button {
   cursor: pointer;
 }

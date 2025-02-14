@@ -9,6 +9,7 @@ import UpdateASong from '../UpdateASong';
 import OpenModalButton from '../OpenModalButton';
 import AddToPlaylistModal from '../AddToPlaylistModal/AddToPlaylistModal';
 import * as playerActions from '../../redux/player';
+import LikeButton from '../LikeButton';
 import './SongDetail.css';
 
 Modal.setAppElement('#root');
@@ -64,9 +65,9 @@ function SongDetail() {
         <div className="song_details">
           <div className="song_head">
             <img className="img_song_detail" src={song.image_url}></img>
-            <div>
-              <h1>{song.title}</h1>
-              <p>
+            <div className='song-info-container'>
+              <p id='song-head-title'>{song.title}</p>
+              <p id='song-info-body'>
                 {song.artist} {'●'} {song.release_year} {'●'} {song.duration}
               </p>
             </div>
@@ -100,12 +101,13 @@ function SongDetail() {
             )}
           </div>
           <div>
-            <table className="tableSongList">
+            <table className="table-songs-container">
               <thead>
                 <tr className="tableHead">
                   <th></th>
-                  <th>Title</th>
+                  <th >Title</th>
                   <th>Artist</th>
+                  <th ></th>
                   <th>🕘</th>
                   <th></th>
                 </tr>
@@ -133,8 +135,11 @@ function SongDetail() {
                       <FaPlay size={15} color="darkgray" />
                     </button>
                   </td>
-                  <td>{song.title}</td>
+                  <td id='song-table-title'>{song.title}</td>
                   <td>{song.artist}</td>
+                  <td>
+                     <LikeButton songId={song.id} />
+                     </td>
                   <td>{song.duration}</td>
                   <td>
                     <div>

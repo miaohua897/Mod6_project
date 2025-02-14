@@ -16,7 +16,8 @@ function AddASong(){
     const [audio, setAudio]=useState(null)
     const [release_year,setRelease_year]=useState(0);
     const [min_duration,setMin_duration] = useState(-1);
-    const [s_duration,setS_duration] = useState(-1)
+    const [s_duration,setS_duration] = useState(-1);
+    const [titleError, setTittleError]=useState('');
     const [ryError,setRyError]=useState({'error':''});
     const [minError,setMinError] = useState('');
     const [sError,setSError] = useState('');
@@ -31,6 +32,12 @@ function AddASong(){
     const handleSubmit= async (e)=>{
         e.preventDefault();
 
+        if(title.length>30){
+            const errorMes ='Title is too long';
+            setTittleError(errorMes);
+            return ;
+        }
+
         setMinError('')
         setSError('')
         if( min_duration <0 || min_duration>60) {
@@ -44,8 +51,8 @@ function AddASong(){
             return ;
         }
         const time_value =`${String(min_duration)}:${String(s_duration)}`;
-        if (release_year <=0) {
-            const error = {'error':'release year is a positive number'}
+        if (release_year <=0 || release_year >10000) {
+            const error = {'error':'release year is a positive number, less than 10000'}
             setRyError(error)
             setImage(null)
             setAudio(null)
@@ -86,7 +93,11 @@ function AddASong(){
         setGenre('')
         setRelease_year(0)
         closeModal()
-        await navigate(`/song/${res.id}`)
+        if(res.id)
+             await navigate(`/song/${res.id}`)
+        else{
+            window.alert("can't add the song")
+        }
       
     }
 
@@ -108,6 +119,7 @@ function AddASong(){
             >
               
                <p>song title</p>
+               {titleError!==""? <p style={{color:"red"}}>{titleError}</p>: null}
                 <input
                 type='text'
                 value={title}

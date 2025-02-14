@@ -17,7 +17,7 @@ song_data=[
                 ''',
         "genre":'pop,uplight,light',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/chasingSunBean.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(20).png",
         "user_id" :1
     },
         {
@@ -39,7 +39,7 @@ song_data=[
         ,
        "genre":'pop,uplight,light',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(1).png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(17).png",
        "user_id" :1
     }
     ,
@@ -62,7 +62,7 @@ song_data=[
         ,
        "genre":'pop,uplight,light',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(2).png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(18).png",
        "user_id" :1
     } ,
         {
@@ -80,7 +80,7 @@ song_data=[
         ,
        "genre":'pop,uplight,light',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(3).png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(19).png",
        "user_id" :1
     },
     
@@ -109,7 +109,7 @@ song_data=[
         ,
        "genre":'rock',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(4).png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(21).png",
        "user_id" :1
     },
     
@@ -135,7 +135,7 @@ song_data=[
         ,
        "genre":'hard techno',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(16).png",
        "user_id" :1
     }
     ,
@@ -158,7 +158,7 @@ song_data=[
         ,
        "genre":'hard techno, old school thrash',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(14).png",
        "user_id" :3
     } ,
     
@@ -186,7 +186,7 @@ song_data=[
         ,
        "genre":'house',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(13).png",
        "user_id" :2
     },
     
@@ -214,7 +214,32 @@ song_data=[
         ,
        "genre":'anthem',
         "release_year":2025,
-        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Screenshot+2025-02-12+at+8.30.53%E2%80%AFPM.png",
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(8).png",
+       "user_id" :2
+    }
+    ,
+    
+        {
+       "title":"Echoes of My Time",
+        "audio_url":'https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Echoes+of+My+Time.mp3',
+        "duration":"2:40",
+        "lyrics":
+                '''
+        I hear the echoes of my time,
+        In the quiet moments, in the rhyme.
+        All the faces, all the names,
+        And the love that still remains.
+        I’ve walked the valleys, touched the sky,
+        Now all that’s left is a last goodbye.
+        I held my children, watched them grow,
+        And with them, I let my secrets go.
+        Some dreams were broken, some came true,
+        But through it all, I always knew...
+                '''
+        ,
+       "genre":'jazz blues',
+        "release_year":2025,
+        "image_url":"https://testbucketbymiaohua.s3.us-west-1.amazonaws.com/Untitled+design+(12).png",
        "user_id" :2
     }
 ]
