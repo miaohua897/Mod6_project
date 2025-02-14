@@ -8,11 +8,11 @@
 
 .album-songs-table th {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  height: 30px;
+  height: 20px;
 }
 
 .album-songs-table td {
-  height: 30px;
+  height: 35px;
 }
 
 .album-songs-table tr {
@@ -52,6 +52,10 @@
   position: relative;
 }
 
+.album-song-update-delete div {
+  cursor: pointer;
+}
+
 .album-song-update-delete ul {
   display: flex;
   flex-direction: column;
@@ -77,7 +81,7 @@
 .album-song-dropdown {
   border-radius: 6px;
   background-color: #2a2a2a;
-  font-size: 16px;
+  font-size: 14px;
   position: absolute;
   text-align: left;
   right: 10px;
@@ -120,4 +124,5 @@
 
 #add-album-song-button:hover {
   background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
 }

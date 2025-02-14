@@ -7,8 +7,6 @@ export default function LeftNavbarAlbums() {
   const userAlbums = useSelector(sessionActions.getUserAlbums);
   const navigate = useNavigate();
 
-  console.log("USER ALBUMS", userAlbums);
-
   return (
     <article className="albums-sidebar">
       {userAlbums.map((album) => (

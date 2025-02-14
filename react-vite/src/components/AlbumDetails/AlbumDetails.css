@@ -22,12 +22,15 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  max-height: 250px;
+  max-width: 250px;
 }
 
 #album-image {
   border-radius: 6px;
-  height: 250px;
-  width: 250px;
+  object-fit: cover;
+  overflow: hidden;
+  overflow-clip-margin: unset;
 }
 
 .album-details-update-delete {
