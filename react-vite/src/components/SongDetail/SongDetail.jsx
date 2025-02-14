@@ -101,7 +101,7 @@ function SongDetail() {
             )}
           </div>
           <div>
-            <table className="tableSongList">
+            <table className="table-songs-container">
               <thead>
                 <tr className="tableHead">
                   <th></th>
