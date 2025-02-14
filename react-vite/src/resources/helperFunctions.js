@@ -19,7 +19,7 @@ export const calculateDuration = (arr) => {
       minutes = minutes % 60;
     }
   
-    if (minutes < 10) minutes = `0${minutes}`;
+    if (hours && minutes < 10) minutes = `0${minutes}`;
   
     if (seconds < 10) seconds = `0${seconds}`;
   

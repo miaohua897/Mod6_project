@@ -1,0 +1,64 @@
+.playlist-add-song-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.playlist-add-song-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #121212;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: white;
+  height: 100%;
+  width: 100%;
+  padding: 0px 20px 30px;
+}
+
+.playlist-add-song-container h3 {
+  font-size: 30px;
+  padding: 40px 0px;
+}
+
+.playlist-add-song-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 40px;
+  width: 100%;
+}
+
+.playlist-add-song-container select {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px;
+  color: white !important;
+  height: 30px;
+  width: 80%;
+  /*appearance: none;  Removes default OS styling */
+  /* -webkit-appearance: none;
+  -moz-appearance: none; */
+  /* cursor: pointer; */
+}
+
+.playlist-add-song-container button {
+  background-color: #5c3be8;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 32px;
+  height: 30px;
+  border: none;
+  border-radius: 24px;
+  width: 180px;
+}
+
+.playlist-add-song-container button:hover {
+  cursor: pointer;
+  scale: 1.04;
+}
+
+.playlist-add-song-form select option{
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Dark background */
+  color: #fff !important; /* Light text */
+}

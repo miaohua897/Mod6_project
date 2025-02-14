@@ -1,3 +1,17 @@
+.left-navbar {
+  background-color: #121212;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 0px;
+  min-width: 280px;
+  max-width: 420px;
+  padding: 16px 8px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
 .left-navbar-button {
   width: 80px;
 }
@@ -38,7 +52,6 @@
   display: flex;
   justify-content: center;
   gap: 8px;
-  width: 100%;
 }
 
 .left-navbar-buttons-div {
@@ -46,19 +59,6 @@
   flex-direction: column;
   gap: 8px;
   margin: 0 12px 20px;
-}
-
-.left-navbar-div {
-  background-color: #121212;
-  flex-shrink: 0;
-  flex-grow: 1;
-  flex-basis: 0px;
-  min-width: 280px;
-  max-width: 420px;
-  padding: 16px 8px;
-  border-radius: 8px;
-  box-sizing: border-box;
-  position: relative;
 }
 
 .left-navbar-header,
@@ -72,6 +72,10 @@
   margin-left: 4px;
   font-size: 19px;
   font-weight: bold;
+}
+
+.left-navbar-library-div {
+  overflow: auto;
 }
 
 .left-navbar-no-user-div {
@@ -114,12 +118,14 @@
   scale: 1.04;
 }
 
+.left-navbar-top-div {
+  flex-grow: 1;
+}
+
 .player-queue-div {
-  width: calc(100% - 16px);
   height: 250px;
+  margin-top: 8px;
   overflow: auto;
-  position: absolute;
-  bottom: 0;
 }
 
 .player-queue-song-artist {

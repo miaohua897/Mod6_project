@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { LuClock9 } from "react-icons/lu";
-import { CgPlayButton } from "react-icons/cg";
 import { thunkRemoveLikedSong } from "../../redux/session";
 import { selectLikedSongs } from "../../redux/playlists";
-import './LikedSongs.css'
+import './LikedSongs.css';
+import * as playerActions from "../../redux/player";
+import { IoIosPlay } from "react-icons/io";
 
 const LikedSongs = () => {
 
@@ -14,7 +15,7 @@ const LikedSongs = () => {
   const user = useSelector((state) => state.session.user);
  
   const likedSongs = useSelector(selectLikedSongs)
-
+  const player = useSelector((state) => state.player);
   console.log(likedSongs)
   const dispatch = useDispatch();
 
@@ -32,6 +33,13 @@ const LikedSongs = () => {
 
   const closeMenu = () => setShowMenu(false);
 
+  const addSongToPlayerIndex = async (song, index) => {
+        await dispatch(playerActions.thunkAddSongToPlayerIndex(song, index));
+  };
+    
+  const incrementPlayerIndex = async () => {
+        await dispatch(playerActions.thunkIncrementPlayerIndex());
+  };
 
   return (
     <section className="playlist-songs-container">
@@ -51,13 +59,30 @@ const LikedSongs = () => {
           {likedSongs.map((song) => (
             <tr key={song.id}>
               <td>
-                <CgPlayButton />
+              <span
+                  onClick={() => {
+                    if (!player.songs.length) {
+                      addSongToPlayerIndex(song, player.currentIndex);
+                    } else if (
+                      song.id !== player.songs[player.currentIndex].id &&
+                      (!player.songs[player.currentIndex + 1] ||
+                        song.id !== player.songs[player.currentIndex + 1].id)
+                    ) {
+                      addSongToPlayerIndex(song, player.currentIndex + 1);
+                      incrementPlayerIndex();
+                    }
+                  }}
+                >
+                  <IoIosPlay 
+                  className="album-songs-play-button"
+                  />
+                </span>
               </td>
               <td>{song.title}</td>
               <td>{song.artist}</td>
               <td>{song.duration}</td>
               {user && (
-                <td>
+                <td className="playlist-song-delete">
                   <div
                     onClick={(e) => {
                       e.stopPropagation();
@@ -75,7 +100,7 @@ const LikedSongs = () => {
                                     closeMenu();
                                 }}
                         >
-                        Remove song from Liked Songs
+                        Remove song from Likes
                         </li>
                     </ul>
                   )}

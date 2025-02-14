@@ -20,9 +20,9 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
-    padding: 10px;
-    gap:10px;
+    align-items: flex-end;
+    padding: 10px; 
+    gap:15px;
     border-radius: 10px;
 }
 .song_body{
@@ -36,9 +36,15 @@ body{
 .img_song_detail{
     width:16%;
     height:84%;
-    
     margin: 10px;
     border-radius: 10px;
+}
+.song-info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+
 }
 .visible_lyrics{
     background-color: transparent;
@@ -60,18 +66,50 @@ body{
 .tableHead{
     display: flex;
     flex-direction: row;
+    /* justify-content: flex-start; */
     justify-content: space-between;
     border-bottom: 1px solid white;
     margin-right:60px;
     margin-left:60px;
+    /* gap:15%; */
+
 }
 .tableBody{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /* justify-content:flex-start; */
     margin-right:60px;
     margin-left:60px;
-    
+    /* gap:16%; */
+    /* max-height: 50px; 
+    overflow-y: auto; 
+    width: 100%; */
+    /* table-layout: fixed;
+    width: 100%; */
+    overflow: hidden;  
+    text-overflow: ellipsis;  
+
+}
+#song-table-title {
+    width: 100px; 
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
+#song-head-title{
+    width: 300px; 
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    font-size: 50px;
+    font-weight: bold;
+    text-align: end;
+    /* padding: 5px; */
+    margin-bottom: 5px;
+}
+#song-info-body{
+    margin-top: 3px;
 }
 
 .popout-frame{

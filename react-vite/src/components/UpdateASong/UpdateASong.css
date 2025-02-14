@@ -7,7 +7,8 @@
     font-weight: bold;
     font-size: 17px;
     font-family: 'Times New Roman', Times, serif;
-    background-color: rgb(77, 77, 77,0.2);
+    /* background-color: rgb(77, 77, 77,0.2); */
+    background-color: rgba(37, 35, 38, 0.9);
     border-radius: 10px;
     padding-left: 60px;
 }

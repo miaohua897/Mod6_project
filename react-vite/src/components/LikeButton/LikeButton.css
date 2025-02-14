@@ -1,0 +1,22 @@
+.like-button {
+  fill: #b3b3b3;
+}
+
+.like-button-container {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.like-button-container:hover {
+  scale: 1.04;
+  cursor: pointer;
+}
+
+.like-button-container:hover .like-button {
+  fill: white;
+}
