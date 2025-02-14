@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import LikedSongs from "./LikedSongs";
+import {  useNavigate } from "react-router-dom";
 
 const LikesDetails = () => {
     
@@ -7,7 +8,10 @@ const LikesDetails = () => {
     const likedSongsCount = likedSongIds?.length;
     const user = useSelector((state) => state.session.user);
     const LikeUrl = "https://img.freepik.com/free-photo/minimalist-heart-mockup_64049-79.jpg";
+    const navigate = useNavigate();
     
+    if (!user) navigate("/");
+
     return(
         <div className="playlist-details">
             <div className="playlist-header">
