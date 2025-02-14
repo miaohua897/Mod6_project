@@ -16,7 +16,8 @@ function AddASong(){
     const [audio, setAudio]=useState(null)
     const [release_year,setRelease_year]=useState(0);
     const [min_duration,setMin_duration] = useState(-1);
-    const [s_duration,setS_duration] = useState(-1)
+    const [s_duration,setS_duration] = useState(-1);
+    const [titleError, setTittleError]=useState('');
     const [ryError,setRyError]=useState({'error':''});
     const [minError,setMinError] = useState('');
     const [sError,setSError] = useState('');
