@@ -101,6 +101,11 @@
   width: 100%;
 }
 
+.album-songs-second-row option{
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Dark background */
+  color: #5c3be8 !important; /* Light text */
+}
+
 #add-album-song-button {
   background-color: #5c3be8;
   font-size: 13px;
