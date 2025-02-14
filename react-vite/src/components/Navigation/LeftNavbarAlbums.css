@@ -1,20 +1,28 @@
+.albums-sidebar * {
+  box-sizing: border-box;
+}
+
 .albums-sidebar {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 .albums-sidebar-entry {
-    display: flex;
-    flex-direction: row;
-    column-gap: 15px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+  cursor: pointer;
+}
+
+.albums-sidebar-entry:hover {
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .albums-sidebar-entry img {
-    flex: 2 1 0;
-    max-width: 50px;
-    max-height: 50px;
-    object-fit: cover;
-    border-radius: 6px;
+  flex: 2 1 0;
+  max-width: 45px;
+  max-height: 45px;
+  object-fit: cover;
+  border-radius: 6px;
 }

@@ -8,20 +8,15 @@
 
 .album-songs-table th {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  height: 20px;
+  height: 10px;
 }
 
 .album-songs-table td {
   height: 35px;
 }
 
-.album-songs-table tr {
-  border-radius: 15px;
-}
-
 .album-songs-table tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
 }
 
 #table-head1 {
@@ -124,5 +119,9 @@
 
 #add-album-song-button:hover {
   background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+.album-songs-play-button {
   cursor: pointer;
 }

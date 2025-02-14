@@ -37,14 +37,14 @@ const PlaylistSongs = () => {
       <table className="playlist-songs-table">
         <thead>
           <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Artist</th>
-            <th></th>
-            <th>
+          <th id="table-head1"></th>
+            <th id="table-head2">Title</th>
+            <th id="table-head3">Artist</th>
+            <th id="table-head4"></th>
+            <th id="table-head5">
               <LuClock9 />
             </th>
-            <th></th>
+            <th id="table-head6"></th>
           </tr>
         </thead>
         <tbody>
@@ -58,7 +58,7 @@ const PlaylistSongs = () => {
               <td>LikeButton</td>
               <td>{song.duration}</td>
               {user && (
-                <td>
+                <td className="playlist-song-delete">
                   <div
                     onClick={(e) => {
                       e.stopPropagation();
