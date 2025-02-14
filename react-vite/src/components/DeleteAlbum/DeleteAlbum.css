@@ -29,6 +29,11 @@
   width: 180px;
 }
 
+.delete-album-button button:hover {
+  cursor: pointer;
+  scale: 1.04;
+}
+
 .delete-album-error {
   color: red;
 }
