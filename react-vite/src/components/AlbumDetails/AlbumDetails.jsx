@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AlbumInfo from "./AlbumInfo";
@@ -15,7 +15,6 @@ const AlbumDetails = () => {
   const ulRef = useRef();
   const user = useSelector((state) => state.session.user);
   const album = useSelector((state) => state.albums[albumId]);
-  const dispatch = useDispatch();
   let userOwnsAlbum = false;
   let albumDuration;
 
@@ -35,8 +34,6 @@ const AlbumDetails = () => {
     e.stopPropagation();
     setShowMenu(!showMenu);
   };
-
-  const closeMenu = () => setShowMenu(false);
 
   if (!album) return <h2>Loading...</h2>;
 
