@@ -5,7 +5,6 @@ import { LuClock9 } from "react-icons/lu";
 import { IoIosPlay } from "react-icons/io";
 import { FaMinus } from "react-icons/fa6";
 import { GoPlus } from "react-icons/go";
-import { CiCirclePlus } from "react-icons/ci";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddToPlaylistModal from "../AddToPlaylistModal/AddToPlaylistModal";
 import LikeButton from "../LikeButton/LikeButton";

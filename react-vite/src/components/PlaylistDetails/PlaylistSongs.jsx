@@ -2,9 +2,11 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { LuClock9 } from "react-icons/lu";
-import { CgPlayButton } from "react-icons/cg";
 import { selectPlaylistSongs , removeSongFromUserPlaylist} from "../../redux/playlists";
-import "./PlaylistSong.css"
+import "./PlaylistSong.css";
+import LikeButton from "../LikeButton/LikeButton";
+import * as playerActions from "../../redux/player";
+import { IoIosPlay } from "react-icons/io";
 
 const PlaylistSongs = () => {
   const { playlistId } = useParams();
@@ -14,7 +16,7 @@ const PlaylistSongs = () => {
   const user = useSelector((state) => state.session.user);
 //   const playlist = useSelector((state) => state.playlists[playlistId]);
   const playlistSongs = useSelector((state) => selectPlaylistSongs(state, playlistId));
-
+  const player = useSelector((state) => state.player);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,6 +33,13 @@ const PlaylistSongs = () => {
 
   const closeMenu = () => setShowMenu(false);
 
+  const addSongToPlayerIndex = async (song, index) => {
+      await dispatch(playerActions.thunkAddSongToPlayerIndex(song, index));
+  };
+  
+  const incrementPlayerIndex = async () => {
+      await dispatch(playerActions.thunkIncrementPlayerIndex());
+  };
 
   return (
     <section className="playlist-songs-container">
@@ -51,11 +60,28 @@ const PlaylistSongs = () => {
           {playlistSongs.map((song) => (
             <tr key={song.id}>
               <td>
-                <CgPlayButton />
+              <span
+                  onClick={() => {
+                    if (!player.songs.length) {
+                      addSongToPlayerIndex(song, player.currentIndex);
+                    } else if (
+                      song.id !== player.songs[player.currentIndex].id &&
+                      (!player.songs[player.currentIndex + 1] ||
+                        song.id !== player.songs[player.currentIndex + 1].id)
+                    ) {
+                      addSongToPlayerIndex(song, player.currentIndex + 1);
+                      incrementPlayerIndex();
+                    }
+                  }}
+                >
+                  <IoIosPlay 
+                  className="album-songs-play-button"
+                  />
+                </span>
               </td>
               <td>{song.title}</td>
               <td>{song.artist}</td>
-              <td>LikeButton</td>
+              <td><LikeButton songId={song.id} /></td>
               <td>{song.duration}</td>
               {user && (
                 <td className="playlist-song-delete">
