@@ -16,4 +16,8 @@
     font-size: 18px;
     border:None;
     font-family: 'Times New Roman', Times, serif;
+    width: 150px; 
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
