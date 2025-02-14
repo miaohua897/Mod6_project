@@ -1,9 +1,10 @@
-.album-form * {
+.playlist-form * {
   box-sizing: border-box;
   margin: 0px;
+  padding: 0px;
 }
 
-.album-form {
+.playlist-form {
   border: 2px solid rgba(255, 255, 255, 0.1);
   width: 100%;
   height: 100%;
@@ -13,28 +14,28 @@
   border-radius: 6px;
 }
 
-.album-form form {
-    width: 85%;
-    margin: 0 auto;
-}
-
-.album-form header {
-  font-size: 20px;
+.playlist-form-header {
+  font-size: 16px;
   text-align: center;
   width: 100%;
   padding: 20px 10px;
 }
 
-.album-form-input {
+.playlist-form-section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.playlist-form-field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   row-gap: 10px;
   width: 100%;
-  padding: 20px 0px;
+  padding: 10px 0px;
 }
 
-.album-form-input input {
+.playlist-form-field input {
   width: 100%;
   height: 25px;
   border-radius: 4px;
@@ -42,39 +43,29 @@
   padding: 0px 10px;
 }
 
-.album-form-message {
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 0px 30px;
+.playlist-form-errors {
+  height: 20px;
+  color: red;
 }
 
-.album-form-button {
-  padding: 10px;
+.playlist-form-submit {
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding: 15px 0;
 }
 
-.album-form button {
+.playlist-form button {
   background-color: #5c3be8;
   font-size: 16px;
   font-weight: bold;
   padding: 8px 32px;
-  height: 40px;
+  height: 30px;
   border: none;
   border-radius: 24px;
-  width: 180px
+  width: 180px;
 }
 
-.album-form button:hover {
+.playlist-form button:hover {
   cursor: pointer;
   scale: 1.04;
-}
-
-.album-form-error-message-container {
-  height: 30px;
-  text-align: left;
-  color: red;
 }
