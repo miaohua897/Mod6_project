@@ -37,6 +37,11 @@ const PlaylistSidebar = () => {
                         </div>
                     </div>
                     </NavLink>
+                    { !user.playlistIds?.length && (
+                    <span className="add-to-library">
+                        Add a playlist to your library
+                    </span>
+                    )}
                     {playlists?.map(playlist => (
                         <NavLink key={playlist.id} to={`/playlists/${playlist?.id}`}>
                         <div className="folder-details" >
