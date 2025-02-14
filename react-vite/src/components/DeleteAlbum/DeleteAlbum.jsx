@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import * as albumActions from "../../redux/albums";
+import * as sessionActions from '../../redux/session';
 import "./DeleteAlbum.css";
 
 const DeleteAlbum = () => {
@@ -25,6 +26,8 @@ const DeleteAlbum = () => {
       }
     );
 
+    dispatch(sessionActions.removeUserAlbum(albumId));
+    
     closeModal();
 
     return navigate("/");

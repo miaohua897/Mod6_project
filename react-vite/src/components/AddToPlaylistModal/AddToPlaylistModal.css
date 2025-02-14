@@ -60,5 +60,5 @@
 
 .playlist-add-song-form select option{
   background-color: rgba(255, 255, 255, 0.1) !important; /* Dark background */
-  color: #fff !important; /* Light text */
+  color: #5c3be8 !important; /* Light text */
 }

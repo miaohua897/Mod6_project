@@ -101,7 +101,7 @@ function SongDetail() {
             )}
           </div>
           <div>
-            <table className="tableSongList">
+            <table className="table-songs-container">
               <thead>
                 <tr className="tableHead">
                   <th></th>
@@ -137,7 +137,9 @@ function SongDetail() {
                   </td>
                   <td id='song-table-title'>{song.title}</td>
                   <td>{song.artist}</td>
-                  <td> <LikeButton songId={song.id} /></td>
+                  <td>
+                     <LikeButton songId={song.id} />
+                     </td>
                   <td>{song.duration}</td>
                   <td>
                     <div>
