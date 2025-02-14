@@ -45,7 +45,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin: 0 8px 20px;
+  margin: 0 12px 20px;
 }
 
 .left-navbar-div {
@@ -58,14 +58,17 @@
   padding: 16px 8px;
   border-radius: 8px;
   box-sizing: border-box;
+  position: relative;
 }
 
-.left-navbar-header {
+.left-navbar-header,
+.player-queue-header {
   display: flex;
   margin: 4px 12px 20px;
 }
 
-.left-navbar-header-text {
+.left-navbar-header-text,
+.player-queue-header-text {
   margin-left: 4px;
   font-size: 19px;
   font-weight: bold;
@@ -109,4 +112,55 @@
 .left-navbar-sign-up-button > button:hover {
   background-color: #f0f0f0;
   scale: 1.04;
+}
+
+.player-queue-div {
+  width: calc(100% - 16px);
+  height: 250px;
+  overflow: auto;
+  position: absolute;
+  bottom: 0;
+}
+
+.player-queue-song-artist {
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.player-queue-song-card {
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 4px;
+}
+
+.player-queue-song-card:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.player-queue-song-image {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  object-fit: cover;
+  overflow: hidden;
+  overflow-clip-margin: unset;
+}
+
+.player-queue-song-image-div {
+  margin: 8px;
+}
+
+.player-queue-song-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.player-queue-song-title-artist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 8px;
+  text-align: left;
 }
