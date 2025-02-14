@@ -96,8 +96,7 @@ body{
     text-overflow: ellipsis; 
     font-size: 50px;
     font-weight: bold;
-    text-align: end;
-    /* padding: 5px; */
+
     margin-bottom: 5px;
 }
 #song-info-body{
@@ -128,7 +127,7 @@ body{
         padding: 38px;
         width:400px;
  
-        height: 120px;
+        height: 150px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         z-index: 1001; 
    

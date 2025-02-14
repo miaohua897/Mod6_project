@@ -51,8 +51,8 @@ function AddASong(){
             return ;
         }
         const time_value =`${String(min_duration)}:${String(s_duration)}`;
-        if (release_year <=0) {
-            const error = {'error':'release year is a positive number'}
+        if (release_year <=0 || release_year >10000) {
+            const error = {'error':'release year is a positive number, less than 10000'}
             setRyError(error)
             setImage(null)
             setAudio(null)
@@ -93,7 +93,11 @@ function AddASong(){
         setGenre('')
         setRelease_year(0)
         closeModal()
-        await navigate(`/song/${res.id}`)
+        if(res.id)
+             await navigate(`/song/${res.id}`)
+        else{
+            window.alert('cant add the song')
+        }
       
     }
 
