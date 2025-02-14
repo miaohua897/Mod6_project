@@ -1,3 +1,4 @@
+
 .addSongModalContainer{
     position: fixed;
     left: 25%;
@@ -6,6 +7,7 @@
     height: 600px;
     overflow: scroll;
 }
+
 .addSongContainer{
     display: flex;
     flex-direction: column;
@@ -15,11 +17,10 @@
     font-weight: bold;
     font-size: 17px;
     font-family: 'Times New Roman', Times, serif;
-    background-color: rgba(59, 58, 58, 0.75);
+    background-color: rgba(41, 40, 42, 0.8);
     border-radius: 10px;
     padding-left: 60px;
-  
-  
+
 }
 .addSonginput{
     width: 90%;
