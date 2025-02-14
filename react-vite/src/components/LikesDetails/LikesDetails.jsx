@@ -26,7 +26,7 @@ const LikesDetails = () => {
                     <div>
                         <span>{user?.username}</span>
                         <span> &middot; </span> 
-                        <span>{likedSongsCount <= 1
+                        <span>{likedSongsCount === 1
                                 ? `${likedSongsCount} song`
                                 : `${likedSongsCount} songs`}
                         </span>
