@@ -1,17 +1,22 @@
 .album-form * {
   box-sizing: border-box;
-  margin: 0px;
+  margin: 0px
 }
 
 .album-form {
   width: 100%;
   height: 100%;
+  color: white;
+  background-color: #121212;
+  padding: 40px;
+  border-radius: 6px;
 }
 
 .album-form header {
   font-size: 20px;
-  margin: 0 auto;
-  width: 80%;
+  text-align: center;
+  width: 100%;
+  padding: 20px 10px;
 }
 
 .album-form-input {
@@ -36,11 +41,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 0px 30px;
 }
 
 .album-form-button {
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .album-form button {
@@ -59,7 +67,7 @@
 }
 
 .album-form-error-message-container {
-    padding: 5px 0;
+    height: 30px;
     text-align: left;
     color: red;
 }
