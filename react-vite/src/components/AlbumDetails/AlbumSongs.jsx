@@ -8,6 +8,7 @@ import { GoPlus } from "react-icons/go";
 import { CiCirclePlus } from "react-icons/ci";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import AddToPlaylistModal from "../AddToPlaylistModal/AddToPlaylistModal";
+import LikeButton from "../LikeButton/LikeButton";
 import * as albumActions from "../../redux/albums";
 import * as sessionActions from "../../redux/session";
 import * as playerActions from "../../redux/player";
@@ -107,7 +108,7 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
               <td className="album-songs-second-row">{song.title}</td>
               <td>{song.artist}</td>
               <td id="album-song-like-button">
-                <CiCirclePlus />
+                <LikeButton songId={song.id} />
               </td>
               <td>{song.duration}</td>
               <td className="album-song-update-delete">
