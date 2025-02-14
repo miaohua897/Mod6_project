@@ -36,8 +36,12 @@ const AlbumForm = ({ album, albumId, formType }) => {
         'Album cover image URL must end in .png, .jpg, .jpeg';
     }
 
-    if (releaseYear === null)
+    if (releaseYear === null) {
       validationErrors.releaseYear = 'Album Release Year is required';
+    } else if (releaseYear < 1940) {
+      validationErrors.releaseYear = 'Album Release Year must be 1940 or later';
+    }
+      
 
     setErrors(validationErrors);
   }, [title, image, releaseYear]);
