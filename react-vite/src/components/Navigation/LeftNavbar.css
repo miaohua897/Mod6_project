@@ -74,6 +74,11 @@
   font-weight: bold;
 }
 
+.left-navbar-library-div {
+  max-height: 342px;
+  overflow: auto;
+}
+
 .left-navbar-no-user-div {
   background-color: #1f1f1f;
   padding: 16px 20px;
