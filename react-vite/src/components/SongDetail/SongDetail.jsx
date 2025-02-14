@@ -6,8 +6,8 @@ import { FaPlay ,FaEdit,FaTrash,FaList} from 'react-icons/fa';
 import DeleteASong from '../DeleteASong'
 import Modal from 'react-modal';
 import UpdateASong from '../UpdateASong';
-import Testfunction from './Testfunction ';
-import OpenModalButton from '../OpenModalButton'
+import OpenModalButton from '../OpenModalButton';
+import AddToPlaylistModal from "../AddToPlaylistModal/AddToPlaylistModal";
 import './SongDetail.css'
 
 Modal.setAppElement('#root');
@@ -150,7 +150,7 @@ function SongDetail(){
              {/* replae Testfunction with your component */}
               <div className="addASongToPlaylistNav"> 
                    <OpenModalButton
-                    modalComponent={<Testfunction  />}
+                    modalComponent={<AddToPlaylistModal songId={song.id}  />}
                     buttonText={<p>
                       <FaList/>
                   {'                                                 '}
@@ -163,7 +163,7 @@ function SongDetail(){
                :  
                <div className="addASongToPlaylistNav"> 
                <OpenModalButton
-                modalComponent={<Testfunction  />}
+                modalComponent={<AddToPlaylistModal songId={song.id}  />}
                 buttonText={<p>
                   <FaList/>
                   {'                                                 '}
