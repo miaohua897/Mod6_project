@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import EditPlaylistForm from "../EditPlaylistForm";
 import { useEffect ,useState, useRef } from "react";
@@ -15,7 +15,7 @@ const PlaylistDetails = () => {
     const ulRef = useRef();
     const playlist = useSelector((state) => state.playlists[playlistId]);
     const user = useSelector((state) => state.session.user);
-    
+    const navigate = useNavigate();
     const playlistSongs = useSelector((state) => selectPlaylistSongs(state, playlistId));
     let playlistDuration = 0;
     if (playlistSongs.length) {
@@ -43,7 +43,7 @@ const PlaylistDetails = () => {
         e.preventDefault();
         e.stopPropagation();  
     }    
-    
+    if (!user) navigate("/");
     return (
         <div className="playlist-details">
             <div className="playlist-header">
@@ -57,8 +57,8 @@ const PlaylistDetails = () => {
                     </div>
                     <div>
                         <span>{user?.username}</span>
-                        <span> &middot; </span> 
-                        <span>{playlist?.song_ids.length <= 1
+                        <span>  &middot;  </span> 
+                        <span>{playlist?.song_ids.length === 1
                                 ? `${playlist?.song_ids.length} song`
                                 : `${playlist?.song_ids.length} songs`}
                         </span>

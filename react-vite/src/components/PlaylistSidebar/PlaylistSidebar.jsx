@@ -1,8 +1,6 @@
-import CreatePlaylistForm from "../CreatePlaylistForm/CreatePlaylistForm";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from 'react-router-dom';
-import './PlaylistSidebar.css'
-import OpenModalButton from "../OpenModalButton";
+import './PlaylistSidebar.css';
 import { useEffect } from 'react';
 import { getUserPlaylists, resetUserPlaylists } from '../../redux/playlists';
 
@@ -26,12 +24,7 @@ const PlaylistSidebar = () => {
        
     return (
         <div className="playlist-sidebar">
-            { user && (<><OpenModalButton
-                className="left-navbar-state-button"
-                modalComponent={<CreatePlaylistForm />}
-                buttonText="Create new playlist"
-              />
-              {/* <button onClick={handleUnlike}>add song</button>          */}
+            { user && (<>
             <div className="playlist-folders">
                 <div className="list-folder">
                     <NavLink to="/likes">
