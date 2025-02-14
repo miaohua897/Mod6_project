@@ -161,6 +161,9 @@
 .player-queue-song-title {
   font-size: 14px;
   font-weight: bold;
+  max-height: 32px;
+  overflow-wrap: anywhere;
+  overflow: auto;
 }
 
 .player-queue-song-title-artist {
