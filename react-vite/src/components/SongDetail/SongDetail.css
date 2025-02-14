@@ -150,7 +150,7 @@ body{
     border-radius: 10px;
     opacity: 1;
     position: absolute;
-    top: -150px;       
+    top: -160px;       
     left: -110px;       
     box-shadow: 0 4px 8px rgb(23, 23, 23);
   
@@ -204,4 +204,9 @@ body{
 
 .tableBody:hover .playSongButton{
     display: block;
+}
+.addlyricsinput{
+    width: 90%;
+    height:80px;
+    border-radius: 5px; 
 }

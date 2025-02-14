@@ -8,8 +8,6 @@ const EditAlbum = () => {
 
   if (!album) return <h2>Loading...</h2>;
 
-  console.log(album)
-
   return (
     <AlbumForm album={album} albumId={albumId} formType="editAlbum" />
   )

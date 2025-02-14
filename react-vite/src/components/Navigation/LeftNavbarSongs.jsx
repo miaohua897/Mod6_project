@@ -2,10 +2,12 @@ import './LeftNavbarSongs.css';
 import { useNavigate } from 'react-router-dom'
 import { useSelector} from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { useEffect ,useState} from "react"
+import { useEffect } from "react"
 import {getCurrentAllSongs} from '../../redux/songs'
 
-export default function LeftNavbarSongs({ isLoaded, sessionUser }) {
+
+export default function LeftNavbarSongs({  sessionUser }) {
+
 
     const navigate = useNavigate()  
     const dispatch =useDispatch()

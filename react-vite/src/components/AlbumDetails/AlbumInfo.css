@@ -18,7 +18,7 @@
 }
 
 .album-info-container h2 {
-  font-size: 70px;
+  font-size: 50px;
   font-weight: bold;
 }
 
@@ -31,4 +31,16 @@
 
 #album-artist-name {
     font-weight: bold;
+}
+
+.add-to-playlist {
+  display: flex;
+  column-gap: 5px;
+}
+
+.add-to-playlist span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 }

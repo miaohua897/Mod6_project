@@ -19,10 +19,8 @@ import './MusicPlayer.css';
 
 export default function MusicPlayer() {
   const dispatch = useDispatch();
-  const player = useSelector(state => state.player);
-  const [songs, setSongs] = useState([]);
+  const { songs, currentIndex } = useSelector(state => state.player);
   const [currentSong, setCurrentSong] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isSeeking, setIsSeeking] = useState(false);
@@ -33,14 +31,11 @@ export default function MusicPlayer() {
   const playerRef = useRef(null);
 
   useEffect(() => {
-    // Load songs from Redux state
-    setSongs([...player.songs]);
-
-    if (player.songs.length) {
-      setCurrentSong({ ...player.songs[0] });
+    if (songs.length) {
+      setCurrentSong(songs[currentIndex]);
       setIsPlaying(true);
     }
-  }, [player.songs]);
+  }, [songs, currentIndex]);
 
   const incrementPlayerIndex = async () => {
     await dispatch(playerActions.thunkIncrementPlayerIndex());
@@ -56,21 +51,15 @@ export default function MusicPlayer() {
 
   const handleNextSong = () => {
     if (currentIndex < songs.length - 1) {
-      // const nextIndex = (currentIndex + 1) % songs.length; // Loop back to the beginning
-      setCurrentSong({ ...songs[currentIndex + 1] });
-      setIsPlaying(true);
-      setCurrentIndex(currentIndex + 1);
       incrementPlayerIndex();
+      setIsPlaying(true);
     }
   };
 
   const handlePrevSong = () => {
     if (currentIndex > 0) {
-      // const prevIndex = (currentIndex - 1 + songs.length) % songs.length; // Loop back to the end
-      setCurrentSong({ ...songs[currentIndex - 1] });
-      setIsPlaying(true);
-      setCurrentIndex(currentIndex - 1);
       decrementPlayerIndex();
+      setIsPlaying(true);
     }
   };
 
