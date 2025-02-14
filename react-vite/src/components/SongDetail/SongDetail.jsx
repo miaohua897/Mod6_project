@@ -138,7 +138,7 @@ function SongDetail() {
                   <td id='song-table-title'>{song.title}</td>
                   <td>{song.artist}</td>
                   <td>
-                     {/* <LikeButton songId={song.id} /> */}
+                     <LikeButton songId={song.id} />
                      </td>
                   <td>{song.duration}</td>
                   <td>

@@ -96,7 +96,7 @@ function AddASong(){
         if(res.id)
              await navigate(`/song/${res.id}`)
         else{
-            window.alert('cant add the song')
+            window.alert("can't add the song")
         }
       
     }
