@@ -11,8 +11,7 @@ export default function LeftNavbarSongs({  sessionUser }) {
 
     const navigate = useNavigate()  
     const dispatch =useDispatch()
-    const songs = useSelector(state=>state.song.currentUserAllSongs
-        )
+    const songs = useSelector(state=>state.song.currentUserAllSongs)
 
     useEffect( ()=>{
         dispatch(getCurrentAllSongs())
