@@ -39,7 +39,7 @@ export default function LeftNavbarSongs({  sessionUser }) {
                             </div>
                         )
                     })
-                    :null
+                    :<p>Add a song to your library</p>
                 }
                 </div>
        :
