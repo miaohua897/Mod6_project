@@ -54,15 +54,7 @@ function AddASong(){
         if (release_year <=0 || release_year >10000) {
             const error = {'error':'release year is a positive number, less than 10000'}
             setRyError(error)
-            setImage(null)
-            setAudio(null)
-            setTitle('')
-            // setDuration('')
-            setLyrics('')
-            setGenre('')
-            setRelease_year(0)
-            setS_duration(-1)
-            setMin_duration(-1)
+          
             return ;
             
         } 
