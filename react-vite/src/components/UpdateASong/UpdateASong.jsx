@@ -99,10 +99,10 @@ function UpdateASong({song_id,closeUpdateModal}){
             }
          
     return (
-        <div>
-               <div className="closeUpdateASongButtonPosition">
+        <div className="update-song-modal-container">
+               <div className="close-update-song-button-position">
                       <button
-                      className="closeUpdateASongModal"
+                      className="close-update-song-modal"
                       onClick={()=> closeUpdateModal()}
                       >  <FaTimes /> </button>
                 </div>
@@ -110,20 +110,20 @@ function UpdateASong({song_id,closeUpdateModal}){
             <form
             onSubmit={handleSubmit}
               encType="multipart/form-data"
-               className="updateSongContainer"
+               className="update-song-container"
             >
-               
+                <h2 className="update-your-song">Update your song</h2>
                 <p>song title</p>
                 {titleError!==""? <p style={{color:"red"}}>{titleError}</p>: null}
                 <input
                 type='text'
-                value={title?title:song.title}
+                value={title}
                 onChange={(e)=>setTitle(e.target.value)}
-                 className="updateSonginput"
+                 className="update-song-input"
                 >
                 </input>
                 <div
-                className='durationInputContainer'
+                className='duration-input-container'
                 >
                 <p>song duration</p>
                 {minError!==""? <p style={{color:"red"}}>{minError}</p>: null}
@@ -132,7 +132,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 type='number'
                 value={min_duration===-1?'':min_duration}
                 onChange={(e)=>setMin_duration(e.target.value)}
-                className="durationInputBox"
+                className="duration-input-box"
                 >    
                 </input> <a> min</a>
                
@@ -140,7 +140,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 type='number'
                 value={s_duration===-1?'':s_duration}
                 onChange={(e)=>setS_duration(e.target.value)}
-                className="durationInputBox"
+                className="duration-input-box"
                 >    
                 </input> <a> s</a>
 
@@ -152,25 +152,25 @@ function UpdateASong({song_id,closeUpdateModal}){
                 type='number'
                 value={release_year}
                 onChange={(e)=>setRelease_year(e.target.value)}
-                 className="updateSonginput"
+                 className="update-song-input"
                 >
                 </input>
                 <p>song lyrics</p>
                 <textarea
-                  value ={lyrics?lyrics:song.lyrics}
+                  value ={lyrics}
                   onChange={(e)=>setLyrics(e.target.value)}
                 //   rows='4'
                   cols='10'
-                   className="updatelyricsinput"
+                   className="update-lyrics-input"
                 >
                 </textarea>
          
                 <p>song genre</p>
                 <input
                 type='text'
-                value={genre?genre:song.genre}
+                value={genre}
                 onChange={(e)=>setGenre(e.target.value)}
-                 className="updateSonginput"
+                 className="update-song-input"
                 >
                 </input>
                 <p>upload a image for the song</p>
@@ -178,7 +178,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 type='file'
                 accept="image/*"
                 onChange={(e)=>setImage(e.target.files[0])}
-                className="updateSonginput"    
+                className="update-song-input"    
                 >
                  
                 </input>
@@ -191,7 +191,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 >   
                 </input>
                 <button 
-                className="submitUpdateSongButton"
+                className="submit-update-song-button"
                 type="submit">Submit</button>
 
             </form>

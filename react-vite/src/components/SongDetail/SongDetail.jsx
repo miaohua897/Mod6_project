@@ -63,9 +63,9 @@ function SongDetail() {
   return (
     <div>
       {song ? (
-        <div className="song_details">
-          <div className="song_head">
-            <img className="img_song_detail" src={song.image_url}></img>
+        <div className="song-details">
+          <div className="song-head">
+            <img className="img-song-detail" src={song.image_url}></img>
             <div className='song-info-container'>
               <p id='song-head-title'>{song.title}</p>
               <p id='song-info-body'>
@@ -73,14 +73,14 @@ function SongDetail() {
               </p>
             </div>
           </div>
-          <div className="song_body">
-            <p className="lyrics_format">Lyrics</p>
+          <div className="song-body">
+            <p className="lyrics-format">Lyrics</p>
             <div>
               {song.lyrics
                 .split(',')
                 .slice(0, visible_lyrics)
                 .map((el, index) => (
-                  <p className="lyrics_detail_format" key={index}>
+                  <p className="lyrics-detail-format" key={index}>
                     {el}
                   </p>
                 ))}
@@ -88,14 +88,14 @@ function SongDetail() {
             {visible_lyrics === 6 ? (
               <button
                 onClick={() => setVisible_lyrics(song.lyrics.length)}
-                className="visible_lyrics"
+                className="visible-lyrics"
               >
                 ... show more
               </button>
             ) : (
               <button
                 onClick={() => setVisible_lyrics(6)}
-                className="visible_lyrics"
+                className="visible-lyrics"
               >
                 show less
               </button>
@@ -104,7 +104,7 @@ function SongDetail() {
           <div>
             <table className="table-songs-container">
               <thead>
-                <tr className="tableHead">
+                <tr className="table-head">
                   <th></th>
                   <th >Title</th>
                   <th>Artist</th>
@@ -114,7 +114,7 @@ function SongDetail() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="tableBody">
+                <tr className="table-body">
                   <td>
                     <button
                       style={{ backgroundColor: 'transparent', border: 'None' }}
@@ -131,7 +131,7 @@ function SongDetail() {
                           incrementPlayerIndex();
                         }
                       }}
-                      className="playSongButton"
+                      className="play-song-button"
                     >
                       <FaPlay size={15} color="darkgray" />
                     </button>
@@ -147,9 +147,9 @@ function SongDetail() {
                   <td>
                     <div>
                       {sessionUser ? (
-                        <div className="songDetailDropDown">
+                        <div className="song-detail-dropdown">
                           <button
-                            className="songDetailDropDownButton"
+                            className="song-detail-dropdown-button"
                             onClick={e => {
                               e.stopPropagation();
                               setDropdown(true);
@@ -160,9 +160,9 @@ function SongDetail() {
                           {dropdown || isUpdateModalOpen || isModalOpen ? (
                             isUserSong.length !== 0 ? (
                               <div>
-                                <div className="updateDeleteContainer">
+                                <div className="update-delete-container">
                                   <button
-                                    className="updateASongNav"
+                                    className="update-song-nav"
                                     onClick={openUpdateModal}
                                   >
                                     <FaEdit />
@@ -171,7 +171,7 @@ function SongDetail() {
                                   </button>
                                   <Modal
                                     isOpen={isUpdateModalOpen}
-                                    className="updateAModal"
+                                    className="update-modal"
                                     overlayClassName="deleteAOverlay"
                                     onRequestClose={closeUpdateModal}
                                     contentLabel="delete a song"
@@ -182,7 +182,7 @@ function SongDetail() {
                                     />
                                   </Modal>
                                   <button
-                                    className="deleteASongNav"
+                                    className="delete-song-nav"
                                     onClick={openModal}
                                   >
                                     <FaTrash />
@@ -191,7 +191,7 @@ function SongDetail() {
                                   </button>
                                   <Modal
                                     isOpen={isModalOpen}
-                                    className="deleteAModal"
+                                    className="delete-modal"
                                     overlayClassName="deleteAOverlay"
                                     onRequestClose={closeModal}
                                     contentLabel="delete a song"
@@ -204,7 +204,7 @@ function SongDetail() {
                                   </Modal>
 
                                   {/* replae Testfunction with your component */}
-                                  <div className="addASongToPlaylistNav">
+                                  <div className="add-song-playlist-nav">
                                     <OpenModalButton
                                       modalComponent={
                                         <AddToPlaylistModal songId={song.id} />
@@ -223,7 +223,7 @@ function SongDetail() {
                                 </div>
                               </div>
                             ) : (
-                              <div className="addASongToPlaylistNav">
+                              <div className="add-song-playlist-nav">
                                 <OpenModalButton
                                   modalComponent={
                                     <AddToPlaylistModal songId={song.id} />

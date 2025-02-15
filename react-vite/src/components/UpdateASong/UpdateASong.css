@@ -1,4 +1,5 @@
-.updateSongContainer{
+
+.update-song-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,25 +13,25 @@
     border-radius: 10px;
     padding-left: 60px;
 }
-.updateSonginput{
+.update-song-input{
     width: 90%;
     border-radius: 5px;
     text-align: center;
 }
-.updatelyricsinput{
+.update-lyrics-input{
     width: 90%;
     height:80px;
     border-radius: 5px; 
 }
-.durationInputBox{
+.duration-input-box{
     margin-right:10px;
     margin-left:5px;
 }
-.updateSonginput{
+.update-song-input{
     width: 90%;
     border-radius: 5px;
 }
-.submitUpdateSongButton{
+.submit-update-song-button{
     width: 30%;
     height:30px;
     margin:5px;
@@ -46,15 +47,18 @@
     color:aliceblue;
     opacity: 0.9;
 }
-.closeUpdateASongButtonPosition{
+.close-update-song-button-position{
     display: flex;
     flex-direction: row;
     justify-content: end;
     font-weight: bolder;
     font-size: 18px;
 }
-.closeUpdateASongModal{
+.close-update-song-modal{
     background-color: transparent;
     color:white;
     border: None;
+}
+.update-your-song{
+    padding-left: 25%;
 }

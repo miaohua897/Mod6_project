@@ -100,21 +100,21 @@ function AddASong(){
 
     return (
 
-        <div className="addSongModalContainer">
+        <div className="add-song-modal-container">
 
-            <div className="closeAddASongButtonPosition">
+            <div className="close-add-song-button-position">
             <button
-            className="closeAddASongModal"
+            className="close-add-song-modal"
             onClick={()=> closeModal()}
             >  <FaTimes /> </button>
             </div>
-           
+            
             <form
             onSubmit={handleSubmit}
               encType="multipart/form-data"
-              className="addSongContainer"
+              className="add-song-container"
             >
-              
+               <h2 className="add-song-title">Add a Song to Museic</h2>
                <p>song title</p>
                {titleError!==""? <p style={{color:"red"}}>{titleError}</p>: null}
                 <input
@@ -122,20 +122,20 @@ function AddASong(){
                 value={title}
                 onChange={(e)=>setTitle(e.target.value)}
                 required
-                className="addSonginput"
+                className="add-song-input"
                 >
                 </input>
                 <p>song duration</p>
                {minError!==""? <p style={{color:"red"}}>{minError}</p>: null}
                {sError!==""? <p style={{color:"red"}}>{sError}</p>: null}
         
-               <div className='durationInputContainer'>
+               <div className='duration-input-container'>
              
                 <input 
                 type='number'
                 value={min_duration===-1?'':min_duration}
                 onChange={(e)=>setMin_duration(e.target.value)}
-                className="durationInputBox"
+                className="duration-input-box"
                 >    
                 </input> <a> min</a>
                
@@ -143,7 +143,7 @@ function AddASong(){
                 type='number'
                 value={s_duration===-1?'':s_duration}
                 onChange={(e)=>setS_duration(e.target.value)}
-                className="durationInputBox"
+                className="duration-input-box"
                 >    
                 </input> <a> s</a>
                </div>
@@ -154,7 +154,7 @@ function AddASong(){
                 value={release_year===0?'':release_year}
                 onChange={(e)=>setRelease_year(e.target.value)}
                 required
-                className="addSonginput"
+                className="add-song-input"
                 >
                 </input>
                 <p>song lyrics</p>
@@ -162,7 +162,7 @@ function AddASong(){
                 type='text'
                 value ={lyrics}
                 onChange={(e)=>setLyrics(e.target.value)}
-                 className="addlyricsinput"
+                 className="add-lyrics-input"
                  required
                 >
                 </input>
@@ -173,7 +173,7 @@ function AddASong(){
                 value={genre}
                 onChange={(e)=>setGenre(e.target.value)}
                 required
-                className="addSonginput"
+                className="add-song-input"
                 >
                 </input>
                 <p>upload a image for the song</p>
@@ -184,8 +184,8 @@ function AddASong(){
                 accept="image/*"
                 onChange={(e)=>setImage(e.target.files[0])}
                 required
-                className="addSonginput"
-                id='updatefiles'
+                className="add-song-input"
+                id='update-files'
                 >
                 </input>
                 </label>
@@ -201,7 +201,7 @@ function AddASong(){
                 accept="mp3/*"
                 onChange={(e)=>setAudio(e.target.files[0])}
                 required
-                className="addSonginput"
+                className="add-song-input"
                 >   
                 </input>
 
@@ -209,7 +209,7 @@ function AddASong(){
                
                
                 <button 
-                className="submitAddSongButton"
+                className="submit-add-song-button"
                 type="submit">Submit</button>
  
         
