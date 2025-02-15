@@ -11,11 +11,16 @@ export default function LeftNavbarSongs({  sessionUser }) {
 
     const navigate = useNavigate()  
     const dispatch =useDispatch()
+    const songs = useSelector(state=>state.song.currentUserAllSongs)
+
+
     useEffect(()=>{
         dispatch(getCurrentAllSongs())
     },[dispatch])
 
-  const songs = useSelector(state=>state.song.currentUserAllSongs)
+    console.log('new user song',songs)
+
+ 
 
   return (
     <>

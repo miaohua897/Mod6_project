@@ -94,7 +94,12 @@ function AddASong(){
         setRelease_year(0)
         closeModal()
         if(res.id)
-             await navigate(`/song/${res.id}`)
+        {
+            await navigate(`/song/${res.id}`)
+            window.location.reload();
+        }
+            
+             
         else{
             window.alert("can't add the song")
         }
