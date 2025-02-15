@@ -18,6 +18,8 @@ export default function Layout() {
 
     dispatch(songActions.getAllSongs());
 
+    // dispatch(songActions.getCurrentAllSongs());
+
     dispatch(getUserPlaylists()).catch(async (res) => {
       const resError = await res.json();
       if (resError) {
