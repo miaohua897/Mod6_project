@@ -96,7 +96,7 @@ function AddASong(){
         if(res.id)
         {
             await navigate(`/song/${res.id}`)
-            window.location.reload();
+            // window.location.reload();
         }
             
              
