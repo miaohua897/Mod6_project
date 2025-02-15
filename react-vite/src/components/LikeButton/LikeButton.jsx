@@ -5,7 +5,8 @@ import './LikeButton.css';
 
 export default function LikeButton({ songId }) {
   const dispatch = useDispatch();
-  const likedSongIds = useSelector(state => state.session.user.likedSongIds);
+  const sessionUser = useSelector(state => state.session.user);
+  const likedSongIds = sessionUser ? sessionUser.likedSongIds : [];
 
   const handleClick = async songId => {
     if (!likedSongIds.includes(songId)) {
@@ -16,19 +17,26 @@ export default function LikeButton({ songId }) {
   };
 
   return (
-    <span onClick={() => handleClick(songId)} className="like-button-container">
-      {likedSongIds.includes(songId) && (
-        <BiSolidHeartCircle
-          style={{ width: '100%', height: 'auto' }}
-          className="like-button"
-        />
+    <>
+      {sessionUser && (
+        <span
+          onClick={() => handleClick(songId)}
+          className="like-button-container"
+        >
+          {likedSongIds.includes(songId) && (
+            <BiSolidHeartCircle
+              style={{ width: '100%', height: 'auto' }}
+              className="like-button"
+            />
+          )}
+          {!likedSongIds.includes(songId) && (
+            <BiPlusCircle
+              style={{ width: '100%', height: 'auto' }}
+              className="like-button"
+            />
+          )}
+        </span>
       )}
-      {!likedSongIds.includes(songId) && (
-        <BiPlusCircle
-          style={{ width: '100%', height: 'auto' }}
-          className="like-button"
-        />
-      )}
-    </span>
+    </>
   );
 }
