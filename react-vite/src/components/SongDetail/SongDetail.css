@@ -236,7 +236,7 @@ body{
     transform: translateX(-50%); 
 }
 
-.tableBody:hover .playSongButton{
+.table-body:hover .play-song-button{
     display: block;
 }
 .addlyricsinput{
