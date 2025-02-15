@@ -19,16 +19,16 @@ function DeleteASong({song_id,closeModal,title} ){
         <p className="deleteASongConfirm">Delete from Your Library ?</p>
         <div className="deleteASongConfirmAgain">
             <p>
-            This will delete{' '}
+            This will delete{'                             '}
             </p>
             <p
             //  style={{fontWeight:"bolder"}}
             id='delete-song-title'
             >
-            {title}
+           {title}
             </p>
             <p>
-            {' '}from Your Library.
+            {'                    '}from Your Library.
             </p>
             </div>
         <div className="deleteASongButtonContainer">
