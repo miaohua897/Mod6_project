@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import * as albumActions from '../../redux/albums';
 import * as sessionActions from '../../redux/session';
+import { isValidURL } from '../../resources/helperFunctions';
 import './AlbumForm.css';
 
 const AlbumForm = ({ album, albumId, formType }) => {
@@ -32,9 +33,10 @@ const AlbumForm = ({ album, albumId, formType }) => {
       validationErrors.image = 'Album Cover Image is required';
     } else if (
       !acceptedImageExtensions.some(extension => image.endsWith(extension))
+      || !isValidURL(image)
     ) {
       validationErrors.image =
-        'Album cover image URL must end in .png, .jpg, .jpeg';
+        'Image URL must end in .png, .jpg, .jpeg, and must be a valid URL';
     }
 
     if (releaseYear === null) {

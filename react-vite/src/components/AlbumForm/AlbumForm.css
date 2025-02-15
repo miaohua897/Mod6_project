@@ -74,6 +74,7 @@
 }
 
 .album-form-error-message-container {
+  font-size: 12px;
   height: 15px;
   text-align: left;
   color: red;
