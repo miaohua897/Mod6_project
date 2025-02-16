@@ -189,6 +189,7 @@ body{
  
   
 }
+
 .update-song-nav{
     background-color: transparent;
     border: None;
@@ -196,7 +197,9 @@ body{
     margin:3px;
     padding: 10px;
     border-bottom: 1px solid rgb(104, 102, 102);
+    cursor: pointer;
 }
+
 .delete-song-nav{
     background-color: transparent;
     border: None;
@@ -204,12 +207,15 @@ body{
     margin:3px;
     padding: 10px;
     border-bottom: 1px solid rgb(104, 102, 102);
+    cursor: pointer;
  
 }
+
 .add-song-playlist-nav button{
     background-color: transparent;
     border: None;
     color:whitesmoke;
+    cursor: pointer;
 }
 .song-detail-dropdown{
     position: relative;
@@ -230,6 +236,7 @@ body{
 .table-body:hover .play-song-button{
     display: block;
 }
+
 .addlyricsinput{
     width: 90%;
     height:80px;
