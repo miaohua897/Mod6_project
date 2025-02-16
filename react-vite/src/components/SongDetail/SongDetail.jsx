@@ -157,18 +157,22 @@ function SongDetail() {
                           >
                             ...
                           </button>
-                          {dropdown || isUpdateModalOpen || isModalOpen ? (
+                          {
+                          dropdown || isUpdateModalOpen || isModalOpen ?
+                          (
                             isUserSong.length !== 0 ? (
                               <div>
+                               
                                 <div className="update-delete-container">
-                                  <button
+                                {dropdown ?  
+                                <button
                                     className="update-song-nav"
                                     onClick={openUpdateModal}
                                   >
                                     <FaEdit />
                                     {'                                      '}
                                     update a song
-                                  </button>
+                                  </button>:null}
                                   <Modal
                                     isOpen={isUpdateModalOpen}
                                     className="update-modal"
@@ -181,14 +185,18 @@ function SongDetail() {
                                       closeUpdateModal={closeUpdateModal}
                                     />
                                   </Modal>
-                                  <button
+                                  {
+                                    dropdown?
+                                    <button
                                     className="delete-song-nav"
                                     onClick={openModal}
                                   >
                                     <FaTrash />
                                     {'                                      '}
                                     delete a song
-                                  </button>
+                                  </button>:null
+                                  }
+                              
                                   <Modal
                                     isOpen={isModalOpen}
                                     className="delete-modal"

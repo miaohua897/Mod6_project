@@ -215,16 +215,7 @@ body{
     position: relative;
    
 }
-.lyrics_format{
-    font-size: 28px;
-    font-weight: bolder;
-    padding-left: 20px;
-}
-.lyrics_detail_format{
-    padding-left: 20px;
-    font-size: 16px;
-    margin:10px;
-}
+
 .table-body{
     position: relative;
 }
@@ -243,4 +234,15 @@ body{
     width: 90%;
     height:80px;
     border-radius: 5px; 
+}
+.lyrics-format{
+    font-size: 28px;
+    font-weight: bolder;
+    padding-left: 20px;
+}
+.lyrics-detail-format{
+    padding-left: 20px;
+    font-size: 16px;
+    margin:10px;
+ 
 }
