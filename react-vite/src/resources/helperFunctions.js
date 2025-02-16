@@ -25,3 +25,15 @@ export const calculateDuration = (arr) => {
   
     return hours > 0 ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;
   };
+
+  export function isValidURL(string) {
+    const urlPattern = new RegExp(
+      "^(https?:\\/\\/)" + // Protocol
+        "((([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,})|" + // Domain name
+        "localhost|" + // Localhost
+        "\\d{1,3}(\\.\\d{1,3}){3})" + // OR IPv4
+        "(\\:\\d+)?(\\/.*)?$", // Optional port and path
+      "i"
+    );
+    return urlPattern.test(string);
+  }

@@ -13,7 +13,6 @@ import * as playerActions from '../../redux/player';
 import './LeftNavbar.css';
 import CreatePlaylistForm from '../CreatePlaylistForm/CreatePlaylistForm';
 
-
 export default function LeftNavbar({ isLoaded, sessionUser }) {
   const dispatch = useDispatch();
   const player = useSelector(state => state.player);
@@ -21,12 +20,7 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
   const [isAlbumsActive, setIsAlbumsActive] = useState(false);
   const [isPlaylistsActive, setIsPlaylistsActive] = useState(false);
 
-  
-  
 
-  const songs = useSelector(state=>state.song.currentUserAllSongs);
-
-  console.log('songs form left nav bar',songs)
 
   const setPlayerIndex = async index => {
     await dispatch(playerActions.thunkSetPlayerIndex(index));
@@ -113,19 +107,8 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
               </div>
             </div>
             <div className="left-navbar-library-div">
-              {
-                isSongsActive?
-                <LeftNavbarSongs
-                isLoaded={isLoaded}
-                sessionUser={sessionUser}
-              />:
-                null
-              }
-          
-              {/* {isSongsActive &&
-                (
-                  // !sessionUser.songIds || !sessionUser.songIds.length ? 
-                  (
+              {isSongsActive &&
+                (!sessionUser.songIds || !sessionUser.songIds.length ? (
                   <span className="add-to-library">
                     Add a song to your library
                   </span>
@@ -134,7 +117,7 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
                     isLoaded={isLoaded}
                     sessionUser={sessionUser}
                   />
-                ))} */}
+                ))}
               {isAlbumsActive &&
                 (!sessionUser.albumIds || !sessionUser.albumIds.length ? (
                   <span className="add-to-library">

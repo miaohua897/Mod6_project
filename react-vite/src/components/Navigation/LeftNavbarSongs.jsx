@@ -11,16 +11,20 @@ export default function LeftNavbarSongs({  sessionUser }) {
 
     const navigate = useNavigate()  
     const dispatch =useDispatch()
-    useEffect(()=>{
+    const songs = useSelector(state=>state.song.currentUserAllSongs)
+
+    useEffect( ()=>{
         dispatch(getCurrentAllSongs())
     },[dispatch])
 
-  const songs = useSelector(state=>state.song.currentUserAllSongs)
+    console.log('i am from left nav bar',songs,sessionUser)
+
 
   return (
     <>
     {
        sessionUser?
+
            <div className="allSongs">
                 {
                     songs.length !== 0?
@@ -39,7 +43,7 @@ export default function LeftNavbarSongs({  sessionUser }) {
                             </div>
                         )
                     })
-                    :null
+                    :<p>Add a song to your library</p>
                 }
                 </div>
        :
