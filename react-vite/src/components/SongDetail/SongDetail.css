@@ -3,7 +3,7 @@ body{
     color: aliceblue;
 }
 
-.song_details{
+.song-details{
     display: grid;
     grid-template-rows: 0.25fr 0.65fr 0.1fr;
     grid-template-areas: 'head' 'body' 'foot';
@@ -14,7 +14,7 @@ body{
     margin-right:20px;
     border-radius: 5px;
 }
-.song_head{
+.song-head{
     grid-area: head;
     background-image: linear-gradient(to bottom, rgb(89, 90, 92), black);
     display: flex;
@@ -25,15 +25,15 @@ body{
     gap:15px;
     border-radius: 10px;
 }
-.song_body{
+.song-body{
     grid-area: body;
     background-image: linear-gradient(to bottom, rgb(117, 119, 121), black);
     border-radius: 5px;
 }
-.song_foot{
+.song-foot{
     grid-area: foot;
 }
-.img_song_detail{
+.img-song-detail{
     width:16%;
     height:84%;
     margin: 10px;
@@ -46,7 +46,7 @@ body{
     align-items: flex-start;
 
 }
-.visible_lyrics{
+.visible-lyrics{
     background-color: transparent;
     border: None;
     color:white;
@@ -66,7 +66,7 @@ body{
     border-collapse: collapse;
 
 }
-.tableHead{
+.table-head{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -76,7 +76,7 @@ body{
     margin-left:60px;
 
 }
-.tableBody{
+.table-body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -117,68 +117,69 @@ body{
     bottom: 50%;
     background-color: white;
     color: black;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.9); 
   } 
-.deleteAModal{
-    
-        position: fixed; 
-        top: 50%; 
-        left: 50%; 
-        transform: translate(-50%, -50%);
-        background: #fff;
-        border-radius: 10px;
-        padding: 38px;
-        width:400px;
- 
-        height: 150px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        z-index: 1001; 
+
+.delete-modal{
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 10px;
+    padding: 38px;
+    width:400px;
+    height: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    z-index: 1001; 
+    overflow-y: auto;
    
 }
-.updateAModal{
-        position: fixed; 
-        top: 50%; 
-        left: 50%; 
-        transform: translate(-50%, -50%);
-        background: rgba(40, 40, 41, 0.7);
-        /* border: 0.2px solid whitesmoke; */
-        border-radius: 10px;
-        padding: 38px;
-        width:600px;
-        height: 400px;
-        /* box-shadow: 0 4px 8px rgba(96, 95, 95, 0.2); */
-        z-index: 1001; 
-        overflow-y: auto;
+.update-modal{
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    /* background: rgba(26, 26, 27, 0.9); */
+    
+    /* border: 0.2px solid whitesmoke; */
+    border-radius: 10px;
+    padding: 38px;
+    width:600px;
+    height: 400px;
+    /* box-shadow: 0 4px 8px rgba(96, 95, 95, 0.2); */
+    z-index: 1001; 
+    overflow-y: auto;
 }
 .deleteAOverlay{ 
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(21, 21, 21, 0.3);
-        z-index: 1000; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(21, 21, 21, 0.7);
+    z-index: 1000; 
 }
 
 .closeDeleteButton{
     background-color: transparent;
     border: None;
 }
-.songDetailDropDownButton{
+.song-detail-dropdown-button{
 
     background-color: transparent;
     border: None;
     color:white;
     font-weight: bolder;
 }
-.updateDeleteContainer{
+.update-delete-container{
     display: flex;
     flex-direction: column;
     gap:10px;
     margin-top: 5px;
     /* border: 1px solid whitesmoke; */
     padding: 5px;
-    background-color: rgba(53, 53, 53, 0.95);
+    background-color: rgba(20, 19, 19, 0.95);
     border-radius: 10px;
     opacity: 1;
     position: absolute;
@@ -188,46 +189,43 @@ body{
  
   
 }
-.updateASongNav{
+
+.update-song-nav{
     background-color: transparent;
     border: None;
     color:whitesmoke;
     margin:3px;
     padding: 10px;
     border-bottom: 1px solid rgb(104, 102, 102);
+    cursor: pointer;
 }
-.deleteASongNav{
+
+.delete-song-nav{
     background-color: transparent;
     border: None;
     color:whitesmoke;
     margin:3px;
     padding: 10px;
     border-bottom: 1px solid rgb(104, 102, 102);
+    cursor: pointer;
  
 }
-.addASongToPlaylistNav button{
+
+.add-song-playlist-nav button{
     background-color: transparent;
     border: None;
     color:whitesmoke;
+    cursor: pointer;
 }
-.songDetailDropDown{
+.song-detail-dropdown{
     position: relative;
    
 }
-.lyrics_format{
-    font-size: 28px;
-    font-weight: bolder;
-    padding-left: 20px;
-}
-.lyrics_detail_format{
-    padding-left: 20px;
-    font-size: 16px;
-    margin:10px;
-}
-.tableBody{
+
+.table-body{
     position: relative;
 }
-.playSongButton{
+.play-song-button{
     display: None;
     position: absolute; 
     /* bottom: 10px;  */
@@ -235,11 +233,23 @@ body{
     transform: translateX(-50%); 
 }
 
-.tableBody:hover .playSongButton{
+.table-body:hover .play-song-button{
     display: block;
 }
+
 .addlyricsinput{
     width: 90%;
     height:80px;
     border-radius: 5px; 
+}
+.lyrics-format{
+    font-size: 28px;
+    font-weight: bolder;
+    padding-left: 20px;
+}
+.lyrics-detail-format{
+    padding-left: 20px;
+    font-size: 16px;
+    margin:10px;
+ 
 }

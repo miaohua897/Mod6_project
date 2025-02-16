@@ -13,19 +13,18 @@ export default function LeftNavbarSongs({  sessionUser }) {
     const dispatch =useDispatch()
     const songs = useSelector(state=>state.song.currentUserAllSongs)
 
-
-    useEffect(()=>{
+    useEffect( ()=>{
         dispatch(getCurrentAllSongs())
     },[dispatch])
 
-    console.log('new user song',songs)
+    console.log('i am from left nav bar',songs,sessionUser)
 
- 
 
   return (
     <>
     {
        sessionUser?
+
            <div className="allSongs">
                 {
                     songs.length !== 0?

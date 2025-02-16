@@ -1,5 +1,5 @@
 
-.addSongModalContainer{
+.add-song-modal-container{
     position: fixed;
     left: 27%;
     top:10%;
@@ -8,7 +8,7 @@
     overflow: scroll;
 }
 
-.addSongContainer{
+.add-song-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,18 +23,19 @@
     padding-left: 60px;
 
 }
-.addSonginput{
+.add-song-input{
     width: 90%;
     border-radius: 5px;
 }
-.addlyricsinput{
-    height: 400px;
+.add-lyrics-input{
+    height: 200px;
+    width: 90%;
 }
-.durationInputBox{
+.duration-input-box{
     margin-right:10px;
     margin-left:5px;
 }
-.submitAddSongButton{
+.submit-add-song-button{
     width: 30%;
     height:30px;
     margin:5px;
@@ -49,24 +50,27 @@
     box-shadow: 2px 2px rgb(47, 46, 46),2px -2px rgb(47, 46, 46),-2px 2px rgb(47, 46, 46),-2px -2px rgb(47, 46, 46);
     color:aliceblue
 }
-.deleteASongButtonContainer{
+.submit-add-song-button:disabled{
+    background-color: darkgray;
+ }
+/* .deleteASongButtonContainer{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
+} */
 .requiredMessage{
     color:red;
     font-size: 16px;
 
 }
-.closeAddASongModal{
+.close-add-song-modal{
     background-color: transparent;
     color:white;
     border: None;
     
 }
-.closeAddASongButtonPosition{
+.close-add-song-button-position{
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -75,3 +79,7 @@
 
 }
 
+.add-song-title{
+   padding-left: 23%;
+   padding-top:15px;
+}
