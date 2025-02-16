@@ -47,6 +47,9 @@
     color:aliceblue;
     opacity: 0.9;
 }
+.submit-update-song-button:disabled{
+    background-color: darkgray;
+ }
 .close-update-song-button-position{
     display: flex;
     flex-direction: row;

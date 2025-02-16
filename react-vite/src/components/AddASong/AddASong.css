@@ -50,6 +50,9 @@
     box-shadow: 2px 2px rgb(47, 46, 46),2px -2px rgb(47, 46, 46),-2px 2px rgb(47, 46, 46),-2px -2px rgb(47, 46, 46);
     color:aliceblue
 }
+.submit-add-song-button:disabled{
+    background-color: darkgray;
+ }
 /* .deleteASongButtonContainer{
     display: flex;
     flex-direction: row;

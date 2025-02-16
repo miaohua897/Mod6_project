@@ -22,6 +22,7 @@ function AddASong(){
     const [minError,setMinError] = useState('');
     const [sError,setSError] = useState('');
     const { closeModal } = useModal();
+    const [disableButton,setDisableButton]=useState(false)
 
     const dispatch = useDispatch()
     const navigate=useNavigate()
@@ -31,6 +32,7 @@ function AddASong(){
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
+        setDisableButton(true)
 
         if(title.length>30){
             const errorMes ='Title is too long';
@@ -85,6 +87,7 @@ function AddASong(){
         setGenre('')
         setRelease_year(0)
         closeModal()
+        setDisableButton(true)
         if(res.id)
         {
             await navigate(`/song/${res.id}`)
@@ -210,6 +213,7 @@ function AddASong(){
                
                 <button 
                 className="submit-add-song-button"
+                disabled={disableButton}
                 type="submit">Submit</button>
  
         
