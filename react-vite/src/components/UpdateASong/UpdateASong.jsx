@@ -25,13 +25,13 @@ function UpdateASong({song_id,closeUpdateModal}){
         const [ryError,setRyError]=useState({'error':''})
         const [minError,setMinError] = useState('');
         const [sError,setSError] = useState('');
-        const [disableButton,setDisableButton]=useState(false)
+        // const [disableButton,setDisableButton]=useState(false)
         const dispatch = useDispatch()
         const navigate=useNavigate()
         
         const handleSubmit= async (e)=>{
                  e.preventDefault();
-                 setDisableButton(true)
+                //  setDisableButton(true)
 
                   if(title.length>30){
                     const errorMes ='Title is too long';
@@ -98,7 +98,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                      
                      navigate(`/song/${song_id}`)
                      closeUpdateModal()
-                     setDisableButton(false)
+                    //  setDisableButton(false)
             }
          
     return (
@@ -195,7 +195,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 </input>
                 <button 
                 className="submit-update-song-button"
-                disabled={disableButton}
+                // disabled={disableButton}
                 type="submit">Submit</button>
 
             </form>
