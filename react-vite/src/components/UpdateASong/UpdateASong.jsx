@@ -25,17 +25,18 @@ function UpdateASong({song_id,closeUpdateModal}){
         const [ryError,setRyError]=useState({'error':''})
         const [minError,setMinError] = useState('');
         const [sError,setSError] = useState('');
-        // const [disableButton,setDisableButton]=useState(false)
+        const [disableButton,setDisableButton]=useState(false)
         const dispatch = useDispatch()
         const navigate=useNavigate()
         
         const handleSubmit= async (e)=>{
                  e.preventDefault();
-                //  setDisableButton(true)
+                 setDisableButton(true)
 
                   if(title.length>30){
                     const errorMes ='Title is too long';
                     setTittleError(errorMes);
+                    setDisableButton(false)
                     return ;
                 }
 
@@ -44,11 +45,13 @@ function UpdateASong({song_id,closeUpdateModal}){
                  if( min_duration <0 || min_duration>60) {
                      const errorMes = "Minutes can't be less than 0 or greater than 60."
                      setMinError(errorMes)
+                     setDisableButton(false)
                      return ;
                  }
                  if( s_duration <0 || s_duration>60) {
                      const errorMes = "Second can't be less than 0 or greater than 60."
                      setSError(errorMes)
+                     setDisableButton(false)
                      return ;
                  }
 
@@ -66,6 +69,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                            setRelease_year(song.release_year)
                            setS_duration(song.duration.split(':')[1])
                            setMin_duration(song.duration.split(':')[0])
+                           setDisableButton(false)
                            return ;
                            
                        } 
@@ -98,7 +102,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                      
                      navigate(`/song/${song_id}`)
                      closeUpdateModal()
-                    //  setDisableButton(false)
+                     setDisableButton(false)
             }
          
     return (
@@ -195,7 +199,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 </input>
                 <button 
                 className="submit-update-song-button"
-                // disabled={disableButton}
+                disabled={disableButton}
                 type="submit">Submit</button>
 
             </form>

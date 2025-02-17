@@ -22,7 +22,7 @@ function AddASong(){
     const [minError,setMinError] = useState('');
     const [sError,setSError] = useState('');
     const { closeModal } = useModal();
-    // const [disableButton,setDisableButton]=useState(false)
+    const [disableButton,setDisableButton]=useState(false)
 
     const dispatch = useDispatch()
     const navigate=useNavigate()
@@ -32,11 +32,12 @@ function AddASong(){
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
-        // setDisableButton(true)
+        setDisableButton(true)
 
         if(title.length>30){
             const errorMes ='Title is too long';
             setTittleError(errorMes);
+            setDisableButton(false)
             return ;
         }
 
@@ -45,18 +46,20 @@ function AddASong(){
         if( min_duration <0 || min_duration>60) {
             const errorMes = "Minutes can't be less than 0 or greater than 60."
             setMinError(errorMes)
+            setDisableButton(false)
             return ;
         }
         if( s_duration <0 || s_duration>60) {
             const errorMes = "Second can't be less than 0 or greater than 60."
             setSError(errorMes)
+            setDisableButton(false)
             return ;
         }
         const time_value =`${String(min_duration)}:${String(s_duration)}`;
         if (release_year <=0 || release_year >10000) {
             const error = {'error':'release year is a positive number, less than 10000'}
             setRyError(error)
-          
+            setDisableButton(false)
             return ;
             
         } 
@@ -87,7 +90,7 @@ function AddASong(){
         setGenre('')
         setRelease_year(0)
         closeModal()
-        // setDisableButton(true)
+        setDisableButton(false)
         if(res.id)
         {
             await navigate(`/song/${res.id}`)
@@ -213,7 +216,7 @@ function AddASong(){
                
                 <button 
                 className="submit-add-song-button"
-                // disabled={disableButton}
+                disabled={disableButton}
                 type="submit">Submit</button>
  
         
