@@ -1,6 +1,16 @@
-# Flask React Project
+# Welcome to Museic!
 
-This is the starter for the Flask React project.
+Museic is a music service that allows users to upload their own songs, put their songs into albums, & create playlists.
+
+**[🔭 Click here to visit the Museic website!](https://mod6-project.onrender.com/)**
+
+![Museic](https://github.com/user-attachments/assets/5b133201-db60-46a8-abb9-e61635b00b6a)
+
+Museic uses the following technologies:
+
+| Frontend                                         | Backend                                          | Database                                         | Storage                                         |
+|--------------------------------------------------|--------------------------------------------------|--------------------------------------------------|-------------------------------------------------|
+| [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/) [![Redux](https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)|[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/) [![Python3](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://python.org/) [![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white)](https://flask.palletsprojects.com/)|[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/) [![SQLite3](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=SQLite&logoColor=white)](https://www.sqlite.org/)|[![AWS S3](https://img.shields.io/badge/AWS_S3-569A31?logo=amazons3&logoColor=fff&style=for-the-badge)](https://aws.amazon.com/s3/)|
 
 ## Getting started
 
@@ -98,7 +108,10 @@ Add the following keys and values in the Render GUI form:
 - SECRET_KEY (click "Generate" to generate a secure secret for production)
 - FLASK_ENV production
 - FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
+- SCHEMA museic_schema
+- S3_BUCKET (get from your AWS S3 bucket)
+- S3_KEY (get from your AWS S3 user)
+- S3_SECRET (get from your AWS S3 user)
 
 In a new tab, navigate to your dashboard and click on your Postgres database
 instance.
@@ -131,3 +144,11 @@ main, always keeping it up to date.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+
+## Contributers
+
+- [miaohua897](https://github.com/miaohua897/)
+- [Tom Moosbrugger](https://github.com/Tom-Moosbrugger)
+- [MehwishHanif](https://github.com/MehwishHanif)
+- [fayfan](https://github.com/fayfan)
+
