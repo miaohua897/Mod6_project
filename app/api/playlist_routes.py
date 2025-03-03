@@ -6,7 +6,7 @@ from app.models import db, Playlist, playlist_songs, Song
 playlist_routes = Blueprint("playlists", __name__)
 
 
-@playlist_routes.route("/", methods=["GET"])
+@playlist_routes.route("", methods=["GET"])
 @login_required
 def playlists():
     """
@@ -16,7 +16,7 @@ def playlists():
     return {"playlists": [playlist.to_dict() for playlist in playlists]}
 
 
-@playlist_routes.route("/", methods=["POST"])
+@playlist_routes.route("", methods=["POST"])
 @login_required
 def add_playlist():
     """

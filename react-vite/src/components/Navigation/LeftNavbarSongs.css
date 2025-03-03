@@ -9,11 +9,23 @@
     flex-direction: row;
     padding: 5px;
     gap:10px;
+    cursor: pointer;
+}
+.songs_sidebar:hover{
+    background-color: rgba(255, 255, 255, 0.15);
 }
 .title_sidebar{
     background-color: transparent;
     color:aliceblue;
     font-size: 18px;
     border:None;
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
+    width: 150px; 
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.add-song-library{
+    font-family: sans-serif;
+    text-align: left;
 }

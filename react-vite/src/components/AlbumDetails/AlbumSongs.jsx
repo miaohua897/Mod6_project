@@ -2,12 +2,15 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { LuClock9 } from "react-icons/lu";
-import { CgPlayButton } from "react-icons/cg";
+import { IoIosPlay } from "react-icons/io";
 import { FaMinus } from "react-icons/fa6";
 import { GoPlus } from "react-icons/go";
-import { CiCirclePlus } from "react-icons/ci";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import AddToPlaylistModal from "../AddToPlaylistModal/AddToPlaylistModal";
+import LikeButton from "../LikeButton/LikeButton";
 import * as albumActions from "../../redux/albums";
 import * as sessionActions from "../../redux/session";
+import * as playerActions from "../../redux/player";
 import "./AlbumSongs.css";
 
 const AlbumSongs = ({ userOwnsAlbum }) => {
@@ -23,6 +26,7 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
     albumActions.selectAlbumSongs(state, albumId)
   );
   const userSongs = useSelector(sessionActions.getUserSongs);
+  const player = useSelector((state) => state.player);
   const dispatch = useDispatch();
 
   // check if there are available songs, which controls whether the
@@ -54,6 +58,14 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
     setSelectedSong("");
   };
 
+  const addSongToPlayerIndex = async (song, index) => {
+    await dispatch(playerActions.thunkAddSongToPlayerIndex(song, index));
+  };
+
+  const incrementPlayerIndex = async () => {
+    await dispatch(playerActions.thunkIncrementPlayerIndex());
+  };
+
   return (
     <section className="album-songs-container">
       <table className="album-songs-table">
@@ -73,11 +85,30 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
           {albumSongs.map((song) => (
             <tr key={song.id}>
               <td>
-                <CgPlayButton />
+                <span
+                  onClick={() => {
+                    if (!player.songs.length) {
+                      addSongToPlayerIndex(song, player.currentIndex);
+                    } else if (
+                      song.id !== player.songs[player.currentIndex].id &&
+                      (!player.songs[player.currentIndex + 1] ||
+                        song.id !== player.songs[player.currentIndex + 1].id)
+                    ) {
+                      addSongToPlayerIndex(song, player.currentIndex + 1);
+                      incrementPlayerIndex();
+                    }
+                  }}
+                >
+                  <IoIosPlay 
+                  className="album-songs-play-button"
+                  />
+                </span>
               </td>
               <td className="album-songs-second-row">{song.title}</td>
               <td>{song.artist}</td>
-              <td id="album-song-like-button"><CiCirclePlus /></td>
+              <td id="album-song-like-button">
+                <LikeButton songId={song.id} />
+              </td>
               <td>{song.duration}</td>
               <td className="album-song-update-delete">
                 {user && (
@@ -105,14 +136,25 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
                               closeMenu();
                             }}
                           >
-                            <span><FaMinus /></span>
-                            <span className="remove-album-song">Remove song from album</span>
+                            <span>
+                              <FaMinus />
+                            </span>
+                            <span className="remove-album-song">
+                              Remove song from album
+                            </span>
                           </li>
                         )}
-                        <li>
-                        <span><GoPlus /></span>
-                        <span className="remove-album-song">Add To Playlist</span>
-                        </li>
+                        <div className="add-to-playlist">
+                          <span>
+                            <GoPlus />
+                          </span>
+                          <OpenModalMenuItem
+                            modalComponent={
+                              <AddToPlaylistModal songId={song.id} />
+                            }
+                            itemText="Add To Playlist"
+                          />
+                        </div>
                       </ul>
                     )}
                   </>
@@ -143,7 +185,7 @@ const AlbumSongs = ({ userOwnsAlbum }) => {
                 </select>
               </td>
               <td>
-              <button
+                <button
                   id="add-album-song-button"
                   disabled={selectedSong === "" ? true : false}
                   onClick={addAlbumSong}

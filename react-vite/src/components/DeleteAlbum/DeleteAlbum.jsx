@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import * as albumActions from "../../redux/albums";
+import * as sessionActions from '../../redux/session';
+import "./DeleteAlbum.css";
 
 const DeleteAlbum = () => {
   const { closeModal } = useModal();
@@ -24,9 +26,11 @@ const DeleteAlbum = () => {
       }
     );
 
+    dispatch(sessionActions.removeUserAlbum(albumId));
+    
     closeModal();
 
-    return navigate('/');
+    return navigate("/");
   };
 
   return (
@@ -34,11 +38,15 @@ const DeleteAlbum = () => {
       <header>
         <h2>Delete Album?</h2>
       </header>
-      <div className="delete-album-buttons">
+      <div className="delete-album-button">
         <button onClick={handleClick}>Yes</button>
+      </div>
+      <div className="delete-album-button">
         <button onClick={() => closeModal()}>No</button>
       </div>
-      {errors.serverError && <p>{errors.serverError}</p>}
+      {errors.serverError && (
+        <p className="delete-album-error">{errors.serverError}</p>
+      )}
     </article>
   );
 };

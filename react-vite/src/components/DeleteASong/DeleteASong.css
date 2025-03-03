@@ -1,4 +1,4 @@
-.deleteASongButton{
+.delete-song-button{
     /* border:1px solid rgb(95, 4, 181); */
     background-color: rgb(19, 182, 54);
     color:black;
@@ -8,37 +8,49 @@
     font-size: 18px;  
    
 }
-.deleteASongCancelButton{
+.delete-song-cancel-button{
     border: None;
     background-color: transparent;
- 
     font-size: 16px;  
 }
-.deleteASongContainer{
+.delete-song-container{
     display: flex;
     flex-direction: column; 
     color: black;
     /* padding-left: 10px; */
     
 }
-.deleteASongButtonContainer{
+.delete-song-button-container{
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     gap:30px;
     padding-left: 90px;
     margin-top: 5px;
+  
 }
-.deleteASongButtonFrame{
+.delete-song-button-frame{
     border: 3px solid #a0bbea ;
     padding: 3px;
     border-radius: 5px;
 }
-.deleteASongConfirm{
+.delete-song-confirm{
     font-weight: bolder;
     font-size: 20px;
     margin: 3px;
 }
-.deleteASongConfirmAgain{
+.delete-song-confirm-again{
     margin: 3px;
     font-size:16px;
+    display: flex;
+    flex-direction: row;
+
+}
+#delete-song-title{
+    width: 60px; 
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    font-weight: bolder;
+    padding-left: 8px;
 }

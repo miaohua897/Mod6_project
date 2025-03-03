@@ -11,6 +11,8 @@ import AddASong from '../AddASong/AddASong';
 import { CreateAlbum } from '../AlbumForm';
 import * as playerActions from '../../redux/player';
 import './LeftNavbar.css';
+import CreatePlaylistForm from '../CreatePlaylistForm/CreatePlaylistForm';
+
 
 export default function LeftNavbar({ isLoaded, sessionUser }) {
   const dispatch = useDispatch();
@@ -19,33 +21,37 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
   const [isAlbumsActive, setIsAlbumsActive] = useState(false);
   const [isPlaylistsActive, setIsPlaylistsActive] = useState(false);
 
+  
+  
+
+  const songs = useSelector(state=>state.song.currentUserAllSongs);
+
+  console.log('songs form left nav bar',songs)
+
   const setPlayerIndex = async index => {
     await dispatch(playerActions.thunkSetPlayerIndex(index));
   };
 
   return (
-    <div className="left-navbar-div">
-      <nav>
+    <nav className="left-navbar">
+      <div className="left-navbar-top-div">
         <div className="left-navbar-header">
           <HiSquare2Stack style={{ width: 'auto', height: '24px' }} />
           <span className="left-navbar-header-text">Your Library</span>
         </div>
         {!sessionUser && (
-          <>
-            <div className="left-navbar-no-user-div">
-              <div>
-                Create an account to upload songs, create albums, & make
-                playlists
-              </div>
-              <div>It&apos;s easy, we&apos;ll help you</div>
-              <div className="left-navbar-sign-up-button">
-                <OpenModalButton
-                  modalComponent={<SignupFormModal />}
-                  buttonText="Sign up"
-                />
-              </div>
+          <div className="left-navbar-no-user-div">
+            <div>
+              Create an account to upload songs, create albums, & make playlists
             </div>
-          </>
+            <div>It&apos;s easy, we&apos;ll help you</div>
+            <div className="left-navbar-sign-up-button">
+              <OpenModalButton
+                modalComponent={<SignupFormModal />}
+                buttonText="Sign up"
+              />
+            </div>
+          </div>
         )}
         {sessionUser && (
           <>
@@ -98,85 +104,86 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
                   />
                 )}
                 {isPlaylistsActive && (
-                  <button
+                  <OpenModalButton
                     className="left-navbar-state-button"
-                    onClick={() => {
-                      // ADD FUNCTION TO CREATE A PLAYLIST HERE
-                    }}
-                  >
-                    Create a playlist
-                  </button>
+                    modalComponent={<CreatePlaylistForm />}
+                    buttonText="Create new playlist"
+                  />
                 )}
               </div>
             </div>
-            {isSongsActive &&
-              (!sessionUser.songIds || !sessionUser.songIds.length ? (
-                <span className="add-to-library">
-                  Add a song to your library
-                </span>
-              ) : (
+            <div className="left-navbar-library-div">
+              {
+                isSongsActive?
                 <LeftNavbarSongs
-                  isLoaded={isLoaded}
-                  sessionUser={sessionUser}
-                />
-              ))}
-            {isAlbumsActive &&
-              (!sessionUser.albumIds || !sessionUser.albumIds.length ? (
-                <span className="add-to-library">
-                  Add an album to your library
-                </span>
-              ) : (
-                <LeftNavbarAlbums
-                  isLoaded={isLoaded}
-                  sessionUser={sessionUser}
-                />
-              ))}
-            {isPlaylistsActive &&
-              (!sessionUser.playlistIds || !sessionUser.playlistIds.length ? (
-                <span className="add-to-library">
-                  Add a playlist to your library
-                </span>
-              ) : (
-                <LeftNavbarPlaylists
-                  isLoaded={isLoaded}
-                  sessionUser={sessionUser}
-                />
-              ))}
+                isLoaded={isLoaded}
+                sessionUser={sessionUser}
+              />:
+                null
+              }
+          
+              {/* {isSongsActive &&
+                (
+                  // !sessionUser.songIds || !sessionUser.songIds.length ? 
+                  (
+                  <span className="add-to-library">
+                    Add a song to your library
+                  </span>
+                ) : (
+                  <LeftNavbarSongs
+                    isLoaded={isLoaded}
+                    sessionUser={sessionUser}
+                  />
+                ))} */}
+              {isAlbumsActive &&
+                (!sessionUser.albumIds || !sessionUser.albumIds.length ? (
+                  <span className="add-to-library">
+                    Add an album to your library
+                  </span>
+                ) : (
+                  <LeftNavbarAlbums
+                    isLoaded={isLoaded}
+                    sessionUser={sessionUser}
+                  />
+                ))}
+              {isPlaylistsActive &&
+                ( <LeftNavbarPlaylists
+                    isLoaded={isLoaded}
+                    sessionUser={sessionUser}
+                  />
+                )}
+            </div>
           </>
         )}
-        {player.songs.length > 0 && (
-          <div className="player-queue-div">
-            <div className="player-queue-header">
-              <MdQueue style={{ width: 'auto', height: '24px' }} />
-              <span className="player-queue-header-text">
-                Currently Playing
-              </span>
-            </div>
-            <div className="player-queue-songs">
-              {player.songs.map((song, index) => (
-                <div
-                  className="player-queue-song-card"
-                  key={song.id}
-                  onClick={() => setPlayerIndex(index)}
-                >
-                  <div className="player-queue-song-image-div">
-                    <img
-                      src={song.image_url}
-                      className="player-queue-song-image"
-                    />
-                  </div>
-                  <div className="player-queue-song-title-artist">
-                    <div className="player-queue-song-title">{song.title}</div>
-                    <div className="player-queue-song-artist">
-                      {song.artist}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+      </div>
+      {player.songs.length > 0 && (
+        <div className="player-queue-div">
+          <div className="player-queue-header">
+            <MdQueue style={{ width: 'auto', height: '24px' }} />
+            <span className="player-queue-header-text">Currently Playing</span>
           </div>
-        )}
-      </nav>
-    </div>
+          <div className="player-queue-songs">
+            {player.songs.map((song, index) => (
+              <div
+                className="player-queue-song-card"
+                key={index}
+                onClick={() => setPlayerIndex(index)}
+              >
+                <div className="player-queue-song-image-div">
+                  <img
+                    src={song.image_url}
+                    className="player-queue-song-image"
+                  />
+                </div>
+                <div className="player-queue-song-title-artist">
+                  <div className="player-queue-song-title">{song.title}</div>
+                  <div className="player-queue-song-artist">{song.artist}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }

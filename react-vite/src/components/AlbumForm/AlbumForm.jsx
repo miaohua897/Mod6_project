@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import * as albumActions from '../../redux/albums';
+import * as sessionActions from '../../redux/session';
+import { isValidURL } from '../../resources/helperFunctions';
+import './AlbumForm.css';
 
 const AlbumForm = ({ album, albumId, formType }) => {
   const [title, setTitle] = useState(album.title);
@@ -20,23 +23,28 @@ const AlbumForm = ({ album, albumId, formType }) => {
     const acceptedImageExtensions = ['.png', '.jpg', '.jpeg'];
 
     if (!title.length) {
-      validationErrors.title = 'Album title is required';
+      validationErrors.title = 'Album Title is required';
     } else if (title.length > 200) {
       validationErrors.title =
         'Album title cannot be longer that 200 characters';
     }
 
     if (!image.length) {
-      validationErrors.image = 'Album cover image is required';
+      validationErrors.image = 'Album Cover Image is required';
     } else if (
       !acceptedImageExtensions.some(extension => image.endsWith(extension))
+      || !isValidURL(image)
     ) {
       validationErrors.image =
-        'Album cover image URL must end in .png, .jpg, .jpeg';
+        'Image URL must end in .png, .jpg, .jpeg, and must be a valid URL';
     }
 
-    if (releaseYear === null)
-      validationErrors.releaseYear = 'Album release year is required';
+    if (releaseYear === null) {
+      validationErrors.releaseYear = 'Album Release Year is required';
+    } else if (releaseYear < 1940) {
+      validationErrors.releaseYear = 'Album Release Year must be 1940 or later';
+    }
+      
 
     setErrors(validationErrors);
   }, [title, image, releaseYear]);
@@ -62,6 +70,8 @@ const AlbumForm = ({ album, albumId, formType }) => {
             serverError: 'There was a server issue, please try again.',
           });
       });
+
+      dispatch(sessionActions.addUserAlbum(Object.keys(newAlbum)[0]))
 
       closeModal();
 
@@ -98,7 +108,7 @@ const AlbumForm = ({ album, albumId, formType }) => {
     );
 
   return (
-    <article>
+    <article className='album-form'>
       <header>{header}</header>
       <form>
         <div className="album-form-input">
@@ -168,10 +178,10 @@ const AlbumForm = ({ album, albumId, formType }) => {
             </p>
           )}
         </div>
-        <div className="album-form-input">
+        <div className="album-form-message">
           <p>(Don&apos;t worry, you can add songs later!)</p>
         </div>
-        <div className="album-form-input">{submitButton}</div>
+        <div className="album-form-button">{submitButton}</div>
         {hasSubmitted && (
           <p
             className={

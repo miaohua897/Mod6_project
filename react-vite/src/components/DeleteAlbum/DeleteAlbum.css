@@ -1,0 +1,39 @@
+.delete-album-container * {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+.delete-album-container {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: #121212;
+  padding: 40px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 30px;
+}
+
+.delete-album-button button {
+  background-color: #5c3be8;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 32px;
+  height: 40px;
+  border: none;
+  border-radius: 24px;
+  width: 180px;
+}
+
+.delete-album-button button:hover {
+  cursor: pointer;
+  scale: 1.04;
+}
+
+.delete-album-error {
+  color: red;
+}

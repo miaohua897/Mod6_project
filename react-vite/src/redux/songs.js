@@ -1,18 +1,32 @@
-// const jwtToken = localStorage.getItem('jwt_token'); 
+
+
+const load_all_songs = (data) => ({
+    type:'LOAD_ALL_SONGS',
+    payload:data
+})
+
+const load_songs=(data)=>({
+    type:'LOAD_SONGS',
+    payload:data
+
+})
+const add_song=(data)=>({
+    type:'ADD_SONG',
+    payload:data
+})
+const delete_song=(data)=>({
+    type:'DELETE_SONG',
+    payload:data
+})
+const update_song=(data)=>({
+    type:'UPDATE_SONG',
+    payload:data
+})
 
 export const createASong=(data)=>async(dispatch)=>{
-    // const csrfToken = document.cookie
-    // .split("; ")
-    // .find(row => row.startsWith("csrf_token"))
-    // ?.split("=")[1];
-
     const res = await fetch('/api/songs',{
         method:'POST',
-        // headers:{
-        //     "X-CSRF-TOKEN": csrfToken,
-        // },
-        body: data,
-        
+        body: data   
     })
     if(res.ok){
         const data= await res.json()
@@ -70,28 +84,6 @@ export const getAllSongs = () => async dispatch => {
     }
 }
 
-const load_all_songs = (data) => ({
-    type:'LOAD_ALL_SONGS',
-    payload:data
-})
-
-const load_songs=(data)=>({
-    type:'LOAD_SONGS',
-    payload:data
-
-})
-const add_song=(data)=>({
-    type:'ADD_SONG',
-    payload:data
-})
-const delete_song=(data)=>({
-    type:'DELETE_SONG',
-    payload:data
-})
-const update_song=(data)=>({
-    type:'UPDATE_SONG',
-    payload:data
-})
 const initialState={songs: [], currentUserAllSongs:[]}
 function songReducer(state=initialState,action){
     switch(action.type){
@@ -109,10 +101,6 @@ function songReducer(state=initialState,action){
                 arr1.push(action.payload)
                 
             return {...state,songs:arr,currentUserAllSongs:arr1}} 
-        //    {let arr =[]
-        //     arr=state.currentUserAllSongs
-        //     arr.push(action.payload)
-        //     return {...state,currentUserAllSongs:arr}} 
         case 'DELETE_SONG':
             {
                 let arr =[]
@@ -159,32 +147,6 @@ function songReducer(state=initialState,action){
                 })
                 return {...state, songs:arr,currentUserAllSongs:arr1}
             }
-        // case 'DELETE_SONG':
-        //     {
-        //         let arr =[]
-        //         state.currentUserAllSongs.map(el=>{
-        //             if(el.id !== action.payload){
-        //                 arr.push(el)
-        //             }
-        //         })
-        //         return {...state,currentUserAllSongs:arr}
-        //     }
-        // case 'UPDATE_SONG':
-        //     {
-        //         let arr=[]
-        //         let el_new={}
-        //         state.currentUserAllSongs.map(el=>{
-        //             if(el.id !== action.payload.id){
-        //                 arr.push(el)
-        //             }else{
-        //                 el_new= action.payload
-        //                 el_new['albums']=el['albums']
-        //                 el_new['likes']=el['likes']
-        //                 arr.push(el_new)
-        //             }
-        //         })
-        //         return {...state,currentUserAllSongs:arr}
-        //     }
         default:
             return state
     }

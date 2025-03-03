@@ -8,30 +8,53 @@ import {FaTimes} from 'react-icons/fa';
 import './UpdateASong.css'
 
 function UpdateASong({song_id,closeUpdateModal}){
-    // const {song_id} = useParams()
-    
-    const songs = useSelector(state=>state.song.currentUserAllSongs)
-    const song = songs.filter(el=>el.id===Number(song_id))[0]
+
+        const songs = useSelector(state=>state.song.currentUserAllSongs)
+        const song = songs.filter(el=>el.id===Number(song_id))[0]
      
         const [title,setTitle] = useState(song.title);
-        // const [duration, setDuration] = useState(song.duration);
+       
         const [lyrics,setLyrics]=useState(song.lyrics);
         const [genre,setGenre]=useState(song.genre)
         const [image,setImage]=useState(null)
         const [audio, setAudio]=useState(null)
         const [min_duration,setMin_duration] = useState(song.duration.split(':')[0]);
-        const [s_duration,setS_duration] = useState(song.duration.split(':')[1])
+        const [s_duration,setS_duration] = useState(song.duration.split(':')[1]);
+        const [titleError, setTittleError]=useState('');
         const [release_year,setRelease_year]=useState(song.release_year)
         const [ryError,setRyError]=useState({'error':''})
+        const [minError,setMinError] = useState('');
+        const [sError,setSError] = useState('');
+        const [disableButton,setDisableButton]=useState(false)
         const dispatch = useDispatch()
         const navigate=useNavigate()
-    
-        // const sessionUser = useSelector((state) => state.session.user);
-        // if (!sessionUser) return <h1>Log in, please</h1>
-    
-        // console.log('update a song',song)
+        
         const handleSubmit= async (e)=>{
                  e.preventDefault();
+                 setDisableButton(true)
+
+                  if(title.length>30){
+                    const errorMes ='Title is too long';
+                    setTittleError(errorMes);
+                    setDisableButton(false)
+                    return ;
+                }
+
+                 setMinError('')
+                 setSError('')
+                 if( min_duration <0 || min_duration>60) {
+                     const errorMes = "Minutes can't be less than 0 or greater than 60."
+                     setMinError(errorMes)
+                     setDisableButton(false)
+                     return ;
+                 }
+                 if( s_duration <0 || s_duration>60) {
+                     const errorMes = "Second can't be less than 0 or greater than 60."
+                     setSError(errorMes)
+                     setDisableButton(false)
+                     return ;
+                 }
+
                        const time_value =`${String(min_duration)}:${String(s_duration)}`;
                        console.log('release year',release_year )
                        if (release_year <=0) {
@@ -41,11 +64,12 @@ function UpdateASong({song_id,closeUpdateModal}){
                            setAudio(null)
                            setTitle('')
                            // setDuration('')
-                           setLyrics('')
-                           setGenre('')
-                           setRelease_year(0)
-                           setS_duration(-1)
-                           setMin_duration(-1)
+                           setLyrics(song.lyrics)
+                           setGenre(song.genre)
+                           setRelease_year(song.release_year)
+                           setS_duration(song.duration.split(':')[1])
+                           setMin_duration(song.duration.split(':')[0])
+                           setDisableButton(false)
                            return ;
                            
                        } 
@@ -78,13 +102,14 @@ function UpdateASong({song_id,closeUpdateModal}){
                      
                      navigate(`/song/${song_id}`)
                      closeUpdateModal()
+                     setDisableButton(false)
             }
          
     return (
-        <div>
-               <div className="closeUpdateASongButtonPosition">
+        <div className="update-song-modal-container">
+               <div className="close-update-song-button-position">
                       <button
-                      className="closeUpdateASongModal"
+                      className="close-update-song-modal"
                       onClick={()=> closeUpdateModal()}
                       >  <FaTimes /> </button>
                 </div>
@@ -92,32 +117,29 @@ function UpdateASong({song_id,closeUpdateModal}){
             <form
             onSubmit={handleSubmit}
               encType="multipart/form-data"
-               className="updateSongContainer"
+               className="update-song-container"
             >
-               
+                <h2 className="update-your-song">Update your song</h2>
                 <p>song title</p>
+                {titleError!==""? <p style={{color:"red"}}>{titleError}</p>: null}
                 <input
                 type='text'
-                value={title?title:song.title}
+                value={title}
                 onChange={(e)=>setTitle(e.target.value)}
-                 className="updateSonginput"
+                 className="update-song-input"
                 >
                 </input>
                 <div
-                className='durationInputContainer'
+                className='duration-input-container'
                 >
                 <p>song duration</p>
-                {/* <input
-                type='text'
-                value={duration?duration:song.duration}
-                onChange={(e)=>setDuration(e.target.value)}
-                >
-                </input> */}
+                {minError!==""? <p style={{color:"red"}}>{minError}</p>: null}
+                {sError!==""? <p style={{color:"red"}}>{sError}</p>: null}
                   <input 
                 type='number'
                 value={min_duration===-1?'':min_duration}
                 onChange={(e)=>setMin_duration(e.target.value)}
-                className="durationInputBox"
+                className="duration-input-box"
                 >    
                 </input> <a> min</a>
                
@@ -125,7 +147,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 type='number'
                 value={s_duration===-1?'':s_duration}
                 onChange={(e)=>setS_duration(e.target.value)}
-                className="durationInputBox"
+                className="duration-input-box"
                 >    
                 </input> <a> s</a>
 
@@ -135,33 +157,27 @@ function UpdateASong({song_id,closeUpdateModal}){
                 {ryError.error!==""? <p style={{color:"red"}}>{ryError.error}</p>: null}
                 <input
                 type='number'
-                value={release_year?release_year:song.release_year}
+                value={release_year}
                 onChange={(e)=>setRelease_year(e.target.value)}
-                 className="updateSonginput"
+                 className="update-song-input"
                 >
                 </input>
                 <p>song lyrics</p>
                 <textarea
-                  value ={lyrics?lyrics:song.lyrics}
+                  value ={lyrics}
                   onChange={(e)=>setLyrics(e.target.value)}
                 //   rows='4'
                   cols='10'
-                   className="updatelyricsinput"
+                   className="update-lyrics-input"
                 >
                 </textarea>
-                {/* <input
-                type='text'
-                value ={lyrics?lyrics:song.lyrics}
-                onChange={(e)=>setLyrics(e.target.value)}
-                 className="updatelyricsinput"
-                >
-                </input> */}
+         
                 <p>song genre</p>
                 <input
                 type='text'
-                value={genre?genre:song.genre}
+                value={genre}
                 onChange={(e)=>setGenre(e.target.value)}
-                 className="updateSonginput"
+                 className="update-song-input"
                 >
                 </input>
                 <p>upload a image for the song</p>
@@ -169,7 +185,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 type='file'
                 accept="image/*"
                 onChange={(e)=>setImage(e.target.files[0])}
-                className="updateSonginput"    
+                className="update-song-input"    
                 >
                  
                 </input>
@@ -182,7 +198,8 @@ function UpdateASong({song_id,closeUpdateModal}){
                 >   
                 </input>
                 <button 
-                className="submitUpdateSongButton"
+                className="submit-update-song-button"
+                disabled={disableButton}
                 type="submit">Submit</button>
 
             </form>
