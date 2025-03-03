@@ -147,8 +147,8 @@ main, always keeping it up to date.
 
 ## Contributers
 
-- [miaohua897](https://github.com/miaohua897/)
+- [miaohua](https://github.com/miaohua897/)
 - [Tom Moosbrugger](https://github.com/Tom-Moosbrugger)
-- [MehwishHanif](https://github.com/MehwishHanif)
+- [Mehwish Hanif](https://github.com/MehwishHanif)
 - [fayfan](https://github.com/fayfan)
 
