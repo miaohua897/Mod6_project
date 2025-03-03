@@ -21,13 +21,6 @@ export default function LeftNavbar({ isLoaded, sessionUser }) {
   const [isAlbumsActive, setIsAlbumsActive] = useState(false);
   const [isPlaylistsActive, setIsPlaylistsActive] = useState(false);
 
-  
-  
-
-  const songs = useSelector(state=>state.song.currentUserAllSongs);
-
-  console.log('songs form left nav bar',songs)
-
   const setPlayerIndex = async index => {
     await dispatch(playerActions.thunkSetPlayerIndex(index));
   };

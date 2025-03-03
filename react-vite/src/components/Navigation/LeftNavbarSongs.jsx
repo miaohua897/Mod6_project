@@ -17,9 +17,6 @@ export default function LeftNavbarSongs({  sessionUser }) {
         dispatch(getCurrentAllSongs())
     },[dispatch])
 
-    console.log('i am from left nav bar',songs,sessionUser)
-
-
   return (
     <>
     {
