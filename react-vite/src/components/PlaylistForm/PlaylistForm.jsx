@@ -23,8 +23,7 @@ function PlaylistForm({ playlist, formType }) {
     (state) => Object.values(state.playlists) || []
   );
 
-  console.log("playlistIds:  ", playlistIds);
-  console.log("playlists: ", playlists);
+ 
 
   useEffect(() => {
     const formErrors = {};
@@ -71,7 +70,6 @@ function PlaylistForm({ playlist, formType }) {
           }
         })
         .catch(async (res) => {
-          console.log(res);
           const data = await res.json();
 
           if (data && data.errors) {
