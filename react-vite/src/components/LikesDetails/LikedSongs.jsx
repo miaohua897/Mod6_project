@@ -16,7 +16,7 @@ const LikedSongs = () => {
  
   const likedSongs = useSelector(selectLikedSongs)
   const player = useSelector((state) => state.player);
-  console.log(likedSongs)
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
