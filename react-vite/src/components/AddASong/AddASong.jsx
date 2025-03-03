@@ -9,7 +9,6 @@ import './AddASong.css'
 
 function AddASong(){
     const [title,setTitle] = useState('');
-    // const [duration, setDuration] = useState('');
     const [lyrics,setLyrics]=useState('');
     const [genre,setGenre]=useState('')
     const [image,setImage]=useState(null)
@@ -63,27 +62,23 @@ function AddASong(){
             return ;
             
         } 
-        // setDuration(time_value)
-        // console.log('time_value',time_value,duration)
+ 
         const formData = new FormData();
         console.log('image',image)
         formData.append('image',image);
         formData.append('title',title)
-        // formData.append('duraton',duration)
         formData.append('duraton',time_value)
         formData.append('lyrics',lyrics)
         formData.append('genre',genre)
         formData.append('audio',audio)
         formData.append('release_year',release_year)
         formData.append('user_id',sessionUser.id)
-        // formData.append('user_id',23)
 
         const res = await dispatch(createASong(formData))
         console.log('new song',res)
         setImage(null)
         setAudio(null)
         setTitle('')
-        // setDuration('')
         setS_duration(-1)
         setMin_duration(-1)
         setLyrics('')
@@ -94,26 +89,20 @@ function AddASong(){
         if(res.id)
         {
             await navigate(`/song/${res.id}`)
-            // window.location.reload();
-        }
-            
-             
+        }       
         else{
             window.alert("can't add the song")
-        }
-      
+        }     
     }
-
     return (
 
         <div className="add-song-modal-container">
-
-            <div className="close-add-song-button-position">
-            <button
-            className="close-add-song-modal"
-            onClick={()=> closeModal()}
-            >  <FaTimes /> </button>
-            </div>
+                <div className="close-add-song-button-position">
+                    <button
+                    className="close-add-song-modal"
+                    onClick={()=> closeModal()}
+                    >  <FaTimes /> </button>
+                </div>
             
             <form
             onSubmit={handleSubmit}
@@ -133,18 +122,15 @@ function AddASong(){
                 </input>
                 <p>song duration</p>
                {minError!==""? <p style={{color:"red"}}>{minError}</p>: null}
-               {sError!==""? <p style={{color:"red"}}>{sError}</p>: null}
-        
-               <div className='duration-input-container'>
-             
+               {sError!==""? <p style={{color:"red"}}>{sError}</p>: null}       
+               <div className='duration-input-container'>            
                 <input 
                 type='number'
                 value={min_duration===-1?'':min_duration}
                 onChange={(e)=>setMin_duration(e.target.value)}
                 className="duration-input-box"
                 >    
-                </input> <a> min</a>
-               
+                </input> <a> min</a>             
                 <input 
                 type='number'
                 value={s_duration===-1?'':s_duration}
@@ -152,7 +138,7 @@ function AddASong(){
                 className="duration-input-box"
                 >    
                 </input> <a> s</a>
-               </div>
+                </div>
                 <p>release year</p>
                  {ryError.error!==""? <p style={{color:"red"}}>{ryError.error}</p>: null}
                 <input
@@ -183,8 +169,7 @@ function AddASong(){
                 >
                 </input>
                 <p>upload a image for the song</p>
-                <label>
-                 
+                <label>                
                 <input
                 type='file'
                 accept="image/*"
@@ -194,14 +179,9 @@ function AddASong(){
                 id='update-files'
                 >
                 </input>
-                </label>
-            
-               
+                </label>               
                 <p>upload a  song</p>
                 <label>
-                {/* <span
-                 className="requiredMessage"
-                >This field is required</span> */}
                 <input
                 type='file'
                 accept="mp3/*"
@@ -210,16 +190,11 @@ function AddASong(){
                 className="add-song-input"
                 >   
                 </input>
-
-                </label>
-               
-               
+                </label>                 
                 <button 
                 className="submit-add-song-button"
                 disabled={disableButton}
-                type="submit">Submit</button>
- 
-        
+                type="submit">Submit</button>        
             </form>
         </div>
     )

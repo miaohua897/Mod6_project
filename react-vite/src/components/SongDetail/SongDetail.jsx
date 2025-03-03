@@ -59,7 +59,6 @@ function SongDetail() {
   const songs = useSelector(state => state.song.songs);
   const song = songs.filter(el => el.id === Number(song_id))[0];
   const isUserSong = userSongs.filter(el => el.id === Number(song_id));
-  console.log('i am from song detail page',sessionUser,userSongs,songs,song, isUserSong)
   return (
     <div>
       {song ? (
