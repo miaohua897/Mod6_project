@@ -63,7 +63,6 @@ function UpdateASong({song_id,closeUpdateModal}){
                            setImage(null)
                            setAudio(null)
                            setTitle('')
-                           // setDuration('')
                            setLyrics(song.lyrics)
                            setGenre(song.genre)
                            setRelease_year(song.release_year)
@@ -73,27 +72,22 @@ function UpdateASong({song_id,closeUpdateModal}){
                            return ;
                            
                        } 
-                       // setDuration(time_value)
-                       // console.log('time_value',time_value,duration)
                        const formData = new FormData();
                        console.log('image',image)
                        formData.append('image',image);
                        formData.append('title',title)
-                       // formData.append('duraton',duration)
                        formData.append('duraton',time_value)
                        formData.append('lyrics',lyrics)
                        formData.append('genre',genre)
                        formData.append('audio',audio)
                        formData.append('release_year',release_year)
                        formData.append('user_id',song.user_id)
-                       // formData.append('user_id',23)
                
                        await dispatch(updateASong(formData,song_id))
                      
                        setImage(null)
                        setAudio(null)
                        setTitle('')
-                       // setDuration('')
                        setS_duration(-1)
                        setMin_duration(-1)
                        setLyrics('')
@@ -117,8 +111,7 @@ function UpdateASong({song_id,closeUpdateModal}){
             <form
             onSubmit={handleSubmit}
               encType="multipart/form-data"
-               className="update-song-container"
-            >
+               className="update-song-container" >
                 <h2 className="update-your-song">Update your song</h2>
                 <p>song title</p>
                 {titleError!==""? <p style={{color:"red"}}>{titleError}</p>: null}
@@ -128,6 +121,7 @@ function UpdateASong({song_id,closeUpdateModal}){
                 onChange={(e)=>setTitle(e.target.value)}
                  className="update-song-input"
                 >
+
                 </input>
                 <div
                 className='duration-input-container'
@@ -150,7 +144,6 @@ function UpdateASong({song_id,closeUpdateModal}){
                 className="duration-input-box"
                 >    
                 </input> <a> s</a>
-
                 </div>
                 
                 <p>release year</p>
@@ -166,7 +159,6 @@ function UpdateASong({song_id,closeUpdateModal}){
                 <textarea
                   value ={lyrics}
                   onChange={(e)=>setLyrics(e.target.value)}
-                //   rows='4'
                   cols='10'
                    className="update-lyrics-input"
                 >
