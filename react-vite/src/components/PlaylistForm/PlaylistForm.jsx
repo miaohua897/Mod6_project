@@ -1,7 +1,6 @@
 import { createUserPlaylist, updateUserPlaylist } from "../../redux/playlists";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import "./PlaylistForm.css";
@@ -16,16 +15,7 @@ function PlaylistForm({ playlist, formType }) {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const { closeModal } = useModal();
 
-  const playlistIds = useSelector(
-    (state) => state.session.user?.playlistIds || []
-  );
-  const playlists = useSelector(
-    (state) => Object.values(state.playlists) || []
-  );
-
-  console.log("playlistIds:  ", playlistIds);
-  console.log("playlists: ", playlists);
-
+  
   useEffect(() => {
     const formErrors = {};
     if (!name.length) {
@@ -71,7 +61,6 @@ function PlaylistForm({ playlist, formType }) {
           }
         })
         .catch(async (res) => {
-          console.log(res);
           const data = await res.json();
 
           if (data && data.errors) {
